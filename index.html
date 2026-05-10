@@ -1,119 +1,120 @@
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-.app { max-width: 420px; margin: 0 auto; background: #F0F2F8; min-height: 100vh; padding-bottom: 2rem; font-family: 'Inter', sans-serif; }
-.topbar { background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); padding: 18px 16px 56px; }
-.topbar-title { font-size: 17px; font-weight: 600; color: #fff; letter-spacing: -0.2px; }
-.topbar-icon { width: 34px; height: 34px; background: rgba(255,255,255,0.18); border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; vertical-align: middle; }
-.tab-bar { display: flex; margin: 0 14px; gap: 8px; }
-.tab-btn { flex: 1; padding: 10px 8px; border: none; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-.tab-btn.active { background: #fff; color: #4F46E5; box-shadow: 0 4px 16px rgba(79,70,229,0.13); }
-.tab-btn.inactive { background: rgba(255,255,255,0.22); color: #fff; }
-.panel { display: none; }
-.panel.active { display: block; }
-.hero-card { background: #fff; border-radius: 20px; margin: -28px 14px 0; padding: 16px; box-shadow: 0 4px 24px rgba(79,70,229,0.10); position: relative; z-index: 2; }
-.hero-label { font-size: 11px; font-weight: 600; color: #8B8FA8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-.hero-amount { font-size: 30px; font-weight: 600; color: #1E1B4B; letter-spacing: -0.5px; }
-.hero-sub { font-size: 12px; color: #8B8FA8; margin-top: 2px; }
-.section { background: #fff; border-radius: 16px; margin: 10px 14px 0; padding: 14px; }
-.section-label { font-size: 11px; font-weight: 600; color: #8B8FA8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
-.field-label { font-size: 12px; color: #6B7280; display: block; margin-bottom: 5px; font-weight: 500; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-input[type=number], input[type=text] { width: 100%; padding: 9px 11px; border: 1.5px solid #E5E7EB; border-radius: 10px; font-size: 13px; font-family: 'Inter', sans-serif; color: #111827; background: #F9FAFB; outline: none; transition: border-color 0.15s; }
-input:focus { border-color: #6366F1; background: #fff; }
-.slab-pill { display: flex; align-items: center; gap: 7px; padding: 0 11px; height: 38px; border-radius: 10px; background: #F3F4F6; border: 1.5px solid #E5E7EB; }
-.slab-pill span { font-size: 13px; font-weight: 600; color: #6B7280; }
-.nos-table { width: 100%; border-collapse: collapse; }
-.nos-table th { font-size: 10px; font-weight: 600; color: #9CA3AF; padding: 0 3px 8px; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; }
-.nos-table th:first-child { text-align: left; padding-left: 0; }
-.nos-table td { padding: 7px 3px; vertical-align: middle; }
-.nos-table td:first-child { padding-left: 0; }
-.nos-table tr { border-top: 1px solid #F3F4F6; }
-.nos-table tr:first-child { border-top: none; }
-.nos-total-row td { background: #F9FAFB; font-size: 13px; font-weight: 600; color: #374151; text-align: center; padding: 8px 4px; }
-.nos-total-row td:first-child { text-align: left; padding-left: 8px; border-radius: 8px 0 0 8px; }
-.nos-total-row td:last-child { border-radius: 0 8px 8px 0; }
-.badge { font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 8px; display: inline-block; }
-.badge-gray { background: #F3F4F6; color: #6B7280; }
-.badge-purple { background: #EDE9FE; color: #5B21B6; }
-.nos-val { font-size: 13px; font-weight: 600; color: #374151; text-align: center; }
-.group-label { font-size: 11px; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.07em; margin: 14px 0 4px; }
-.rincian-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid #F3F4F6; }
-.rincian-label { font-size: 13px; color: #6B7280; }
-.rincian-val { font-size: 13px; font-weight: 600; color: #111827; }
-.k-row { display: flex; justify-content: space-between; padding: 7px 0; border-top: 1px solid #F3F4F6; font-size: 13px; }
-.k-row:first-child { border-top: none; }
-
-/* AFA */
-.afa-card { background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%); border-radius: 16px; margin: 10px 14px 0; padding: 14px 16px; }
-.afa-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.afa-title { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; }
-.afa-formula { font-size: 11px; color: rgba(255,255,255,0.4); }
-.afa-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.afa-item { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 10px; text-align: center; }
-.afa-item-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-.afa-item-val { font-size: 13px; font-weight: 600; color: #fff; }
-.afa-item-sub { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-.afa-main { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 12px; margin-top: 8px; display: flex; align-items: center; justify-content: space-between; }
-.afa-main-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
-.afa-main-val { font-size: 20px; font-weight: 600; color: #fff; letter-spacing: -0.3px; }
-.afa-badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; display: inline-block; }
-.afa-empty { font-size: 12px; color: rgba(255,255,255,0.35); font-style: italic; }
-
-/* TARGET */
-.target-hero { background: linear-gradient(135deg, #4F46E5, #7C3AED); border-radius: 20px; margin: -28px 14px 0; padding: 20px; position: relative; z-index: 2; }
-.target-hero-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-.target-input-wrap { position: relative; }
-.target-input-wrap span { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; font-weight: 600; color: #6366F1; }
-.target-input { width: 100%; padding: 12px 12px 12px 42px; border: none; border-radius: 12px; font-size: 20px; font-weight: 600; font-family: 'Inter', sans-serif; color: #1E1B4B; background: #fff; outline: none; }
-.suggest-card { background: #fff; border-radius: 16px; margin: 10px 14px 0; padding: 14px; }
-.suggest-title { font-size: 13px; font-weight: 600; color: #1E1B4B; margin-bottom: 12px; }
-.suggest-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; border: 1.5px solid #E5E7EB; }
-.suggest-row:last-child { margin-bottom: 0; }
-.suggest-row.highlight { border-color: #6366F1; background: #F5F3FF; }
-.suggest-left { display: flex; align-items: center; gap: 10px; }
-.suggest-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.suggest-name { font-size: 13px; font-weight: 600; color: #1E1B4B; }
-.suggest-right { text-align: right; }
-.suggest-nos { font-size: 15px; font-weight: 600; color: #4F46E5; }
-.suggest-nos-label { font-size: 11px; color: #9CA3AF; }
-.best-badge { font-size: 10px; font-weight: 600; background: #4F46E5; color: #fff; padding: 2px 7px; border-radius: 6px; display: inline-block; margin-bottom: 4px; }
-.result-target { background: #fff; border-radius: 16px; margin: 10px 14px 0; padding: 14px; }
-.result-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-top: 1px solid #F3F4F6; }
-.result-row:first-child { border-top: none; padding-top: 0; }
-.result-key { font-size: 13px; color: #6B7280; display: flex; align-items: center; gap: 7px; }
-.result-val { font-size: 14px; font-weight: 600; color: #111827; }
-.result-sub { font-size: 11px; color: #9CA3AF; text-align: right; }
-.empty-state { text-align: center; padding: 28px 16px; color: #9CA3AF; font-size: 13px; }
-.empty-state i { font-size: 32px; display: block; margin-bottom: 8px; color: #C7D2FE; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#F0F2F8;}
+.app{max-width:390px;margin:0 auto;background:#F0F2F8;min-height:100vh;padding-bottom:32px;font-family:'Inter',sans-serif;}
+.topbar{background:linear-gradient(135deg,#4F46E5,#7C3AED);padding:16px 16px 52px;}
+.topbar-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.topbar-icon{width:32px;height:32px;background:rgba(255,255,255,0.18);border-radius:9px;display:flex;align-items:center;justify-content:center;}
+.topbar-title{font-size:16px;font-weight:600;color:#fff;}
+.tab-bar{display:flex;gap:8px;}
+.tab-btn{flex:1;padding:9px 6px;border:none;border-radius:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.tab-btn.active{background:#fff;color:#4F46E5;box-shadow:0 4px 16px rgba(79,70,229,0.15);}
+.tab-btn.inactive{background:rgba(255,255,255,0.2);color:#fff;}
+.panel{display:none;}.panel.active{display:block;}
+.hero{background:#fff;border-radius:18px;margin:-34px 14px 0;padding:16px;box-shadow:0 4px 20px rgba(79,70,229,0.10);position:relative;z-index:2;}
+.hero-label{font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px;}
+.hero-amount{font-size:28px;font-weight:700;color:#1E1B4B;letter-spacing:-0.5px;}
+.hero-sub{font-size:11px;color:#9CA3AF;margin-top:2px;}
+.section{background:#fff;border-radius:14px;margin:10px 14px 0;padding:14px;}
+.sec-label{font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:11px;}
+.field-label{font-size:12px;color:#6B7280;font-weight:500;display:block;margin-bottom:4px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+input[type=number],input[type=text]{width:100%;padding:9px 11px;border:1.5px solid #E5E7EB;border-radius:10px;font-size:13px;font-family:'Inter',sans-serif;color:#111827;background:#F9FAFB;outline:none;transition:border-color 0.15s;}
+input:focus{border-color:#6366F1;background:#fff;}
+.slab-pill{display:flex;align-items:center;gap:6px;padding:0 10px;height:38px;border-radius:10px;background:#F3F4F6;border:1.5px solid #E5E7EB;}
+.slab-pill span{font-size:13px;font-weight:600;color:#6B7280;}
+.nos-tbl{width:100%;border-collapse:collapse;}
+.nos-tbl th{font-size:10px;font-weight:600;color:#9CA3AF;padding:0 3px 7px;text-align:center;text-transform:uppercase;letter-spacing:0.04em;}
+.nos-tbl th:first-child{text-align:left;padding-left:0;}
+.nos-tbl td{padding:6px 3px;vertical-align:middle;}
+.nos-tbl td:first-child{padding-left:0;}
+.nos-tbl tr{border-top:1px solid #F3F4F6;}
+.nos-tbl tr:first-child{border-top:none;}
+.nos-tbl input{padding:7px 5px;font-size:12px;}
+.tot-row td{background:#F9FAFB;font-size:12px;font-weight:600;color:#374151;text-align:center;padding:7px 3px;}
+.tot-row td:first-child{text-align:left;padding-left:8px;border-radius:7px 0 0 7px;}
+.tot-row td:last-child{border-radius:0 7px 7px 0;}
+.bdg{font-size:10px;font-weight:600;padding:3px 7px;border-radius:7px;display:inline-block;}
+.bdg-gray{background:#F3F4F6;color:#6B7280;}
+.bdg-purple{background:#EDE9FE;color:#5B21B6;}
+.nos-val{font-size:12px;font-weight:600;color:#374151;text-align:center;}
+.afa-card{background:linear-gradient(135deg,#1E1B4B,#312E81);border-radius:14px;margin:10px 14px 0;padding:14px 15px;}
+.afa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;}
+.afa-title{font-size:10px;font-weight:600;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.08em;}
+.afa-formula{font-size:10px;color:rgba(255,255,255,0.35);}
+.afa-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:8px;}
+.afa-box{background:rgba(255,255,255,0.1);border-radius:9px;padding:9px 7px;text-align:center;}
+.afa-box-lbl{font-size:9px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;}
+.afa-box-val{font-size:12px;font-weight:600;color:#fff;}
+.afa-box-sub{font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;}
+.afa-main{background:rgba(255,255,255,0.1);border-radius:10px;padding:11px 12px;display:flex;justify-content:space-between;align-items:center;}
+.afa-main-lbl{font-size:11px;color:rgba(255,255,255,0.55);margin-bottom:3px;}
+.afa-main-val{font-size:19px;font-weight:700;color:#fff;letter-spacing:-0.3px;}
+.afa-bdg{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;display:inline-block;}
+.afa-empty{font-size:11px;color:rgba(255,255,255,0.3);font-style:italic;}
+.grp-lbl{font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.07em;margin:12px 0 4px;}
+.rin-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-top:1px solid #F3F4F6;}
+.rin-lbl{font-size:13px;color:#6B7280;}
+.rin-val{font-size:13px;font-weight:600;color:#111827;}
+.k-row{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid #F3F4F6;font-size:13px;}
+.k-row:first-child{border-top:none;}
+.info-box{background:#FEF3C7;border-radius:10px;padding:10px 12px;margin-top:10px;display:flex;gap:8px;align-items:flex-start;}
+.info-box p{font-size:12px;color:#92400E;line-height:1.6;}
+.t-hero{background:linear-gradient(135deg,#4F46E5,#7C3AED);border-radius:18px;margin:-34px 14px 0;padding:18px;position:relative;z-index:2;}
+.t-hero-lbl{font-size:10px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
+.t-input-wrap{position:relative;}
+.t-input-wrap span{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;font-weight:600;color:#6366F1;}
+.t-input{width:100%;padding:11px 11px 11px 40px;border:none;border-radius:11px;font-size:19px;font-weight:700;font-family:'Inter',sans-serif;color:#1E1B4B;background:#fff;outline:none;}
+.sug-card{background:#fff;border-radius:14px;margin:10px 14px 0;padding:14px;}
+.sug-title{font-size:13px;font-weight:600;color:#1E1B4B;margin-bottom:11px;}
+.sug-row{display:flex;align-items:flex-start;justify-content:space-between;padding:10px 11px;border-radius:11px;margin-bottom:7px;border:1.5px solid #E5E7EB;}
+.sug-row.best{border-color:#6366F1;background:#F5F3FF;}
+.sug-row:last-child{margin-bottom:0;}
+.sug-left{display:flex;align-items:flex-start;gap:9px;}
+.sug-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.sug-name{font-size:12px;font-weight:600;color:#1E1B4B;}
+.sug-right{text-align:right;flex-shrink:0;margin-left:8px;}
+.sug-nos{font-size:14px;font-weight:600;color:#4F46E5;}
+.sug-sub{font-size:11px;color:#9CA3AF;}
+.best-bdg{font-size:10px;font-weight:600;background:#4F46E5;color:#fff;padding:2px 7px;border-radius:6px;display:inline-block;margin-bottom:3px;}
+.res-section{background:#fff;border-radius:14px;margin:10px 14px 0;padding:14px;}
+.res-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid #F3F4F6;}
+.res-row:first-child{border-top:none;padding-top:0;}
+.res-key{font-size:13px;color:#6B7280;display:flex;align-items:center;gap:6px;}
+.res-val{font-size:13px;font-weight:600;color:#111827;}
+.res-sub{font-size:11px;color:#9CA3AF;text-align:right;}
+.empty-st{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:13px;}
+.empty-st i{font-size:28px;display:block;margin-bottom:7px;color:#C7D2FE;}
+/* target slab selector */
+.slab-select-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.slab-chip{font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;cursor:pointer;border:1.5px solid transparent;transition:all 0.15s;}
+.slab-chip.selected{border-color:currentColor;}
 </style>
-
-<h2 class="sr-only">Kalkulator Bonus Sales — hitung bonus, AFA, dan target NOS</h2>
 
 <div class="app">
   <div class="topbar">
-    <p class="topbar-title" style="margin-bottom:16px;">
-      <span class="topbar-icon"><i class="ti ti-chart-bar" style="font-size:17px;color:#fff;" aria-hidden="true"></i></span>
-      Kalkulator Bonus Sales
-    </p>
+    <div class="topbar-row">
+      <div class="topbar-icon"><i class="ti ti-chart-bar" style="font-size:16px;color:#fff;"></i></div>
+      <span class="topbar-title">Kalkulator Bonus Sales</span>
+    </div>
     <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchTab('hitung')"><i class="ti ti-calculator" style="font-size:14px;vertical-align:-2px;margin-right:4px;" aria-hidden="true"></i>Hitung Bonus</button>
-      <button class="tab-btn inactive" onclick="switchTab('target')"><i class="ti ti-target" style="font-size:14px;vertical-align:-2px;margin-right:4px;" aria-hidden="true"></i>Target Bonus</button>
+      <button class="tab-btn active" onclick="switchTab('hitung')"><i class="ti ti-calculator" style="font-size:13px;vertical-align:-2px;margin-right:3px;"></i>Hitung Bonus</button>
+      <button class="tab-btn inactive" onclick="switchTab('target')"><i class="ti ti-target" style="font-size:13px;vertical-align:-2px;margin-right:3px;"></i>Target Bonus</button>
     </div>
   </div>
 
   <!-- PANEL HITUNG -->
   <div id="panel-hitung" class="panel active">
-    <div class="hero-card">
+    <div class="hero">
       <p class="hero-label">Estimasi Total Bonus</p>
       <p id="res-total" class="hero-amount">Rp 0</p>
       <p class="hero-sub">Dihitung otomatis berdasarkan slab & premi</p>
     </div>
 
     <div class="section" style="margin-top:14px;">
-      <p class="section-label">Volume & Slab</p>
+      <p class="sec-label">Volume & Slab</p>
       <div class="two-col" style="align-items:end;">
         <div>
           <label class="field-label" for="volume">Volume Total (Rp)</label>
@@ -122,7 +123,7 @@ input:focus { border-color: #6366F1; background: #fff; }
         <div>
           <label class="field-label">Slab</label>
           <div id="slab-pill" class="slab-pill">
-            <i class="ti ti-award" style="font-size:15px;color:#9CA3AF;" aria-hidden="true"></i>
+            <i class="ti ti-award" style="font-size:14px;color:#9CA3AF;"></i>
             <span id="slab-label">—</span>
           </div>
         </div>
@@ -130,26 +131,26 @@ input:focus { border-color: #6366F1; background: #fff; }
     </div>
 
     <div class="section">
-      <p class="section-label">NOS per Tipe Produk</p>
-      <table class="nos-table">
+      <p class="sec-label">NOS per Tipe Produk</p>
+      <table class="nos-tbl">
         <thead><tr>
-          <th style="width:28%;text-align:left;">Tipe</th>
+          <th style="width:27%;text-align:left;">Tipe</th>
           <th>Baru</th><th>Lainnya</th><th>Total</th>
         </tr></thead>
         <tbody>
           <tr>
-            <td><span class="badge badge-gray">NON FEL</span></td>
+            <td><span class="bdg bdg-gray">NON FEL</span></td>
             <td><input type="number" id="nonfel-baru" placeholder="0" oninput="hitung()" style="text-align:center;"></td>
             <td><input type="number" id="nonfel-lain" placeholder="0" oninput="hitung()" style="text-align:center;"></td>
             <td class="nos-val"><span id="nonfel-total">—</span></td>
           </tr>
           <tr>
-            <td><span class="badge badge-purple">FEL</span></td>
+            <td><span class="bdg bdg-purple">FEL</span></td>
             <td><input type="number" id="fel-baru" placeholder="0" oninput="hitung()" style="text-align:center;"></td>
             <td><input type="number" id="fel-lain" placeholder="0" oninput="hitung()" style="text-align:center;"></td>
             <td class="nos-val"><span id="fel-total">—</span></td>
           </tr>
-          <tr class="nos-total-row">
+          <tr class="tot-row">
             <td>Total</td>
             <td id="total-baru">—</td><td id="total-lain">—</td><td id="total-nos-all">—</td>
           </tr>
@@ -157,40 +158,27 @@ input:focus { border-color: #6366F1; background: #fff; }
       </table>
     </div>
 
-    <!-- AFA — selalu tampil -->
     <div class="afa-card">
-      <div class="afa-header">
-        <span class="afa-title"><i class="ti ti-calculator" style="font-size:12px;vertical-align:-1px;margin-right:4px;" aria-hidden="true"></i>AFA — Average Financing Amount</span>
+      <div class="afa-top">
+        <span class="afa-title"><i class="ti ti-calculator" style="font-size:11px;vertical-align:-1px;margin-right:3px;"></i>AFA — Average Financing Amount</span>
         <span class="afa-formula">Volume ÷ Total NOS</span>
       </div>
       <div class="afa-grid">
-        <div class="afa-item">
-          <p class="afa-item-label">Volume</p>
-          <p id="afa-vol" class="afa-item-val">—</p>
-          <p class="afa-item-sub">Total</p>
-        </div>
-        <div class="afa-item">
-          <p class="afa-item-label">Total NOS</p>
-          <p id="afa-nos" class="afa-item-val">—</p>
-          <p class="afa-item-sub">Kontrak</p>
-        </div>
-        <div class="afa-item">
-          <p class="afa-item-label">AFA</p>
-          <p id="afa-val" class="afa-item-val">—</p>
-          <p class="afa-item-sub">Per kontrak</p>
-        </div>
+        <div class="afa-box"><p class="afa-box-lbl">Volume</p><p id="afa-vol" class="afa-box-val">—</p><p class="afa-box-sub">Total</p></div>
+        <div class="afa-box"><p class="afa-box-lbl">Total NOS</p><p id="afa-nos" class="afa-box-val">—</p><p class="afa-box-sub">Kontrak</p></div>
+        <div class="afa-box"><p class="afa-box-lbl">AFA</p><p id="afa-val" class="afa-box-val">—</p><p class="afa-box-sub">Per kontrak</p></div>
       </div>
       <div class="afa-main">
         <div>
-          <p class="afa-main-label">Rata-rata nilai per kontrak</p>
+          <p class="afa-main-lbl">Rata-rata nilai per kontrak</p>
           <div id="afa-badge-wrap"><span class="afa-empty">Isi volume & NOS untuk melihat AFA</span></div>
         </div>
-        <p id="afa-main-val" class="afa-main-val" style="color:rgba(255,255,255,0.3);">—</p>
+        <p id="afa-main-val" class="afa-main-val" style="color:rgba(255,255,255,0.25);">—</p>
       </div>
     </div>
 
     <div class="section">
-      <p class="section-label">Premi</p>
+      <p class="sec-label">Premi</p>
       <div class="two-col">
         <div>
           <label class="field-label" for="vas">VAS (Rp)</label>
@@ -204,87 +192,108 @@ input:focus { border-color: #6366F1; background: #fff; }
     </div>
 
     <div class="section">
-      <p class="section-label">Rincian Bonus</p>
-      <p class="group-label" style="margin-top:0;">NON FEL</p>
-      <div class="rincian-row"><span class="rincian-label">Pelanggan Baru</span><span id="r-nonfel-baru" class="rincian-val">—</span></div>
-      <div class="rincian-row"><span class="rincian-label">Pelanggan Lainnya</span><span id="r-nonfel-lain" class="rincian-val">—</span></div>
-      <p class="group-label">FEL</p>
-      <div class="rincian-row"><span class="rincian-label">Pelanggan Baru</span><span id="r-fel-baru" class="rincian-val">—</span></div>
-      <div class="rincian-row"><span class="rincian-label">Pelanggan Lainnya</span><span id="r-fel-lain" class="rincian-val">—</span></div>
-      <p class="group-label">VAS</p>
-      <div class="rincian-row"><span class="rincian-label">4% dari premi</span><span id="r-vas" class="rincian-val">—</span></div>
-      <div class="rincian-row"><span class="rincian-label">Slab premi</span><span id="r-vas-slab" class="rincian-val">—</span></div>
-      <p class="group-label">SAI</p>
-      <div class="rincian-row"><span class="rincian-label">7% dari premi</span><span id="r-sai-pct" class="rincian-val">—</span></div>
-      <div class="rincian-row"><span class="rincian-label">Ekstra insentif slab</span><span id="r-sai-slab" class="rincian-val">—</span></div>
+      <p class="sec-label">Rincian Bonus</p>
+      <p class="grp-lbl" style="margin-top:0;">NON FEL</p>
+      <div class="rin-row"><span class="rin-lbl">Pelanggan Baru</span><span id="r-nonfel-baru" class="rin-val">—</span></div>
+      <div class="rin-row"><span class="rin-lbl">Pelanggan Lainnya</span><span id="r-nonfel-lain" class="rin-val">—</span></div>
+      <p class="grp-lbl">FEL</p>
+      <div class="rin-row"><span class="rin-lbl">Pelanggan Baru</span><span id="r-fel-baru" class="rin-val">—</span></div>
+      <div class="rin-row"><span class="rin-lbl">Pelanggan Lainnya</span><span id="r-fel-lain" class="rin-val">—</span></div>
+      <p class="grp-lbl">VAS</p>
+      <div class="rin-row"><span class="rin-lbl">4% dari premi VAS</span><span id="r-vas-pct" class="rin-val">—</span></div>
+      <div class="rin-row"><span class="rin-lbl">Extra Insentif VAS</span><span id="r-vas-slab" class="rin-val">—</span></div>
+      <p class="grp-lbl">SAI</p>
+      <div class="rin-row"><span class="rin-lbl">7% dari premi SAI</span><span id="r-sai-pct" class="rin-val">—</span></div>
+      <div class="rin-row"><span class="rin-lbl">Extra Insentif SAI</span><span id="r-sai-slab" class="rin-val">—</span></div>
     </div>
 
     <div class="section">
-      <p class="section-label"><i class="ti ti-info-circle" style="font-size:13px;vertical-align:-1px;margin-right:4px;" aria-hidden="true"></i>Bonus Konsistensi</p>
-      <div class="k-row"><span style="color:#6B7280;">Yellow <span style="font-size:11px;">(3 bln)</span></span><span style="font-weight:600;color:#854F0B;">Rp 500.000</span></div>
+      <p class="sec-label"><i class="ti ti-info-circle" style="font-size:12px;vertical-align:-1px;margin-right:3px;"></i>Bonus Konsistensi</p>
+      <div class="k-row"><span style="color:#6B7280;">Yellow <span style="font-size:11px;">(3 bln konsisten)</span></span><span style="font-weight:600;color:#854F0B;">Rp 500.000</span></div>
       <div class="k-row"><span style="color:#6B7280;">Green</span><span style="font-weight:600;color:#3B6D11;">Rp 1.000.000</span></div>
       <div class="k-row"><span style="color:#6B7280;">Black</span><span style="font-weight:600;color:#374151;">Rp 1.500.000</span></div>
       <div class="k-row"><span style="color:#6B7280;">Platinum</span><span style="font-weight:600;color:#3C3489;">Rp 2.000.000</span></div>
-      <p style="font-size:11px;color:#9CA3AF;margin-top:10px;">Berlaku jika SA tidak memiliki sanksi aktif.</p>
+      <div class="info-box">
+        <i class="ti ti-alert-triangle" style="font-size:15px;color:#D97706;flex-shrink:0;margin-top:1px;"></i>
+        <p><b>Syarat pencairan:</b> Bonus konsistensi akan cair jika SA <b>tidak memiliki Notice Letter (NL) Aktif</b> selama periode penilaian.</p>
+      </div>
     </div>
   </div>
 
   <!-- PANEL TARGET -->
   <div id="panel-target" class="panel">
-    <div class="target-hero">
-      <p class="target-hero-label">Berapa bonus yang kamu inginkan?</p>
-      <div class="target-input-wrap">
+    <div class="t-hero">
+      <p class="t-hero-lbl">Berapa bonus yang kamu inginkan?</p>
+      <div class="t-input-wrap">
         <span>Rp</span>
-        <input class="target-input" type="text" id="target-bonus" placeholder="5.000.000" oninput="formatInput(this);hitungTarget()">
+        <input class="t-input" type="text" id="target-bonus" placeholder="5.000.000" oninput="formatInput(this);hitungTarget()">
       </div>
     </div>
-    <div id="target-empty" class="suggest-card" style="margin-top:14px;">
-      <div class="empty-state">
-        <i class="ti ti-mood-smile" aria-hidden="true"></i>
+
+    <div id="target-empty" class="sug-card" style="margin-top:14px;">
+      <div class="empty-st">
+        <i class="ti ti-mood-smile"></i>
         Masukkan target bonus di atas untuk melihat berapa NOS, VAS, dan SAI yang perlu kamu kejar bulan ini.
       </div>
     </div>
+
     <div id="target-result" style="display:none;">
-      <div class="result-target" style="margin-top:14px;">
-        <p class="section-label">Slab yang kamu butuhkan</p>
-        <div id="target-slab-info"></div>
+
+      <!-- Pilih slab -->
+      <div class="res-section" style="margin-top:14px;">
+        <p class="sec-label">Pilih slab target kamu</p>
+        <div id="slab-chips" class="slab-select-row"></div>
+        <div id="target-slab-info" style="margin-top:10px;"></div>
       </div>
-      <div class="suggest-card">
-        <p class="suggest-title"><i class="ti ti-bulb" style="font-size:15px;color:#F59E0B;vertical-align:-2px;margin-right:6px;" aria-hidden="true"></i>Kombinasi NOS yang disarankan</p>
+
+      <!-- Suggest NOS -->
+      <div class="sug-card">
+        <p class="sug-title"><i class="ti ti-bulb" style="font-size:14px;color:#F59E0B;vertical-align:-2px;margin-right:5px;"></i>NOS yang dibutuhkan</p>
         <div id="suggest-list"></div>
-        <div style="background:#F0FDF4;border-radius:10px;padding:10px;margin-top:10px;display:flex;align-items:flex-start;gap:8px;">
-          <i class="ti ti-star-filled" style="font-size:16px;color:#16A34A;flex-shrink:0;margin-top:1px;" aria-hidden="true"></i>
-          <p style="font-size:12px;color:#15803D;line-height:1.5;margin:0;">NOS FEL Pelanggan Baru memberikan bonus per kontrak tertinggi di setiap slab — prioritaskan ini untuk hasil maksimal!</p>
+        <div style="background:#F0FDF4;border-radius:9px;padding:10px;margin-top:9px;display:flex;align-items:flex-start;gap:7px;">
+          <i class="ti ti-star-filled" style="font-size:15px;color:#16A34A;flex-shrink:0;margin-top:1px;"></i>
+          <p style="font-size:12px;color:#15803D;line-height:1.5;">NOS <b>FEL Pelanggan Baru</b> memberikan bonus per kontrak tertinggi — prioritaskan ini untuk hasil maksimal!</p>
         </div>
       </div>
-      <div class="result-target">
-        <p class="section-label">Target Premi (opsional tambahan)</p>
-        <div class="result-row" style="border-top:none;padding-top:0;">
-          <div class="result-key"><i class="ti ti-shield-check" style="color:#6366F1;" aria-hidden="true"></i>Target VAS</div>
-          <div><p id="t-vas" class="result-val">—</p><p id="t-vas-sub" class="result-sub"></p></div>
+
+      <!-- Target premi -->
+      <div class="res-section">
+        <p class="sec-label">Estimasi dari Premi (opsional)</p>
+        <div style="background:#F9FAFB;border-radius:10px;padding:11px 12px;margin-bottom:8px;">
+          <p style="font-size:11px;font-weight:600;color:#6366F1;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">VAS</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;" id="vas-slab-tbl"></div>
         </div>
-        <div class="result-row">
-          <div class="result-key"><i class="ti ti-heart" style="color:#EC4899;" aria-hidden="true"></i>Target SAI</div>
-          <div><p id="t-sai" class="result-val">—</p><p id="t-sai-sub" class="result-sub"></p></div>
+        <div style="background:#F9FAFB;border-radius:10px;padding:11px 12px;">
+          <p style="font-size:11px;font-weight:600;color:#EC4899;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">SAI</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;" id="sai-slab-tbl"></div>
         </div>
       </div>
-      <div class="result-target">
-        <p class="section-label">Ringkasan target bulanan</p>
-        <div class="result-row" style="border-top:none;padding-top:0;">
-          <span class="result-key"><i class="ti ti-file-text" style="color:#6366F1;" aria-hidden="true"></i>Total NOS minimal</span>
-          <span id="t-nos-total" class="result-val">—</span>
+
+      <!-- Ringkasan -->
+      <div class="res-section">
+        <p class="sec-label">Ringkasan target bulanan</p>
+        <div class="res-row" style="border-top:none;padding-top:0;">
+          <span class="res-key"><i class="ti ti-file-text" style="color:#6366F1;"></i>Total NOS (FEL Baru semua)</span>
+          <span id="t-nos-total" class="res-val">—</span>
         </div>
-        <div class="result-row">
-          <span class="result-key"><i class="ti ti-cash" style="color:#10B981;" aria-hidden="true"></i>Estimasi bonus kontrak</span>
-          <span id="t-bonus-kontrak" class="result-val">—</span>
+        <div class="res-row">
+          <span class="res-key"><i class="ti ti-cash" style="color:#10B981;"></i>Bonus dari NOS</span>
+          <span id="t-bonus-kontrak" class="res-val">—</span>
         </div>
-        <div class="result-row">
-          <span class="result-key"><i class="ti ti-plus" style="color:#F59E0B;" aria-hidden="true"></i>Bonus VAS + SAI</span>
-          <span id="t-bonus-premi" class="result-val">—</span>
+        <div class="res-row">
+          <span class="res-key"><i class="ti ti-shield-check" style="color:#6366F1;"></i>Target VAS minimal</span>
+          <span id="t-vas" class="res-val">—</span>
         </div>
-        <div style="background:#EEF2FF;border-radius:12px;padding:12px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:13px;font-weight:600;color:#4338CA;">Total estimasi</span>
-          <span id="t-total-est" style="font-size:18px;font-weight:600;color:#4338CA;">—</span>
+        <div class="res-row">
+          <span class="res-key"><i class="ti ti-heart" style="color:#EC4899;"></i>Target SAI minimal</span>
+          <span id="t-sai" class="res-val">—</span>
+        </div>
+        <div style="background:#EEF2FF;border-radius:11px;padding:12px;margin-top:9px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <p style="font-size:10px;color:#6366F1;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px;">Total estimasi</p>
+            <p style="font-size:11px;color:#818CF8;">Bonus NOS + VAS + SAI</p>
+          </div>
+          <span id="t-total-est" style="font-size:17px;font-weight:700;color:#4338CA;">—</span>
         </div>
       </div>
     </div>
@@ -293,124 +302,231 @@ input:focus { border-color: #6366F1; background: #fff; }
 
 <script>
 const SLAB=[
-  {name:'No Color',min:0,        max:119999999,    nonfelBaru:100000,nonfelLain:40000, felBaru:130000,felLain:55000, volLabel:'< 120 jt'},
-  {name:'Red',     min:120000000,max:199999999,    nonfelBaru:115000,nonfelLain:46000, felBaru:149500,felLain:63250,volLabel:'120–199 jt'},
-  {name:'Yellow',  min:200000000,max:299999999,    nonfelBaru:125000,nonfelLain:50000, felBaru:162500,felLain:68750,volLabel:'200–299 jt'},
-  {name:'Green',   min:300000000,max:399999999,    nonfelBaru:150000,nonfelLain:60000, felBaru:195000,felLain:82500,volLabel:'300–399 jt'},
-  {name:'Black',   min:400000000,max:499999999,    nonfelBaru:160000,nonfelLain:64000, felBaru:208000,felLain:88000,volLabel:'400–499 jt'},
-  {name:'Platinum',min:500000000,max:9999999999999,nonfelBaru:185000,nonfelLain:74000, felBaru:240500,felLain:101750,volLabel:'500 jt+'},
+  {name:'No Color',min:0,        max:119999999,    nfB:100000,nfL:40000, fB:130000,fL:55000, vLabel:'< 120 jt'},
+  {name:'Red',     min:120000000,max:199999999,    nfB:115000,nfL:46000, fB:149500,fL:63250, vLabel:'120–199 jt'},
+  {name:'Yellow',  min:200000000,max:299999999,    nfB:125000,nfL:50000, fB:162500,fL:68750, vLabel:'200–299 jt'},
+  {name:'Green',   min:300000000,max:399999999,    nfB:150000,nfL:60000, fB:195000,fL:82500, vLabel:'300–399 jt'},
+  {name:'Black',   min:400000000,max:499999999,    nfB:160000,nfL:64000, fB:208000,fL:88000, vLabel:'400–499 jt'},
+  {name:'Platinum',min:500000000,max:9999999999999,nfB:185000,nfL:74000, fB:240500,fL:101750,vLabel:'500 jt+'},
 ];
-const SLAB_STYLE={
-  'No Color':{bg:'#F3F4F6',color:'#6B7280',pill:'#E5E7EB'},
-  'Red':     {bg:'#FEE2E2',color:'#B91C1C',pill:'#FCA5A5'},
-  'Yellow':  {bg:'#FEF3C7',color:'#92400E',pill:'#FCD34D'},
-  'Green':   {bg:'#D1FAE5',color:'#065F46',pill:'#6EE7B7'},
-  'Black':   {bg:'#1F2937',color:'#F9FAFB',pill:'#374151'},
-  'Platinum':{bg:'#EDE9FE',color:'#4C1D95',pill:'#C4B5FD'},
+const SS={
+  'No Color':{bg:'#F3F4F6',color:'#6B7280',border:'#E5E7EB'},
+  'Red':     {bg:'#FEE2E2',color:'#B91C1C',border:'#FCA5A5'},
+  'Yellow':  {bg:'#FEF3C7',color:'#92400E',border:'#FCD34D'},
+  'Green':   {bg:'#D1FAE5',color:'#065F46',border:'#6EE7B7'},
+  'Black':   {bg:'#1F2937',color:'#F9FAFB',border:'#374151'},
+  'Platinum':{bg:'#EDE9FE',color:'#4C1D95',border:'#C4B5FD'},
 };
-function getVasSlab(p){if(p>=100000000)return 5000000;if(p>=50000000)return 3000000;if(p>=35000000)return 1500000;if(p>=15000000)return 500000;return 0;}
-function getSaiSlab(p){if(p>10000000)return 1500000;if(p>=3500000)return 500000;if(p>=1500000)return 300000;if(p>=1000000)return 100000;return 0;}
+// Extra Insentif VAS
+const VAS_TIERS=[
+  {min:100000000,bonus:5000000,label:'> 100 jt'},
+  {min:50000000, bonus:3000000,label:'50–99 jt'},
+  {min:35000000, bonus:1500000,label:'35–49 jt'},
+  {min:15000000, bonus:500000, label:'15–34 jt'},
+  {min:0,        bonus:0,      label:'< 15 jt'},
+];
+// Extra Insentif SAI
+const SAI_TIERS=[
+  {min:10000001,bonus:1500000,label:'> 10 jt'},
+  {min:3500000, bonus:500000, label:'3,5–10 jt'},
+  {min:1500000, bonus:300000, label:'1,5–3,4 jt'},
+  {min:1000000, bonus:100000, label:'1–1,4 jt'},
+  {min:0,       bonus:0,      label:'< 1 jt'},
+];
+function vasExtra(p){const t=VAS_TIERS.find(x=>p>=x.min);return t?t.bonus:0;}
+function saiExtra(p){const t=SAI_TIERS.find(x=>p>=x.min);return t?t.bonus:0;}
+
 function fmt(n){return 'Rp '+Math.round(n).toLocaleString('id-ID');}
-function fmtShort(n){if(n>=1000000000)return (n/1000000000).toFixed(1)+' M';if(n>=1000000)return (n/1000000).toFixed(1)+' jt';if(n>=1000)return (n/1000).toFixed(0)+' rb';return n.toString();}
+function fmtS(n){if(n>=1000000000)return(n/1000000000).toFixed(1)+' M';if(n>=1000000)return(n/1000000).toFixed(1)+' jt';if(n>=1000)return(n/1000).toFixed(0)+' rb';return n.toString();}
 function num(n){return n>0?n.toLocaleString('id-ID'):'—';}
 function set(id,v){document.getElementById(id).textContent=v;}
 function formatInput(el){const r=el.value.replace(/\./g,'');if(r===''||isNaN(r)){el.value=r;return;}el.value=parseInt(r,10).toLocaleString('id-ID');}
-function parseInput(id){return parseFloat(document.getElementById(id).value.replace(/\./g,''))||0;}
-
-function afaCategory(afa){
-  if(afa>=50000000)return{label:'Premium',color:'#F59E0B',bg:'rgba(245,158,11,0.25)'};
-  if(afa>=20000000)return{label:'Tinggi',color:'#34D399',bg:'rgba(52,211,153,0.25)'};
-  if(afa>=10000000)return{label:'Menengah',color:'#93C5FD',bg:'rgba(147,197,253,0.25)'};
-  return{label:'Standar',color:'rgba(255,255,255,0.7)',bg:'rgba(255,255,255,0.12)'};
+function parseIn(id){return parseFloat(document.getElementById(id).value.replace(/\./g,''))||0;}
+function afaCat(a){
+  if(a>=50000000)return{label:'Premium',color:'#F59E0B',bg:'rgba(245,158,11,0.22)'};
+  if(a>=20000000)return{label:'Tinggi',  color:'#34D399',bg:'rgba(52,211,153,0.22)'};
+  if(a>=10000000)return{label:'Menengah',color:'#93C5FD',bg:'rgba(147,197,253,0.22)'};
+  return{label:'Standar',color:'rgba(255,255,255,0.65)',bg:'rgba(255,255,255,0.12)'};
 }
 
-function switchTab(tab){
-  document.getElementById('panel-hitung').classList.toggle('active',tab==='hitung');
-  document.getElementById('panel-target').classList.toggle('active',tab==='target');
+let selectedSlabIdx = 1; // default Red
+
+function switchTab(t){
+  ['hitung','target'].forEach(p=>{document.getElementById('panel-'+p).classList.toggle('active',p===t);});
   document.querySelectorAll('.tab-btn').forEach((b,i)=>{
-    const on=(i===0&&tab==='hitung')||(i===1&&tab==='target');
+    const on=(i===0&&t==='hitung')||(i===1&&t==='target');
     b.classList.toggle('active',on);b.classList.toggle('inactive',!on);
   });
 }
 
 function hitung(){
-  const vol    =parseInput('volume');
-  const nfBaru =parseFloat(document.getElementById('nonfel-baru').value)||0;
-  const nfLain =parseFloat(document.getElementById('nonfel-lain').value)||0;
-  const fBaru  =parseFloat(document.getElementById('fel-baru').value)||0;
-  const fLain  =parseFloat(document.getElementById('fel-lain').value)||0;
-  const vas    =parseInput('vas');
-  const sai    =parseInput('sai');
-  const nfT=nfBaru+nfLain, fT=fBaru+fLain, totalNos=nfT+fT;
+  const vol  =parseIn('volume');
+  const nfB  =parseFloat(document.getElementById('nonfel-baru').value)||0;
+  const nfL  =parseFloat(document.getElementById('nonfel-lain').value)||0;
+  const fB   =parseFloat(document.getElementById('fel-baru').value)||0;
+  const fL   =parseFloat(document.getElementById('fel-lain').value)||0;
+  const vas  =parseIn('vas');
+  const sai  =parseIn('sai');
+  const nfT=nfB+nfL, fT=fB+fL, totNos=nfT+fT;
 
   set('nonfel-total',num(nfT)); set('fel-total',num(fT));
-  set('total-baru',num(nfBaru+fBaru)); set('total-lain',num(nfLain+fLain)); set('total-nos-all',num(totalNos));
+  set('total-baru',num(nfB+fB)); set('total-lain',num(nfL+fL)); set('total-nos-all',num(totNos));
 
-  // AFA — selalu update
-  const afaMainVal = document.getElementById('afa-main-val');
-  const afaBadge   = document.getElementById('afa-badge-wrap');
-  if(vol>0 && totalNos>0){
-    const afa=vol/totalNos;
-    const cat=afaCategory(afa);
-    set('afa-vol', fmtShort(vol));
-    set('afa-nos', totalNos+' NOS');
-    set('afa-val', fmtShort(afa));
-    afaMainVal.textContent=fmt(afa);
-    afaMainVal.style.color='#fff';
-    afaBadge.innerHTML=`<span class="afa-badge" style="background:${cat.bg};color:${cat.color};">${cat.label}</span>`;
+  // AFA
+  const afaMain=document.getElementById('afa-main-val');
+  const afaBdg=document.getElementById('afa-badge-wrap');
+  if(vol>0&&totNos>0){
+    const afa=vol/totNos, cat=afaCat(afa);
+    set('afa-vol',fmtS(vol)); set('afa-nos',totNos+' NOS'); set('afa-val',fmtS(afa));
+    afaMain.textContent=fmt(afa); afaMain.style.color='#fff';
+    afaBdg.innerHTML=`<span class="afa-bdg" style="background:${cat.bg};color:${cat.color};">${cat.label}</span>`;
   } else {
     set('afa-vol','—'); set('afa-nos','—'); set('afa-val','—');
-    afaMainVal.textContent='—'; afaMainVal.style.color='rgba(255,255,255,0.3)';
-    afaBadge.innerHTML='<span class="afa-empty">Isi volume & NOS untuk melihat AFA</span>';
+    afaMain.textContent='—'; afaMain.style.color='rgba(255,255,255,0.25)';
+    afaBdg.innerHTML='<span class="afa-empty">Isi volume & NOS untuk melihat AFA</span>';
   }
 
+  // Slab
   const slab=SLAB.find(s=>vol>=s.min&&vol<=s.max)||SLAB[0];
-  const sc=SLAB_STYLE[slab.name];
+  const sc=SS[slab.name];
   const pill=document.getElementById('slab-pill');
-  pill.style.background=sc.bg; pill.style.borderColor=sc.pill;
+  pill.style.background=sc.bg; pill.style.borderColor=sc.border;
   const lbl=document.getElementById('slab-label'); lbl.textContent=slab.name; lbl.style.color=sc.color;
   pill.querySelector('i').style.color=sc.color;
 
-  const bNfBaru=nfBaru*slab.nonfelBaru,bNfLain=nfLain*slab.nonfelLain;
-  const bFBaru=fBaru*slab.felBaru,bFLain=fLain*slab.felLain;
-  const bVas=vas*0.04,bVasSl=getVasSlab(vas),bSaiPct=sai*0.07,bSaiSl=getSaiSlab(sai);
-  const total=bNfBaru+bNfLain+bFBaru+bFLain+bVas+bVasSl+bSaiPct+bSaiSl;
+  // Bonus kontrak
+  const bNfB=nfB*slab.nfB, bNfL=nfL*slab.nfL;
+  const bFB=fB*slab.fB,    bFL=fL*slab.fL;
+  // Bonus VAS
+  const bVasPct  = vas*0.04;
+  const bVasExtra= vasExtra(vas);
+  // Bonus SAI
+  const bSaiPct  = sai*0.07;
+  const bSaiExtra= saiExtra(sai);
 
-  set('r-nonfel-baru',nfBaru>0?fmt(bNfBaru):'—'); set('r-nonfel-lain',nfLain>0?fmt(bNfLain):'—');
-  set('r-fel-baru',fBaru>0?fmt(bFBaru):'—'); set('r-fel-lain',fLain>0?fmt(bFLain):'—');
-  set('r-vas',vas>0?fmt(bVas):'—'); set('r-vas-slab',vas>0?fmt(bVasSl):'—');
-  set('r-sai-pct',sai>0?fmt(bSaiPct):'—'); set('r-sai-slab',sai>0?fmt(bSaiSl):'—');
-  set('res-total',fmt(total));
+  const total=bNfB+bNfL+bFB+bFL+bVasPct+bVasExtra+bSaiPct+bSaiExtra;
+
+  set('r-nonfel-baru', nfB>0?fmt(bNfB):'—');
+  set('r-nonfel-lain', nfL>0?fmt(bNfL):'—');
+  set('r-fel-baru',    fB>0 ?fmt(bFB) :'—');
+  set('r-fel-lain',    fL>0 ?fmt(bFL) :'—');
+  set('r-vas-pct',     vas>0?fmt(bVasPct)  :'—');
+  set('r-vas-slab',    vas>0?fmt(bVasExtra):'—');
+  set('r-sai-pct',     sai>0?fmt(bSaiPct)  :'—');
+  set('r-sai-slab',    sai>0?fmt(bSaiExtra):'—');
+  set('res-total', fmt(total));
+}
+
+function renderSlabChips(target){
+  const container=document.getElementById('slab-chips');
+  container.innerHTML=SLAB.slice(1).map((s,i)=>{
+    const sc=SS[s.name];
+    const sel=(i===selectedSlabIdx-1);
+    return`<span class="slab-chip${sel?' selected':''}"
+      style="background:${sc.bg};color:${sc.color};border-color:${sel?sc.color:'transparent'};"
+      onclick="selectSlab(${i+1},${target})">${s.name}</span>`;
+  }).join('');
+}
+
+function selectSlab(idx, target){
+  selectedSlabIdx=idx;
+  renderSlabChips(target);
+  renderTargetResult(target);
+}
+
+function renderTargetResult(target){
+  const s=SLAB[selectedSlabIdx];
+  const sc=SS[s.name];
+
+  // Slab info
+  document.getElementById('target-slab-info').innerHTML=
+    `<div style="display:flex;align-items:center;gap:10px;padding:10px;background:${sc.bg};border-radius:11px;">
+      <div style="width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,0.55);display:flex;align-items:center;justify-content:center;">
+        <i class="ti ti-award" style="font-size:18px;color:${sc.color};"></i>
+      </div>
+      <div>
+        <p style="font-size:14px;font-weight:600;color:${sc.color};">${s.name}</p>
+        <p style="font-size:11px;color:${sc.color};opacity:0.7;">Volume ${s.vLabel}</p>
+      </div>
+      <div style="margin-left:auto;text-align:right;">
+        <p style="font-size:10px;color:${sc.color};opacity:0.7;">FEL Baru / NOS</p>
+        <p style="font-size:13px;font-weight:700;color:${sc.color};">${fmt(s.fB)}</p>
+      </div>
+    </div>`;
+
+  // NOS combinations — dihitung akurat dari target
+  // Combo 1: Semua FEL Baru
+  const c1_fB = Math.ceil(target / s.fB);
+  const c1_bonus = c1_fB * s.fB;
+  // Combo 2: 60% FEL Baru, 40% FEL Lainnya
+  const c2_fB = Math.ceil(target * 0.6 / s.fB);
+  const c2_fL = Math.ceil((target - c2_fB * s.fB) / s.fL);
+  const c2_fL_fix = Math.max(0, c2_fL);
+  const c2_bonus = c2_fB*s.fB + c2_fL_fix*s.fL;
+  // Combo 3: 50% FEL Baru, 30% NON FEL Baru, 20% NON FEL Lainnya
+  const c3_fB  = Math.ceil(target * 0.5 / s.fB);
+  const c3_nfB = Math.ceil(target * 0.3 / s.nfB);
+  const c3_nfL = Math.ceil((target - c3_fB*s.fB - c3_nfB*s.nfB) / s.nfL);
+  const c3_nfL_fix = Math.max(0, c3_nfL);
+  const c3_bonus = c3_fB*s.fB + c3_nfB*s.nfB + c3_nfL_fix*s.nfL;
+
+  const combos=[
+    {label:'Semua FEL Baru',icon:'ti-star',ic:'#F59E0B',ib:'#FEF3C7',
+     nos:c1_fB, bonus:c1_bonus, best:true,
+     det:`FEL Baru: <b>${c1_fB}</b>`},
+    {label:'FEL Baru + FEL Lainnya',icon:'ti-users',ic:'#6366F1',ib:'#EEF2FF',
+     nos:c2_fB+c2_fL_fix, bonus:c2_bonus, best:false,
+     det:`FEL Baru: <b>${c2_fB}</b> · FEL Lainnya: <b>${c2_fL_fix}</b>`},
+    {label:'Mix FEL + NON FEL',icon:'ti-layout-grid',ic:'#10B981',ib:'#D1FAE5',
+     nos:c3_fB+c3_nfB+c3_nfL_fix, bonus:c3_bonus, best:false,
+     det:`FEL Baru: <b>${c3_fB}</b> · NON FEL Baru: <b>${c3_nfB}</b> · NON FEL Lainnya: <b>${c3_nfL_fix}</b>`},
+  ];
+
+  document.getElementById('suggest-list').innerHTML=combos.map(c=>`
+    <div class="sug-row ${c.best?'best':''}">
+      <div class="sug-left">
+        <div class="sug-icon" style="background:${c.ib};"><i class="ti ${c.icon}" style="font-size:16px;color:${c.ic};"></i></div>
+        <div>${c.best?'<span class="best-bdg">Bonus Tertinggi</span><br>':''}
+          <span class="sug-name">${c.label}</span>
+          <p style="font-size:11px;color:#6B7280;margin-top:2px;">${c.det}</p>
+        </div>
+      </div>
+      <div class="sug-right">
+        <p class="sug-nos">${c.nos} NOS</p>
+        <p class="sug-sub">${fmt(c.bonus)}</p>
+      </div>
+    </div>`).join('');
+
+  // Tabel VAS tiers
+  document.getElementById('vas-slab-tbl').innerHTML=VAS_TIERS.filter(t=>t.bonus>0).map(t=>`
+    <span style="font-size:11px;color:#6B7280;">${t.label}</span>
+    <span style="font-size:11px;font-weight:600;color:#4F46E5;">${fmt(t.bonus)} + 4% premi</span>
+  `).join('');
+
+  // Tabel SAI tiers
+  document.getElementById('sai-slab-tbl').innerHTML=SAI_TIERS.filter(t=>t.bonus>0).map(t=>`
+    <span style="font-size:11px;color:#6B7280;">${t.label}</span>
+    <span style="font-size:11px;font-weight:600;color:#EC4899;">${fmt(t.bonus)} + 7% premi</span>
+  `).join('');
+
+  // Ringkasan — gunakan combo 1 (FEL Baru semua) sebagai acuan NOS
+  const vasMin=15000000, saiMin=1000000;
+  const bonusVasMin=(vasMin*0.04)+vasExtra(vasMin);
+  const bonusSaiMin=(saiMin*0.07)+saiExtra(saiMin);
+  set('t-nos-total', c1_fB+' NOS');
+  set('t-bonus-kontrak', fmt(c1_bonus));
+  set('t-vas', fmt(vasMin));
+  set('t-sai', fmt(saiMin));
+  set('t-total-est', fmt(c1_bonus + bonusVasMin + bonusSaiMin));
 }
 
 function hitungTarget(){
-  const target=parseInput('target-bonus');
+  const target=parseIn('target-bonus');
   const empty=document.getElementById('target-empty');
   const result=document.getElementById('target-result');
   if(target<=0){empty.style.display='block';result.style.display='none';return;}
   empty.style.display='none'; result.style.display='block';
-  const suggestions=[];
-  SLAB.forEach((slab,idx)=>{if(idx===0)return;const n=Math.ceil(target/slab.felBaru);suggestions.push({slab,nosNeeded:n,totalBonus:n*slab.felBaru});});
-  const best=suggestions.find(s=>s.totalBonus>=target)||suggestions[suggestions.length-1];
-  const sc=SLAB_STYLE[best.slab.name];
-  document.getElementById('target-slab-info').innerHTML=`<div style="display:flex;align-items:center;gap:10px;padding:10px;background:${sc.bg};border-radius:12px;"><div style="width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;"><i class="ti ti-award" style="font-size:20px;color:${sc.color};" aria-hidden="true"></i></div><div><p style="font-size:15px;font-weight:600;color:${sc.color};">${best.slab.name}</p><p style="font-size:12px;color:${sc.color};opacity:0.75;">Volume ${best.slab.volLabel}</p></div><div style="margin-left:auto;text-align:right;"><p style="font-size:11px;color:${sc.color};opacity:0.75;">Rate FEL Baru</p><p style="font-size:14px;font-weight:600;color:${sc.color};">${fmt(best.slab.felBaru)}/NOS</p></div></div>`;
-  const s=best.slab;
-  const combos=[
-    {label:'Semua FEL Baru',icon:'ti-star',iconColor:'#F59E0B',iconBg:'#FEF3C7',felBaru:Math.ceil(target/s.felBaru),felLain:0,nfBaru:0,nfLain:0,best:true},
-    {label:'FEL Baru + FEL Lainnya',icon:'ti-users',iconColor:'#6366F1',iconBg:'#EEF2FF',felBaru:Math.ceil(target*0.6/s.felBaru),felLain:Math.ceil(target*0.4/s.felLain),nfBaru:0,nfLain:0,best:false},
-    {label:'Mix FEL + NON FEL',icon:'ti-layout-grid',iconColor:'#10B981',iconBg:'#D1FAE5',felBaru:Math.ceil(target*0.5/s.felBaru),felLain:0,nfBaru:Math.ceil(target*0.3/s.nonfelBaru),nfLain:Math.ceil(target*0.2/s.nonfelLain),best:false},
-  ];
-  document.getElementById('suggest-list').innerHTML=combos.map(c=>{
-    const bonus=(c.felBaru*s.felBaru)+(c.felLain*s.felLain)+(c.nfBaru*s.nonfelBaru)+(c.nfLain*s.nonfelLain);
-    const tn=c.felBaru+c.felLain+c.nfBaru+c.nfLain;
-    const det=[c.felBaru>0?`FEL Baru: <b>${c.felBaru}</b>`:'',c.felLain>0?`FEL Lainnya: <b>${c.felLain}</b>`:'',c.nfBaru>0?`NON FEL Baru: <b>${c.nfBaru}</b>`:'',c.nfLain>0?`NON FEL Lainnya: <b>${c.nfLain}</b>`:''].filter(Boolean).join(' · ');
-    return `<div class="suggest-row ${c.best?'highlight':''}"><div class="suggest-left"><div class="suggest-icon" style="background:${c.iconBg};"><i class="ti ${c.icon}" style="font-size:18px;color:${c.iconColor};" aria-hidden="true"></i></div><div>${c.best?'<span class="best-badge">Bonus Tertinggi</span><br>':''}<span class="suggest-name">${c.label}</span><p style="font-size:11px;color:#6B7280;margin-top:2px;">${det}</p></div></div><div class="suggest-right"><p class="suggest-nos">${tn} NOS</p><p class="suggest-nos-label">${fmt(bonus)}</p></div></div>`;
-  }).join('');
-  set('t-vas',fmt(15000000)); document.getElementById('t-vas-sub').textContent='Dapat ekstra Rp 500.000 + 4% premi';
-  set('t-sai',fmt(1000000)); document.getElementById('t-sai-sub').textContent='Dapat ekstra Rp 100.000 + 7% premi';
-  const bestNos=combos[0].felBaru, bonusKontrak=bestNos*s.felBaru;
-  const bonusPremi=(15000000*0.04)+500000+(1000000*0.07)+100000;
-  set('t-nos-total',bestNos+' NOS'); set('t-bonus-kontrak',fmt(bonusKontrak));
-  set('t-bonus-premi',fmt(bonusPremi)); set('t-total-est',fmt(bonusKontrak+bonusPremi));
+  renderSlabChips(target);
+  renderTargetResult(target);
 }
 </script>
