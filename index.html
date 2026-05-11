@@ -1,300 +1,422 @@
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Kalkulator Bonus Sales</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:#F0F2F8;}
-.app{max-width:390px;margin:0 auto;background:#F0F2F8;min-height:100vh;padding-bottom:32px;font-family:'Inter',sans-serif;}
-.topbar{background:linear-gradient(135deg,#4F46E5,#7C3AED);padding:16px 16px 52px;}
-.topbar-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
-.topbar-icon{width:32px;height:32px;background:rgba(255,255,255,0.18);border-radius:9px;display:flex;align-items:center;justify-content:center;}
-.topbar-title{font-size:16px;font-weight:600;color:#fff;}
-.tab-bar{display:flex;gap:8px;}
-.tab-btn{flex:1;padding:9px 6px;border:none;border-radius:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;}
-.tab-btn.active{background:#fff;color:#4F46E5;box-shadow:0 4px 16px rgba(79,70,229,0.15);}
-.tab-btn.inactive{background:rgba(255,255,255,0.2);color:#fff;}
-.panel{display:none;}.panel.active{display:block;}
-.hero{background:#fff;border-radius:18px;margin:-34px 14px 0;padding:16px;box-shadow:0 4px 20px rgba(79,70,229,0.10);position:relative;z-index:2;}
-.hero-label{font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px;}
-.hero-amount{font-size:28px;font-weight:700;color:#1E1B4B;letter-spacing:-0.5px;}
-.hero-sub{font-size:11px;color:#9CA3AF;margin-top:2px;}
-.section{background:#fff;border-radius:14px;margin:10px 14px 0;padding:14px;}
-.sec-label{font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:11px;}
-.field-label{font-size:12px;color:#6B7280;font-weight:500;display:block;margin-bottom:4px;}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-input[type=number],input[type=text]{width:100%;padding:9px 11px;border:1.5px solid #E5E7EB;border-radius:10px;font-size:13px;font-family:'Inter',sans-serif;color:#111827;background:#F9FAFB;outline:none;transition:border-color 0.15s;}
-input:focus{border-color:#6366F1;background:#fff;}
-.slab-pill{display:flex;align-items:center;gap:6px;padding:0 10px;height:38px;border-radius:10px;background:#F3F4F6;border:1.5px solid #E5E7EB;}
-.slab-pill span{font-size:13px;font-weight:600;color:#6B7280;}
-.nos-tbl{width:100%;border-collapse:collapse;}
-.nos-tbl th{font-size:10px;font-weight:600;color:#9CA3AF;padding:0 3px 7px;text-align:center;text-transform:uppercase;letter-spacing:0.04em;}
-.nos-tbl th:first-child{text-align:left;padding-left:0;}
-.nos-tbl td{padding:6px 3px;vertical-align:middle;}
-.nos-tbl td:first-child{padding-left:0;}
-.nos-tbl tr{border-top:1px solid #F3F4F6;}
-.nos-tbl tr:first-child{border-top:none;}
-.nos-tbl input{padding:7px 5px;font-size:12px;}
-.tot-row td{background:#F9FAFB;font-size:12px;font-weight:600;color:#374151;text-align:center;padding:7px 3px;}
-.tot-row td:first-child{text-align:left;padding-left:8px;border-radius:7px 0 0 7px;}
-.tot-row td:last-child{border-radius:0 7px 7px 0;}
-.bdg{font-size:10px;font-weight:600;padding:3px 7px;border-radius:7px;display:inline-block;}
-.bdg-gray{background:#F3F4F6;color:#6B7280;}
-.bdg-purple{background:#EDE9FE;color:#5B21B6;}
-.nos-val{font-size:12px;font-weight:600;color:#374151;text-align:center;}
-.afa-card{background:linear-gradient(135deg,#1E1B4B,#312E81);border-radius:14px;margin:10px 14px 0;padding:14px 15px;}
-.afa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;}
-.afa-title{font-size:10px;font-weight:600;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.08em;}
-.afa-formula{font-size:10px;color:rgba(255,255,255,0.35);}
-.afa-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:8px;}
-.afa-box{background:rgba(255,255,255,0.1);border-radius:9px;padding:9px 7px;text-align:center;}
-.afa-box-lbl{font-size:9px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;}
-.afa-box-val{font-size:12px;font-weight:600;color:#fff;}
-.afa-box-sub{font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;}
-.afa-main{background:rgba(255,255,255,0.1);border-radius:10px;padding:11px 12px;display:flex;justify-content:space-between;align-items:center;}
-.afa-main-lbl{font-size:11px;color:rgba(255,255,255,0.55);margin-bottom:3px;}
-.afa-main-val{font-size:19px;font-weight:700;color:#fff;letter-spacing:-0.3px;}
-.afa-bdg{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;display:inline-block;}
-.afa-empty{font-size:11px;color:rgba(255,255,255,0.3);font-style:italic;}
-.grp-lbl{font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.07em;margin:12px 0 4px;}
-.rin-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-top:1px solid #F3F4F6;}
-.rin-lbl{font-size:13px;color:#6B7280;}
-.rin-val{font-size:13px;font-weight:600;color:#111827;}
-.k-row{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid #F3F4F6;font-size:13px;}
-.k-row:first-child{border-top:none;}
-.info-box{background:#FEF3C7;border-radius:10px;padding:10px 12px;margin-top:10px;display:flex;gap:8px;align-items:flex-start;}
-.info-box p{font-size:12px;color:#92400E;line-height:1.6;}
-.t-hero{background:linear-gradient(135deg,#4F46E5,#7C3AED);border-radius:18px;margin:-34px 14px 0;padding:18px;position:relative;z-index:2;}
-.t-hero-lbl{font-size:10px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
-.t-input-wrap{position:relative;}
-.t-input-wrap span{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;font-weight:600;color:#6366F1;}
-.t-input{width:100%;padding:11px 11px 11px 40px;border:none;border-radius:11px;font-size:19px;font-weight:700;font-family:'Inter',sans-serif;color:#1E1B4B;background:#fff;outline:none;}
-.sug-card{background:#fff;border-radius:14px;margin:10px 14px 0;padding:14px;}
-.sug-title{font-size:13px;font-weight:600;color:#1E1B4B;margin-bottom:11px;}
-.sug-row{display:flex;align-items:flex-start;justify-content:space-between;padding:10px 11px;border-radius:11px;margin-bottom:7px;border:1.5px solid #E5E7EB;}
-.sug-row.best{border-color:#6366F1;background:#F5F3FF;}
-.sug-row:last-child{margin-bottom:0;}
-.sug-left{display:flex;align-items:flex-start;gap:9px;}
-.sug-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
-.sug-name{font-size:12px;font-weight:600;color:#1E1B4B;}
-.sug-right{text-align:right;flex-shrink:0;margin-left:8px;}
-.sug-nos{font-size:14px;font-weight:600;color:#4F46E5;}
-.sug-sub{font-size:11px;color:#9CA3AF;}
-.best-bdg{font-size:10px;font-weight:600;background:#4F46E5;color:#fff;padding:2px 7px;border-radius:6px;display:inline-block;margin-bottom:3px;}
-.res-section{background:#fff;border-radius:14px;margin:10px 14px 0;padding:14px;}
-.res-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid #F3F4F6;}
-.res-row:first-child{border-top:none;padding-top:0;}
-.res-key{font-size:13px;color:#6B7280;display:flex;align-items:center;gap:6px;}
-.res-val{font-size:13px;font-weight:600;color:#111827;}
-.res-sub{font-size:11px;color:#9CA3AF;text-align:right;}
-.empty-st{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:13px;}
-.empty-st i{font-size:28px;display:block;margin-bottom:7px;color:#C7D2FE;}
-/* target slab selector */
-.slab-select-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
-.slab-chip{font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;cursor:pointer;border:1.5px solid transparent;transition:all 0.15s;}
-.slab-chip.selected{border-color:currentColor;}
-</style>
+:root {
+  --purple: #5B4FE8;
+  --purple2: #7C3AED;
+  --purple-light: #EEF2FF;
+  --green: #059669;
+  --green-light: #D1FAE5;
+  --amber: #D97706;
+  --amber-light: #FEF3C7;
+  --red-light: #FEE2E2;
+  --red: #B91C1C;
+  --bg: #F2F3F8;
+  --card: #FFFFFF;
+  --border: #E9EAEF;
+  --text: #0F0E1A;
+  --text2: #6B7280;
+  --text3: #9CA3AF;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 2px 12px rgba(91,79,232,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; }
+.app { max-width: 430px; margin: 0 auto; min-height: 100vh; background: var(--bg); padding-bottom: 40px; }
 
+/* TOPBAR */
+.topbar { background: linear-gradient(140deg, #4338CA 0%, #7C3AED 100%); padding: 20px 18px 60px; }
+.topbar-title { font-size: 17px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; margin-bottom: 18px; letter-spacing: -0.2px; }
+.topbar-icon { width: 34px; height: 34px; background: rgba(255,255,255,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.tabs { display: flex; gap: 8px; }
+.tab { flex: 1; padding: 10px 8px; border: none; border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.18s; display: flex; align-items: center; justify-content: center; gap: 5px; }
+.tab.on { background: #fff; color: var(--purple); box-shadow: 0 4px 14px rgba(91,79,232,0.18); }
+.tab.off { background: rgba(255,255,255,0.18); color: #fff; }
+
+/* PANEL */
+.panel { display: none; }
+.panel.on { display: block; }
+
+/* HERO */
+.hero { background: var(--card); border-radius: var(--radius); margin: -36px 14px 0; padding: 18px; box-shadow: 0 6px 24px rgba(91,79,232,0.12); position: relative; z-index: 3; }
+.hero-lbl { font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.hero-amt { font-size: 30px; font-weight: 700; color: var(--text); letter-spacing: -0.6px; line-height: 1.1; }
+.hero-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+/* CARD */
+.card { background: var(--card); border-radius: var(--radius); margin: 10px 14px 0; padding: 15px; box-shadow: var(--shadow); }
+.card-lbl { font-size: 10px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 12px; }
+
+/* INPUTS */
+.flbl { font-size: 12px; color: var(--text2); font-weight: 500; display: block; margin-bottom: 4px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+input[type=number], input[type=text] {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text); background: #F8F9FC; outline: none; transition: border-color 0.15s;
+  -webkit-appearance: none;
+}
+input[type=number]:focus, input[type=text]:focus { border-color: var(--purple); background: #fff; }
+input[type=number] { -moz-appearance: textfield; }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.slab-chip { display: flex; align-items: center; gap: 6px; padding: 0 12px; height: 42px; border-radius: var(--radius-sm); background: #F3F4F6; border: 1.5px solid var(--border); }
+.slab-chip span { font-size: 13px; font-weight: 700; color: var(--text2); }
+
+/* NOS TABLE */
+.nos-tbl { width: 100%; border-collapse: collapse; }
+.nos-tbl th { font-size: 10px; font-weight: 600; color: var(--text3); padding: 0 3px 8px; text-align: center; text-transform: uppercase; letter-spacing: 0.04em; }
+.nos-tbl th:first-child { text-align: left; padding-left: 0; }
+.nos-tbl td { padding: 5px 3px; vertical-align: middle; }
+.nos-tbl td:first-child { padding-left: 0; }
+.nos-tbl tr { border-top: 1px solid #F3F4F6; }
+.nos-tbl tr:first-child { border-top: none; }
+.nos-tbl input { padding: 8px 5px; font-size: 13px; text-align: center; }
+.tot-row td { background: #F8F9FC; font-size: 12px; font-weight: 700; color: var(--text); text-align: center; padding: 8px 3px; }
+.tot-row td:first-child { text-align: left; padding-left: 10px; border-radius: 8px 0 0 8px; }
+.tot-row td:last-child { border-radius: 0 8px 8px 0; }
+.bdg { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 7px; display: inline-block; }
+.bg { background: #F3F4F6; color: #6B7280; }
+.bp { background: #EDE9FE; color: #5B21B6; }
+.nv { font-size: 12px; font-weight: 700; color: var(--text); text-align: center; }
+
+/* AFA */
+.afa-wrap { background: linear-gradient(135deg, #1E1B4B, #3B0764); border-radius: var(--radius); margin: 10px 14px 0; padding: 15px; }
+.afa-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.afa-title { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; }
+.afa-formula { font-size: 10px; color: rgba(255,255,255,0.35); }
+.afa-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin-bottom: 8px; }
+.afa-box { background: rgba(255,255,255,0.08); border-radius: 9px; padding: 10px 6px; text-align: center; }
+.abl { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.45); text-transform: uppercase; margin-bottom: 3px; }
+.abv { font-size: 13px; font-weight: 700; color: #fff; }
+.abs { font-size: 9px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+.afa-main { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 12px; display: flex; justify-content: space-between; align-items: center; }
+.aml { font-size: 11px; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
+.amv { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+.abdg { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; display: inline-block; }
+.ae { font-size: 11px; color: rgba(255,255,255,0.3); font-style: italic; }
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--border); margin: 10px 0; }
+
+/* TOGGLE BUTTONS */
+.toggle-btn {
+  width: 100%; padding: 12px 14px; background: var(--purple-light); color: var(--purple);
+  border: none; border-radius: var(--radius-sm); font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center;
+  justify-content: space-between; margin-top: 10px; transition: background 0.15s;
+}
+.toggle-btn:hover { background: #E0E7FF; }
+.toggle-btn i { font-size: 16px; transition: transform 0.2s; }
+.toggle-btn.open i.chevron { transform: rotate(180deg); }
+
+/* RINCIAN */
+.rincian-wrap { display: none; padding-top: 12px; }
+.rincian-wrap.open { display: block; }
+.grp { font-size: 10px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; margin: 12px 0 4px; }
+.rrow { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-top: 1px solid #F3F4F6; }
+.rl { font-size: 13px; color: var(--text2); }
+.rv { font-size: 13px; font-weight: 600; color: var(--text); }
+
+/* KONSISTENSI */
+.kons-wrap { display: none; padding-top: 12px; }
+.kons-wrap.open { display: block; }
+.krow { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid #F3F4F6; font-size: 13px; }
+.krow:first-child { border-top: none; }
+.infobox { background: var(--amber-light); border-radius: 10px; padding: 10px 12px; margin-top: 10px; display: flex; gap: 8px; align-items: flex-start; }
+.infobox p { font-size: 12px; color: #92400E; line-height: 1.6; }
+
+/* TOTAL CARD */
+.total-card { background: linear-gradient(135deg, #059669, #0D9488); border-radius: var(--radius); margin: 10px 14px 0; padding: 18px; display: flex; justify-content: space-between; align-items: center; }
+.tc-lbl { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.tc-amt { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.4px; }
+
+/* TARGET PANEL */
+.t-hero { background: linear-gradient(140deg, #4338CA, #7C3AED); border-radius: var(--radius); margin: -36px 14px 0; padding: 20px; position: relative; z-index: 3; }
+.t-hero-lbl { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.t-rp-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; display: block; }
+.t-wrap { position: relative; }
+.t-input { width: 100%; padding: 13px 14px; border: none; border-radius: 12px; font-size: 22px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); background: #fff; outline: none; letter-spacing: -0.3px; }
+
+.empty-st { text-align: center; padding: 30px 16px; color: var(--text3); font-size: 13px; }
+.empty-st i { font-size: 32px; display: block; margin-bottom: 8px; color: #C7D2FE; }
+
+.sug-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 11px; border-radius: 11px; margin-bottom: 8px; border: 1.5px solid var(--border); transition: border-color 0.15s; }
+.sug-row.best { border-color: var(--purple); background: #F5F3FF; }
+.sug-row:last-child { margin-bottom: 0; }
+.sug-left { display: flex; align-items: flex-start; gap: 10px; }
+.sug-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.sug-name { font-size: 12px; font-weight: 700; color: var(--text); }
+.sug-right { text-align: right; flex-shrink: 0; margin-left: 8px; }
+.sug-nos { font-size: 16px; font-weight: 700; color: var(--purple); }
+.sug-sub { font-size: 11px; color: var(--text3); }
+.best-bdg { font-size: 10px; font-weight: 700; background: var(--purple); color: #fff; padding: 2px 7px; border-radius: 6px; display: inline-block; margin-bottom: 3px; }
+
+.res-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid #F3F4F6; }
+.res-row:first-child { border-top: none; padding-top: 0; }
+.res-key { font-size: 13px; color: var(--text2); display: flex; align-items: center; gap: 6px; }
+.res-val { font-size: 13px; font-weight: 700; color: var(--text); }
+.res-sub { font-size: 11px; color: var(--text3); text-align: right; }
+
+.chip-btn {
+  padding: 5px 11px; border: 1.5px solid var(--purple); border-radius: 20px;
+  background: var(--purple-light); color: var(--purple); font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.chip-btn:hover { background: var(--purple); color: #fff; }
+.bubble-user {
+  align-self: flex-end; background: var(--purple); color: #fff;
+  padding: 9px 13px; border-radius: 14px 14px 4px 14px;
+  font-size: 13px; max-width: 82%; line-height: 1.5; word-break: break-word;
+}
+.bubble-ai {
+  align-self: flex-start; background: #F3F4F6; color: var(--text);
+  padding: 9px 13px; border-radius: 14px 14px 14px 4px;
+  font-size: 13px; max-width: 88%; line-height: 1.6; word-break: break-word;
+}
+.bubble-ai b { color: var(--purple); }
+.bubble-loading {
+  align-self: flex-start; background: #F3F4F6;
+  padding: 10px 14px; border-radius: 14px 14px 14px 4px;
+  display: flex; gap: 4px; align-items: center;
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #9CA3AF; animation: bounce 1.2s infinite; }
+.dot:nth-child(2){ animation-delay: 0.2s; }
+.dot:nth-child(3){ animation-delay: 0.4s; }
+@keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+
+</style>
+</head>
+<body>
 <div class="app">
   <div class="topbar">
-    <div class="topbar-row">
-      <div class="topbar-icon"><i class="ti ti-chart-bar" style="font-size:16px;color:#fff;"></i></div>
-      <span class="topbar-title">Kalkulator Bonus Sales</span>
+    <div class="topbar-title">
+      <div class="topbar-icon"><i class="ti ti-chart-bar" style="font-size:18px;color:#fff;"></i></div>
+      Kalkulator Bonus Sales
     </div>
-    <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchTab('hitung')"><i class="ti ti-calculator" style="font-size:13px;vertical-align:-2px;margin-right:3px;"></i>Hitung Bonus</button>
-      <button class="tab-btn inactive" onclick="switchTab('target')"><i class="ti ti-target" style="font-size:13px;vertical-align:-2px;margin-right:3px;"></i>Target Bonus</button>
+    <div class="tabs">
+      <button class="tab on" id="tab-h" onclick="sw('h')"><i class="ti ti-calculator" style="font-size:14px;"></i> Hitung Bonus</button>
+      <button class="tab off" id="tab-t" onclick="sw('t')"><i class="ti ti-target" style="font-size:14px;"></i> Target Bonus</button>
     </div>
   </div>
 
-  <!-- PANEL HITUNG -->
-  <div id="panel-hitung" class="panel active">
-    <div class="hero">
-      <p class="hero-label">Estimasi Total Bonus</p>
-      <p id="res-total" class="hero-amount">Rp 0</p>
-      <p class="hero-sub">Dihitung otomatis berdasarkan slab & premi</p>
-    </div>
+  <!-- ===== PANEL HITUNG ===== -->
+  <div id="ph" class="panel on" style="display:block;">
 
-    <div class="section" style="margin-top:14px;">
-      <p class="sec-label">Volume & Slab</p>
-      <div class="two-col" style="align-items:end;">
+    <!-- Volume & Slab -->
+    <div class="card" style="margin-top:14px;">
+      <p class="card-lbl">Volume & Slab</p>
+      <div class="two" style="align-items:end;">
         <div>
-          <label class="field-label" for="volume">Volume Total (Rp)</label>
-          <input type="text" id="volume" placeholder="250.000.000" oninput="formatInput(this);hitung()">
+          <label class="flbl">Volume Total (Rp)</label>
+          <input type="text" id="vol" placeholder="0" oninput="fi(this);calc()">
         </div>
         <div>
-          <label class="field-label">Slab</label>
-          <div id="slab-pill" class="slab-pill">
-            <i class="ti ti-award" style="font-size:14px;color:#9CA3AF;"></i>
-            <span id="slab-label">—</span>
+          <label class="flbl">Slab</label>
+          <div id="sp" class="slab-chip">
+            <i class="ti ti-award" style="font-size:15px;color:#9CA3AF;" id="spi"></i>
+            <span id="sl">—</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="section">
-      <p class="sec-label">NOS per Tipe Produk</p>
+    <!-- NOS -->
+    <div class="card">
+      <p class="card-lbl">NOS per Tipe Produk</p>
       <table class="nos-tbl">
         <thead><tr>
-          <th style="width:27%;text-align:left;">Tipe</th>
+          <th style="width:28%;text-align:left;">Tipe</th>
           <th>Baru</th><th>Lainnya</th><th>Total</th>
         </tr></thead>
         <tbody>
           <tr>
-            <td><span class="bdg bdg-gray">NON FEL</span></td>
-            <td><input type="number" id="nonfel-baru" placeholder="0" oninput="hitung()" style="text-align:center;"></td>
-            <td><input type="number" id="nonfel-lain" placeholder="0" oninput="hitung()" style="text-align:center;"></td>
-            <td class="nos-val"><span id="nonfel-total">—</span></td>
+            <td><span class="bdg bg">NON FEL</span></td>
+            <td><input type="number" id="nb" placeholder="0" oninput="calc()"></td>
+            <td><input type="number" id="nl" placeholder="0" oninput="calc()"></td>
+            <td class="nv"><span id="nt">—</span></td>
           </tr>
           <tr>
-            <td><span class="bdg bdg-purple">FEL</span></td>
-            <td><input type="number" id="fel-baru" placeholder="0" oninput="hitung()" style="text-align:center;"></td>
-            <td><input type="number" id="fel-lain" placeholder="0" oninput="hitung()" style="text-align:center;"></td>
-            <td class="nos-val"><span id="fel-total">—</span></td>
+            <td><span class="bdg bp">FEL</span></td>
+            <td><input type="number" id="fb" placeholder="0" oninput="calc()"></td>
+            <td><input type="number" id="fl" placeholder="0" oninput="calc()"></td>
+            <td class="nv"><span id="ft">—</span></td>
           </tr>
           <tr class="tot-row">
             <td>Total</td>
-            <td id="total-baru">—</td><td id="total-lain">—</td><td id="total-nos-all">—</td>
+            <td id="tb">—</td><td id="tl">—</td><td id="ta">—</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="afa-card">
-      <div class="afa-top">
-        <span class="afa-title"><i class="ti ti-calculator" style="font-size:11px;vertical-align:-1px;margin-right:3px;"></i>AFA — Average Financing Amount</span>
+    <!-- AFA -->
+    <div class="afa-wrap">
+      <div class="afa-hdr">
+        <span class="afa-title"><i class="ti ti-math" style="font-size:11px;vertical-align:-1px;margin-right:3px;"></i>AFA — Avg Financing Amount</span>
         <span class="afa-formula">Volume ÷ Total NOS</span>
       </div>
       <div class="afa-grid">
-        <div class="afa-box"><p class="afa-box-lbl">Volume</p><p id="afa-vol" class="afa-box-val">—</p><p class="afa-box-sub">Total</p></div>
-        <div class="afa-box"><p class="afa-box-lbl">Total NOS</p><p id="afa-nos" class="afa-box-val">—</p><p class="afa-box-sub">Kontrak</p></div>
-        <div class="afa-box"><p class="afa-box-lbl">AFA</p><p id="afa-val" class="afa-box-val">—</p><p class="afa-box-sub">Per kontrak</p></div>
+        <div class="afa-box"><p class="abl">Volume</p><p id="av" class="abv">—</p><p class="abs">Total</p></div>
+        <div class="afa-box"><p class="abl">Total NOS</p><p id="an" class="abv">—</p><p class="abs">Kontrak</p></div>
+        <div class="afa-box"><p class="abl">AFA</p><p id="aa" class="abv">—</p><p class="abs">Per kontrak</p></div>
       </div>
       <div class="afa-main">
         <div>
-          <p class="afa-main-lbl">Rata-rata nilai per kontrak</p>
-          <div id="afa-badge-wrap"><span class="afa-empty">Isi volume & NOS untuk melihat AFA</span></div>
+          <p class="aml">Rata-rata nilai per kontrak</p>
+          <div id="abw"><span class="ae">Isi volume & NOS untuk melihat AFA</span></div>
         </div>
-        <p id="afa-main-val" class="afa-main-val" style="color:rgba(255,255,255,0.25);">—</p>
+        <p id="amv" class="amv" style="color:rgba(255,255,255,0.25);">—</p>
       </div>
     </div>
 
-    <div class="section">
-      <p class="sec-label">Premi</p>
-      <div class="two-col">
+    <!-- Premi -->
+    <div class="card">
+      <p class="card-lbl">Premi</p>
+      <div class="two">
         <div>
-          <label class="field-label" for="vas">VAS (Rp)</label>
-          <input type="text" id="vas" placeholder="20.000.000" oninput="formatInput(this);hitung()">
+          <label class="flbl">VAS (Rp)</label>
+          <input type="text" id="vas" placeholder="0" oninput="fi(this);calc()">
         </div>
         <div>
-          <label class="field-label" for="sai">SAI (Rp)</label>
-          <input type="text" id="sai" placeholder="2.000.000" oninput="formatInput(this);hitung()">
+          <label class="flbl">SAI (Rp)</label>
+          <input type="text" id="sai" placeholder="0" oninput="fi(this);calc()">
         </div>
       </div>
     </div>
 
-    <div class="section">
-      <p class="sec-label">Rincian Bonus</p>
-      <p class="grp-lbl" style="margin-top:0;">NON FEL</p>
-      <div class="rin-row"><span class="rin-lbl">Pelanggan Baru</span><span id="r-nonfel-baru" class="rin-val">—</span></div>
-      <div class="rin-row"><span class="rin-lbl">Pelanggan Lainnya</span><span id="r-nonfel-lain" class="rin-val">—</span></div>
-      <p class="grp-lbl">FEL</p>
-      <div class="rin-row"><span class="rin-lbl">Pelanggan Baru</span><span id="r-fel-baru" class="rin-val">—</span></div>
-      <div class="rin-row"><span class="rin-lbl">Pelanggan Lainnya</span><span id="r-fel-lain" class="rin-val">—</span></div>
-      <p class="grp-lbl">VAS</p>
-      <div class="rin-row"><span class="rin-lbl">4% dari premi VAS</span><span id="r-vas-pct" class="rin-val">—</span></div>
-      <div class="rin-row"><span class="rin-lbl">Extra Insentif VAS</span><span id="r-vas-slab" class="rin-val">—</span></div>
-      <p class="grp-lbl">SAI</p>
-      <div class="rin-row"><span class="rin-lbl">7% dari premi SAI</span><span id="r-sai-pct" class="rin-val">—</span></div>
-      <div class="rin-row"><span class="rin-lbl">Extra Insentif SAI</span><span id="r-sai-slab" class="rin-val">—</span></div>
+    <!-- Total Bonus — setelah VAS SAI -->
+    <div class="total-card">
+      <div>
+        <p class="tc-lbl">Estimasi Total Bonus</p>
+        <p id="rt" class="tc-amt">Rp 0</p>
+      </div>
+      <i class="ti ti-cash" style="font-size:36px;color:rgba(255,255,255,0.4);"></i>
     </div>
 
-    <div class="section">
-      <p class="sec-label"><i class="ti ti-info-circle" style="font-size:12px;vertical-align:-1px;margin-right:3px;"></i>Bonus Konsistensi</p>
-      <div class="k-row"><span style="color:#6B7280;">Yellow <span style="font-size:11px;">(3 bln konsisten)</span></span><span style="font-weight:600;color:#854F0B;">Rp 500.000</span></div>
-      <div class="k-row"><span style="color:#6B7280;">Green</span><span style="font-weight:600;color:#3B6D11;">Rp 1.000.000</span></div>
-      <div class="k-row"><span style="color:#6B7280;">Black</span><span style="font-weight:600;color:#374151;">Rp 1.500.000</span></div>
-      <div class="k-row"><span style="color:#6B7280;">Platinum</span><span style="font-weight:600;color:#3C3489;">Rp 2.000.000</span></div>
-      <div class="info-box">
-        <i class="ti ti-alert-triangle" style="font-size:15px;color:#D97706;flex-shrink:0;margin-top:1px;"></i>
-        <p><b>Syarat pencairan:</b> Bonus konsistensi akan cair jika SA <b>tidak memiliki Notice Letter (NL) Aktif</b> selama periode penilaian.</p>
+    <!-- Toggle Rincian Bonus -->
+    <div style="margin: 0 14px;">
+      <button class="toggle-btn" onclick="toggleSection('rincian-wrap','rincian-btn')">
+        <span><i class="ti ti-list-details" style="font-size:15px;vertical-align:-2px;margin-right:6px;"></i>Rincian Bonus</span>
+        <i class="ti ti-chevron-down chevron" style="font-size:16px;"></i>
+      </button>
+      <div id="rincian-wrap" class="rincian-wrap" style="background:#fff;border-radius:0 0 var(--radius) var(--radius);padding:0 14px 14px;margin-top:-4px;box-shadow:var(--shadow);">
+        <div style="padding-top:12px;">
+          <p class="grp" style="margin-top:0;">NON FEL</p>
+          <div class="rrow"><span class="rl">Pelanggan Baru</span><span id="rnb" class="rv">—</span></div>
+          <div class="rrow"><span class="rl">Pelanggan Lainnya</span><span id="rnl" class="rv">—</span></div>
+          <p class="grp">FEL</p>
+          <div class="rrow"><span class="rl">Pelanggan Baru</span><span id="rfb" class="rv">—</span></div>
+          <div class="rrow"><span class="rl">Pelanggan Lainnya</span><span id="rfl" class="rv">—</span></div>
+          <p class="grp">VAS</p>
+          <div class="rrow"><span class="rl">4% dari premi VAS</span><span id="rvp" class="rv">—</span></div>
+          <div class="rrow"><span class="rl">Extra Insentif VAS</span><span id="rve" class="rv">—</span></div>
+          <p class="grp">SAI</p>
+          <div class="rrow"><span class="rl">7% dari premi SAI</span><span id="rsp" class="rv">—</span></div>
+          <div class="rrow"><span class="rl">Extra Insentif SAI</span><span id="rse" class="rv">—</span></div>
+        </div>
+      </div>
+
+      <!-- Toggle Konsistensi -->
+      <button class="toggle-btn" style="margin-top:8px;" onclick="toggleSection('kons-wrap','kons-btn')">
+        <span><i class="ti ti-info-circle" style="font-size:15px;vertical-align:-2px;margin-right:6px;"></i>Info Bonus Konsistensi</span>
+        <i class="ti ti-chevron-down chevron" style="font-size:16px;"></i>
+      </button>
+      <div id="kons-wrap" class="kons-wrap" style="background:#fff;border-radius:0 0 var(--radius) var(--radius);padding:0 14px 14px;margin-top:-4px;box-shadow:var(--shadow);">
+        <div style="padding-top:12px;">
+          <div class="krow"><span style="color:var(--text2);">Yellow <span style="font-size:11px;">(3 bln konsisten)</span></span><span style="font-weight:700;color:#854F0B;">Rp 500.000</span></div>
+          <div class="krow"><span style="color:var(--text2);">Green</span><span style="font-weight:700;color:#065F46;">Rp 1.000.000</span></div>
+          <div class="krow"><span style="color:var(--text2);">Black</span><span style="font-weight:700;color:#374151;">Rp 1.500.000</span></div>
+          <div class="krow"><span style="color:var(--text2);">Platinum</span><span style="font-weight:700;color:#4C1D95;">Rp 2.000.000</span></div>
+          <div class="infobox">
+            <i class="ti ti-alert-triangle" style="font-size:15px;color:#D97706;flex-shrink:0;margin-top:1px;"></i>
+            <p><b>Syarat pencairan:</b> Bonus konsistensi akan cair jika SA <b>tidak memiliki NL (Notice Letter) Aktif</b> pada periode penilaian.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- PANEL TARGET -->
-  <div id="panel-target" class="panel">
+  <!-- ===== PANEL TARGET ===== -->
+  <div id="pt" class="panel" style="display:none;">
     <div class="t-hero">
       <p class="t-hero-lbl">Berapa bonus yang kamu inginkan?</p>
-      <div class="t-input-wrap">
-        <span>Rp</span>
-        <input class="t-input" type="text" id="target-bonus" placeholder="5.000.000" oninput="formatInput(this);hitungTarget()">
+      <span class="t-rp-label">Rp</span>
+      <div class="t-wrap">
+        <input class="t-input" type="text" id="tg" placeholder="0" oninput="fi(this);calcT()">
       </div>
     </div>
 
-    <div id="target-empty" class="sug-card" style="margin-top:14px;">
-      <div class="empty-st">
-        <i class="ti ti-mood-smile"></i>
-        Masukkan target bonus di atas untuk melihat berapa NOS, VAS, dan SAI yang perlu kamu kejar bulan ini.
+    <div id="te" style="margin:14px 14px 0;">
+      <div class="card" style="margin:0;">
+        <div class="empty-st"><i class="ti ti-mood-smile"></i>Masukkan target bonus di atas untuk melihat perbandingan semua slab dan NOS yang perlu kamu kejar.</div>
       </div>
     </div>
 
-    <div id="target-result" style="display:none;">
-
-      <!-- Pilih slab -->
-      <div class="res-section" style="margin-top:14px;">
-        <p class="sec-label">Pilih slab target kamu</p>
-        <div id="slab-chips" class="slab-select-row"></div>
-        <div id="target-slab-info" style="margin-top:10px;"></div>
+    <div id="tr2" style="display:none;">
+      <div style="margin:14px 14px 0;background:#EEF2FF;border-radius:10px;padding:10px 13px;display:flex;align-items:flex-start;gap:8px;">
+        <i class="ti ti-info-circle" style="font-size:15px;color:var(--purple);flex-shrink:0;margin-top:1px;"></i>
+        <p style="font-size:12px;color:#3730A3;line-height:1.5;">Estimasi menggunakan <b>AFA Rp 9 juta/kontrak</b> dan saran <b>VAS = 15% dari volume slab</b>.</p>
       </div>
-
-      <!-- Suggest NOS -->
-      <div class="sug-card">
-        <p class="sug-title"><i class="ti ti-bulb" style="font-size:14px;color:#F59E0B;vertical-align:-2px;margin-right:5px;"></i>NOS yang dibutuhkan</p>
-        <div id="suggest-list"></div>
-        <div style="background:#F0FDF4;border-radius:9px;padding:10px;margin-top:9px;display:flex;align-items:flex-start;gap:7px;">
-          <i class="ti ti-star-filled" style="font-size:15px;color:#16A34A;flex-shrink:0;margin-top:1px;"></i>
-          <p style="font-size:12px;color:#15803D;line-height:1.5;">NOS <b>FEL Pelanggan Baru</b> memberikan bonus per kontrak tertinggi — prioritaskan ini untuk hasil maksimal!</p>
+      <div class="card" style="margin-top:10px;">
+        <p class="card-lbl"><i class="ti ti-table" style="font-size:11px;vertical-align:-1px;margin-right:4px;"></i>Perbandingan Per Slab</p>
+        <div id="slab-compare"></div>
+        <div style="background:#F0FDF4;border-radius:9px;padding:9px 11px;margin-top:10px;display:flex;align-items:flex-start;gap:7px;">
+          <i class="ti ti-star-filled" style="font-size:14px;color:#16A34A;flex-shrink:0;margin-top:1px;"></i>
+          <p style="font-size:11px;color:#15803D;line-height:1.5;"><b>NOS FEL Pelanggan Baru</b> memberikan bonus per kontrak tertinggi — prioritaskan ini!</p>
         </div>
       </div>
-
-      <!-- Target premi -->
-      <div class="res-section">
-        <p class="sec-label">Estimasi dari Premi (opsional)</p>
-        <div style="background:#F9FAFB;border-radius:10px;padding:11px 12px;margin-bottom:8px;">
-          <p style="font-size:11px;font-weight:600;color:#6366F1;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">VAS</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;" id="vas-slab-tbl"></div>
-        </div>
-        <div style="background:#F9FAFB;border-radius:10px;padding:11px 12px;">
-          <p style="font-size:11px;font-weight:600;color:#EC4899;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">SAI</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;" id="sai-slab-tbl"></div>
-        </div>
+      <div class="card" id="best-detail-card">
+        <p class="card-lbl"><i class="ti ti-award" style="font-size:11px;vertical-align:-1px;margin-right:4px;"></i>Detail Slab Terbaik</p>
+        <div id="best-detail-content"></div>
       </div>
 
-      <!-- Ringkasan -->
-      <div class="res-section">
-        <p class="sec-label">Ringkasan target bulanan</p>
-        <div class="res-row" style="border-top:none;padding-top:0;">
-          <span class="res-key"><i class="ti ti-file-text" style="color:#6366F1;"></i>Total NOS (FEL Baru semua)</span>
-          <span id="t-nos-total" class="res-val">—</span>
-        </div>
-        <div class="res-row">
-          <span class="res-key"><i class="ti ti-cash" style="color:#10B981;"></i>Bonus dari NOS</span>
-          <span id="t-bonus-kontrak" class="res-val">—</span>
-        </div>
-        <div class="res-row">
-          <span class="res-key"><i class="ti ti-shield-check" style="color:#6366F1;"></i>Target VAS minimal</span>
-          <span id="t-vas" class="res-val">—</span>
-        </div>
-        <div class="res-row">
-          <span class="res-key"><i class="ti ti-heart" style="color:#EC4899;"></i>Target SAI minimal</span>
-          <span id="t-sai" class="res-val">—</span>
-        </div>
-        <div style="background:#EEF2FF;border-radius:11px;padding:12px;margin-top:9px;display:flex;justify-content:space-between;align-items:center;">
-          <div>
-            <p style="font-size:10px;color:#6366F1;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px;">Total estimasi</p>
-            <p style="font-size:11px;color:#818CF8;">Bonus NOS + VAS + SAI</p>
+      <!-- AI CHAT -->
+      <div class="card" style="margin-bottom:0;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="ti ti-robot" style="font-size:15px;color:#fff;"></i>
           </div>
-          <span id="t-total-est" style="font-size:17px;font-weight:700;color:#4338CA;">—</span>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--text);">Tanya AI Strategi Bonus</p>
+            <p style="font-size:11px;color:var(--text3);">Powered by Claude AI</p>
+          </div>
         </div>
+
+        <!-- Chat history -->
+        <div id="chat-history" style="max-height:320px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;"></div>
+
+        <!-- Quick suggestions -->
+        <div id="chat-suggestions" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">
+          <button class="chip-btn" onclick="askQuick('Slab mana yang paling efisien untuk saya kejar bulan ini?')">Slab paling efisien?</button>
+          <button class="chip-btn" onclick="askQuick('Berapa target VAS yang harus saya kejar?')">Target VAS saya?</button>
+          <button class="chip-btn" onclick="askQuick('Apa perbedaan bonus FEL vs NON FEL?')">FEL vs NON FEL?</button>
+          <button class="chip-btn" onclick="askQuick('Tips agar bisa naik ke slab berikutnya?')">Tips naik slab</button>
+        </div>
+
+        <!-- Input -->
+        <div style="display:flex;gap:8px;align-items:flex-end;">
+          <textarea id="chat-input"
+            placeholder="Tanya strategi bonus, NOS, VAS, SAI..."
+            rows="2"
+            style="flex:1;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:#F8F9FC;outline:none;resize:none;line-height:1.5;"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat();}"
+            onfocus="this.style.borderColor='var(--purple)';this.style.background='#fff';"
+            onblur="this.style.borderColor='var(--border)';this.style.background='#F8F9FC';"></textarea>
+          <button id="send-btn" onclick="sendChat()"
+            style="width:42px;height:42px;border:none;border-radius:10px;background:var(--purple);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity 0.15s;">
+            <i class="ti ti-send" style="font-size:17px;"></i>
+          </button>
+        </div>
+        <p style="font-size:10px;color:var(--text3);margin-top:6px;text-align:center;">Tekan Enter untuk kirim · Shift+Enter untuk baris baru</p>
       </div>
     </div>
   </div>
@@ -302,231 +424,428 @@ input:focus{border-color:#6366F1;background:#fff;}
 
 <script>
 const SLAB=[
-  {name:'No Color',min:0,        max:119999999,    nfB:100000,nfL:40000, fB:130000,fL:55000, vLabel:'< 120 jt'},
-  {name:'Red',     min:120000000,max:199999999,    nfB:115000,nfL:46000, fB:149500,fL:63250, vLabel:'120–199 jt'},
-  {name:'Yellow',  min:200000000,max:299999999,    nfB:125000,nfL:50000, fB:162500,fL:68750, vLabel:'200–299 jt'},
-  {name:'Green',   min:300000000,max:399999999,    nfB:150000,nfL:60000, fB:195000,fL:82500, vLabel:'300–399 jt'},
-  {name:'Black',   min:400000000,max:499999999,    nfB:160000,nfL:64000, fB:208000,fL:88000, vLabel:'400–499 jt'},
-  {name:'Platinum',min:500000000,max:9999999999999,nfB:185000,nfL:74000, fB:240500,fL:101750,vLabel:'500 jt+'},
+  {name:'No Color',min:0,        max:119999999,    nfB:100000,nfL:40000, fB:130000,fL:55000, vL:'< 120 jt'},
+  {name:'Red',     min:120000000,max:199999999,    nfB:115000,nfL:46000, fB:149500,fL:63250, vL:'120–199 jt'},
+  {name:'Yellow',  min:200000000,max:299999999,    nfB:125000,nfL:50000, fB:162500,fL:68750, vL:'200–299 jt'},
+  {name:'Green',   min:300000000,max:399999999,    nfB:150000,nfL:60000, fB:195000,fL:82500, vL:'300–399 jt'},
+  {name:'Black',   min:400000000,max:499999999,    nfB:160000,nfL:64000, fB:208000,fL:88000, vL:'400–499 jt'},
+  {name:'Platinum',min:500000000,max:9999999999999,nfB:185000,nfL:74000, fB:240500,fL:101750,vL:'500 jt+'},
 ];
-const SS={
-  'No Color':{bg:'#F3F4F6',color:'#6B7280',border:'#E5E7EB'},
-  'Red':     {bg:'#FEE2E2',color:'#B91C1C',border:'#FCA5A5'},
-  'Yellow':  {bg:'#FEF3C7',color:'#92400E',border:'#FCD34D'},
-  'Green':   {bg:'#D1FAE5',color:'#065F46',border:'#6EE7B7'},
-  'Black':   {bg:'#1F2937',color:'#F9FAFB',border:'#374151'},
-  'Platinum':{bg:'#EDE9FE',color:'#4C1D95',border:'#C4B5FD'},
+const SC={
+  'No Color':{bg:'#F3F4F6',c:'#6B7280',b:'#E5E7EB'},
+  'Red':     {bg:'#FEE2E2',c:'#B91C1C',b:'#FCA5A5'},
+  'Yellow':  {bg:'#FEF3C7',c:'#92400E',b:'#FCD34D'},
+  'Green':   {bg:'#D1FAE5',c:'#065F46',b:'#6EE7B7'},
+  'Black':   {bg:'#1F2937',c:'#F9FAFB',b:'#374151'},
+  'Platinum':{bg:'#EDE9FE',c:'#4C1D95',b:'#C4B5FD'},
 };
-// Extra Insentif VAS
-const VAS_TIERS=[
-  {min:100000000,bonus:5000000,label:'> 100 jt'},
-  {min:50000000, bonus:3000000,label:'50–99 jt'},
-  {min:35000000, bonus:1500000,label:'35–49 jt'},
-  {min:15000000, bonus:500000, label:'15–34 jt'},
-  {min:0,        bonus:0,      label:'< 15 jt'},
-];
-// Extra Insentif SAI
-const SAI_TIERS=[
-  {min:10000001,bonus:1500000,label:'> 10 jt'},
-  {min:3500000, bonus:500000, label:'3,5–10 jt'},
-  {min:1500000, bonus:300000, label:'1,5–3,4 jt'},
-  {min:1000000, bonus:100000, label:'1–1,4 jt'},
-  {min:0,       bonus:0,      label:'< 1 jt'},
-];
-function vasExtra(p){const t=VAS_TIERS.find(x=>p>=x.min);return t?t.bonus:0;}
-function saiExtra(p){const t=SAI_TIERS.find(x=>p>=x.min);return t?t.bonus:0;}
-
+function vEx(p){if(p>=100000000)return 5000000;if(p>=50000000)return 3000000;if(p>=35000000)return 1500000;if(p>=15000000)return 500000;return 0;}
+function sEx(p){if(p>10000000)return 1500000;if(p>=3500000)return 500000;if(p>=1500000)return 300000;if(p>=1000000)return 100000;return 0;}
 function fmt(n){return 'Rp '+Math.round(n).toLocaleString('id-ID');}
-function fmtS(n){if(n>=1000000000)return(n/1000000000).toFixed(1)+' M';if(n>=1000000)return(n/1000000).toFixed(1)+' jt';if(n>=1000)return(n/1000).toFixed(0)+' rb';return n.toString();}
+function fS(n){if(n>=1000000000)return(n/1e9).toFixed(1)+' M';if(n>=1000000)return(n/1e6).toFixed(1)+' jt';if(n>=1000)return(n/1000).toFixed(0)+' rb';return n.toString();}
 function num(n){return n>0?n.toLocaleString('id-ID'):'—';}
-function set(id,v){document.getElementById(id).textContent=v;}
-function formatInput(el){const r=el.value.replace(/\./g,'');if(r===''||isNaN(r)){el.value=r;return;}el.value=parseInt(r,10).toLocaleString('id-ID');}
-function parseIn(id){return parseFloat(document.getElementById(id).value.replace(/\./g,''))||0;}
-function afaCat(a){
-  if(a>=50000000)return{label:'Premium',color:'#F59E0B',bg:'rgba(245,158,11,0.22)'};
-  if(a>=20000000)return{label:'Tinggi',  color:'#34D399',bg:'rgba(52,211,153,0.22)'};
-  if(a>=10000000)return{label:'Menengah',color:'#93C5FD',bg:'rgba(147,197,253,0.22)'};
-  return{label:'Standar',color:'rgba(255,255,255,0.65)',bg:'rgba(255,255,255,0.12)'};
+function set(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+function fi(el){const r=el.value.replace(/\./g,'');if(r===''||isNaN(r)){el.value=r;return;}el.value=parseInt(r,10).toLocaleString('id-ID');}
+function pi(id){return parseFloat((document.getElementById(id)||{value:'0'}).value.replace(/\./g,''))||0;}
+function pn(id){return parseFloat((document.getElementById(id)||{value:'0'}).value)||0;}
+function afaC(a){if(a>=50000000)return{l:'Premium',c:'#F59E0B',bg:'rgba(245,158,11,0.22)'};if(a>=20000000)return{l:'Tinggi',c:'#34D399',bg:'rgba(52,211,153,0.22)'};if(a>=10000000)return{l:'Menengah',c:'#93C5FD',bg:'rgba(147,197,253,0.22)'};return{l:'Standar',c:'rgba(255,255,255,0.65)',bg:'rgba(255,255,255,0.12)'};}
+
+function sw(t){
+  var ph=document.getElementById('ph');
+  var pt=document.getElementById('pt');
+  var th=document.getElementById('tab-h');
+  var tt=document.getElementById('tab-t');
+  if(!ph||!pt) return;
+  if(t==='h'){
+    ph.style.display='block'; pt.style.display='none';
+    if(th){th.className='tab on';} if(tt){tt.className='tab off';}
+  } else {
+    ph.style.display='none'; pt.style.display='block';
+    if(th){th.className='tab off';} if(tt){tt.className='tab on';}
+  }
 }
 
-let selectedSlabIdx = 1; // default Red
-
-function switchTab(t){
-  ['hitung','target'].forEach(p=>{document.getElementById('panel-'+p).classList.toggle('active',p===t);});
-  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
-    const on=(i===0&&t==='hitung')||(i===1&&t==='target');
-    b.classList.toggle('active',on);b.classList.toggle('inactive',!on);
-  });
+function toggleSection(wrapId, btnId){
+  const wrap=document.getElementById(wrapId);
+  const btn=wrap.previousElementSibling;
+  const isOpen=wrap.classList.contains('open');
+  wrap.classList.toggle('open',!isOpen);
+  btn.classList.toggle('open',!isOpen);
 }
 
-function hitung(){
-  const vol  =parseIn('volume');
-  const nfB  =parseFloat(document.getElementById('nonfel-baru').value)||0;
-  const nfL  =parseFloat(document.getElementById('nonfel-lain').value)||0;
-  const fB   =parseFloat(document.getElementById('fel-baru').value)||0;
-  const fL   =parseFloat(document.getElementById('fel-lain').value)||0;
-  const vas  =parseIn('vas');
-  const sai  =parseIn('sai');
-  const nfT=nfB+nfL, fT=fB+fL, totNos=nfT+fT;
-
-  set('nonfel-total',num(nfT)); set('fel-total',num(fT));
-  set('total-baru',num(nfB+fB)); set('total-lain',num(nfL+fL)); set('total-nos-all',num(totNos));
+function calc(){
+  const volume=pi('vol'),nfB=pn('nb'),nfL=pn('nl'),fB=pn('fb'),fL=pn('fl'),vas=pi('vas'),sai=pi('sai');
+  const nfT=nfB+nfL,fT=fB+fL,totN=nfT+fT;
+  set('nt',num(nfT));set('ft',num(fT));set('tb',num(nfB+fB));set('tl',num(nfL+fL));set('ta',num(totN));
 
   // AFA
-  const afaMain=document.getElementById('afa-main-val');
-  const afaBdg=document.getElementById('afa-badge-wrap');
-  if(vol>0&&totNos>0){
-    const afa=vol/totNos, cat=afaCat(afa);
-    set('afa-vol',fmtS(vol)); set('afa-nos',totNos+' NOS'); set('afa-val',fmtS(afa));
-    afaMain.textContent=fmt(afa); afaMain.style.color='#fff';
-    afaBdg.innerHTML=`<span class="afa-bdg" style="background:${cat.bg};color:${cat.color};">${cat.label}</span>`;
+  const amv=document.getElementById('amv'),abw=document.getElementById('abw');
+  if(volume>0&&totN>0){
+    const afa=volume/totN,cat=afaC(afa);
+    set('av',fS(volume));set('an',totN+' NOS');set('aa',fS(afa));
+    amv.textContent=fmt(afa);amv.style.color='#fff';
+    abw.innerHTML=`<span class="abdg" style="background:${cat.bg};color:${cat.c};">${cat.l}</span>`;
   } else {
-    set('afa-vol','—'); set('afa-nos','—'); set('afa-val','—');
-    afaMain.textContent='—'; afaMain.style.color='rgba(255,255,255,0.25)';
-    afaBdg.innerHTML='<span class="afa-empty">Isi volume & NOS untuk melihat AFA</span>';
+    set('av','—');set('an','—');set('aa','—');
+    amv.textContent='—';amv.style.color='rgba(255,255,255,0.25)';
+    abw.innerHTML='<span class="ae">Isi volume & NOS untuk melihat AFA</span>';
   }
 
   // Slab
-  const slab=SLAB.find(s=>vol>=s.min&&vol<=s.max)||SLAB[0];
-  const sc=SS[slab.name];
-  const pill=document.getElementById('slab-pill');
-  pill.style.background=sc.bg; pill.style.borderColor=sc.border;
-  const lbl=document.getElementById('slab-label'); lbl.textContent=slab.name; lbl.style.color=sc.color;
-  pill.querySelector('i').style.color=sc.color;
+  const slab=SLAB.find(s=>volume>=s.min&&volume<=s.max)||SLAB[0];
+  const sc=SC[slab.name];
+  const pill=document.getElementById('sp');
+  pill.style.background=sc.bg; pill.style.borderColor=sc.b;
+  const lbl=document.getElementById('sl'); lbl.textContent=slab.name; lbl.style.color=sc.c;
+  document.getElementById('spi').style.color=sc.c;
 
-  // Bonus kontrak
-  const bNfB=nfB*slab.nfB, bNfL=nfL*slab.nfL;
-  const bFB=fB*slab.fB,    bFL=fL*slab.fL;
-  // Bonus VAS
-  const bVasPct  = vas*0.04;
-  const bVasExtra= vasExtra(vas);
-  // Bonus SAI
-  const bSaiPct  = sai*0.07;
-  const bSaiExtra= saiExtra(sai);
+  // Bonus
+  const bNfB=nfB*slab.nfB,bNfL=nfL*slab.nfL,bFB=fB*slab.fB,bFL=fL*slab.fL;
+  const bVP=vas*0.04,bVE=vEx(vas),bSP=sai*0.07,bSE=sEx(sai);
+  const total=bNfB+bNfL+bFB+bFL+bVP+bVE+bSP+bSE;
 
-  const total=bNfB+bNfL+bFB+bFL+bVasPct+bVasExtra+bSaiPct+bSaiExtra;
-
-  set('r-nonfel-baru', nfB>0?fmt(bNfB):'—');
-  set('r-nonfel-lain', nfL>0?fmt(bNfL):'—');
-  set('r-fel-baru',    fB>0 ?fmt(bFB) :'—');
-  set('r-fel-lain',    fL>0 ?fmt(bFL) :'—');
-  set('r-vas-pct',     vas>0?fmt(bVasPct)  :'—');
-  set('r-vas-slab',    vas>0?fmt(bVasExtra):'—');
-  set('r-sai-pct',     sai>0?fmt(bSaiPct)  :'—');
-  set('r-sai-slab',    sai>0?fmt(bSaiExtra):'—');
-  set('res-total', fmt(total));
+  set('rnb',nfB>0?fmt(bNfB):'—'); set('rnl',nfL>0?fmt(bNfL):'—');
+  set('rfb',fB>0?fmt(bFB):'—'); set('rfl',fL>0?fmt(bFL):'—');
+  set('rvp',vas>0?fmt(bVP):'—'); set('rve',vas>0?fmt(bVE):'—');
+  set('rsp',sai>0?fmt(bSP):'—'); set('rse',sai>0?fmt(bSE):'—');
+  set('rt',fmt(total));
 }
 
-function renderSlabChips(target){
-  const container=document.getElementById('slab-chips');
-  container.innerHTML=SLAB.slice(1).map((s,i)=>{
-    const sc=SS[s.name];
-    const sel=(i===selectedSlabIdx-1);
-    return`<span class="slab-chip${sel?' selected':''}"
-      style="background:${sc.bg};color:${sc.color};border-color:${sel?sc.color:'transparent'};"
-      onclick="selectSlab(${i+1},${target})">${s.name}</span>`;
-  }).join('');
+// Hitung kombinasi NOS per slab berdasarkan volume minimal slab dan AFA
+function buildSlabData(){
+  const AFA = 9000000;
+  const slabMinVol = [120000000,200000000,300000000,400000000,500000000];
+
+  return SLAB.slice(1).map((slab, idx)=>{
+    const volMin = slabMinVol[idx];
+    const totalNos = Math.ceil(volMin / AFA);
+
+    // VAS suggest = 15% dari volume minimal slab
+    const vasMin = volMin * 0.15;
+    const vasBonus4pct = vasMin * 0.04;
+    const vasExtraBonus = vEx(vasMin);
+    const vasBonus = vasBonus4pct + vasExtraBonus;
+
+    // ===== PROFIL FEL =====
+    // 60% FEL Baru + 40% FEL Lainnya
+    const fel_fB = Math.round(totalNos * 0.6);
+    const fel_fL = totalNos - fel_fB;
+    const fel_bonus = fel_fB * slab.fB + fel_fL * slab.fL;
+    const fel_total = fel_bonus + vasBonus;
+
+    // ===== PROFIL NON FEL =====
+    // 60% NON FEL Baru + 40% NON FEL Lainnya
+    const nf_nfB = Math.round(totalNos * 0.6);
+    const nf_nfL = totalNos - nf_nfB;
+    const nf_bonus = nf_nfB * slab.nfB + nf_nfL * slab.nfL;
+    const nf_total = nf_bonus + vasBonus;
+
+    // Efisiensi untuk badge "Terbaik" — pakai FEL karena selalu lebih tinggi
+    const bonusPerNos = fel_total / totalNos;
+
+    return {
+      slab, idx, volMin, totalNos, vasMin, vasBonus, vasBonus4pct, vasExtraBonus,
+      bonusPerNos,
+      fel:{ fB:fel_fB, fL:fel_fL, bonus:fel_bonus, total:fel_total },
+      nf: { nfB:nf_nfB, nfL:nf_nfL, bonus:nf_bonus, total:nf_total },
+    };
+  });
 }
 
-function selectSlab(idx, target){
-  selectedSlabIdx=idx;
-  renderSlabChips(target);
-  renderTargetResult(target);
-}
+const slabColors={
+  'No Color':{bg:'#F3F4F6',c:'#6B7280'},
+  'Red':     {bg:'#FEE2E2',c:'#B91C1C'},
+  'Yellow':  {bg:'#FEF3C7',c:'#92400E'},
+  'Green':   {bg:'#D1FAE5',c:'#065F46'},
+  'Black':   {bg:'#1F2937',c:'#F9FAFB'},
+  'Platinum':{bg:'#EDE9FE',c:'#4C1D95'},
+};
 
-function renderTargetResult(target){
-  const s=SLAB[selectedSlabIdx];
-  const sc=SS[s.name];
+function calcT(){
+  const target=pi('tg');
+  const te=document.getElementById('te'),tr=document.getElementById('tr2');
+  if(target<=0){te.style.display='block';tr.style.display='none';return;}
+  te.style.display='none'; tr.style.display='block';
 
-  // Slab info
-  document.getElementById('target-slab-info').innerHTML=
-    `<div style="display:flex;align-items:center;gap:10px;padding:10px;background:${sc.bg};border-radius:11px;">
-      <div style="width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,0.55);display:flex;align-items:center;justify-content:center;">
-        <i class="ti ti-award" style="font-size:18px;color:${sc.color};"></i>
+  const slabData = buildSlabData();
+  const bestIdx = slabData.reduce((bi,s,i)=>s.bonusPerNos>slabData[bi].bonusPerNos?i:bi, 0);
+
+  document.getElementById('slab-compare').innerHTML = slabData.map((d,i)=>{
+    const sc = slabColors[d.slab.name];
+    const isBest = i===bestIdx;
+    return `
+    <div style="border:${isBest?'2px solid var(--purple)':'1.5px solid #F0F0F4'};border-radius:13px;padding:12px;margin-bottom:8px;background:${isBest?'#F5F3FF':'#FAFAFA'};cursor:pointer;" onclick="showDetail(${i})">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="background:${sc.bg};color:${sc.c};font-size:11px;font-weight:700;padding:3px 10px;border-radius:7px;">${d.slab.name}</span>
+          ${isBest?'<span style="background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;">✦ Terbaik</span>':''}
+        </div>
+        <span style="font-size:10px;color:var(--text3);">Vol min. ${fS(d.volMin)} · ${d.totalNos} NOS</span>
       </div>
-      <div>
-        <p style="font-size:14px;font-weight:600;color:${sc.color};">${s.name}</p>
-        <p style="font-size:11px;color:${sc.color};opacity:0.7;">Volume ${s.vLabel}</p>
-      </div>
-      <div style="margin-left:auto;text-align:right;">
-        <p style="font-size:10px;color:${sc.color};opacity:0.7;">FEL Baru / NOS</p>
-        <p style="font-size:13px;font-weight:700;color:${sc.color};">${fmt(s.fB)}</p>
-      </div>
-    </div>`;
 
-  // NOS combinations — dihitung akurat dari target
-  // Combo 1: Semua FEL Baru
-  const c1_fB = Math.ceil(target / s.fB);
-  const c1_bonus = c1_fB * s.fB;
-  // Combo 2: 60% FEL Baru, 40% FEL Lainnya
-  const c2_fB = Math.ceil(target * 0.6 / s.fB);
-  const c2_fL = Math.ceil((target - c2_fB * s.fB) / s.fL);
-  const c2_fL_fix = Math.max(0, c2_fL);
-  const c2_bonus = c2_fB*s.fB + c2_fL_fix*s.fL;
-  // Combo 3: 50% FEL Baru, 30% NON FEL Baru, 20% NON FEL Lainnya
-  const c3_fB  = Math.ceil(target * 0.5 / s.fB);
-  const c3_nfB = Math.ceil(target * 0.3 / s.nfB);
-  const c3_nfL = Math.ceil((target - c3_fB*s.fB - c3_nfB*s.nfB) / s.nfL);
-  const c3_nfL_fix = Math.max(0, c3_nfL);
-  const c3_bonus = c3_fB*s.fB + c3_nfB*s.nfB + c3_nfL_fix*s.nfL;
+      <!-- 2 profil berdampingan -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;">
 
-  const combos=[
-    {label:'Semua FEL Baru',icon:'ti-star',ic:'#F59E0B',ib:'#FEF3C7',
-     nos:c1_fB, bonus:c1_bonus, best:true,
-     det:`FEL Baru: <b>${c1_fB}</b>`},
-    {label:'FEL Baru + FEL Lainnya',icon:'ti-users',ic:'#6366F1',ib:'#EEF2FF',
-     nos:c2_fB+c2_fL_fix, bonus:c2_bonus, best:false,
-     det:`FEL Baru: <b>${c2_fB}</b> · FEL Lainnya: <b>${c2_fL_fix}</b>`},
-    {label:'Mix FEL + NON FEL',icon:'ti-layout-grid',ic:'#10B981',ib:'#D1FAE5',
-     nos:c3_fB+c3_nfB+c3_nfL_fix, bonus:c3_bonus, best:false,
-     det:`FEL Baru: <b>${c3_fB}</b> · NON FEL Baru: <b>${c3_nfB}</b> · NON FEL Lainnya: <b>${c3_nfL_fix}</b>`},
-  ];
+        <!-- FEL -->
+        <div style="background:#EDE9FE;border-radius:10px;padding:9px 10px;">
+          <div style="display:flex;align-items:center;gap:5px;margin-bottom:6px;">
+            <span style="font-size:10px;font-weight:700;color:#5B21B6;background:#DDD6FE;padding:2px 7px;border-radius:6px;">POS FEL</span>
+          </div>
+          <p style="font-size:10px;color:#6D28D9;margin-bottom:3px;">FEL Baru: <b>${d.fel.fB}</b> · FEL Lainnya: <b>${d.fel.fL}</b></p>
+          <p style="font-size:9px;color:#7C3AED;margin-bottom:5px;">Rate: ${fS(d.slab.fB)} / ${fS(d.slab.fL)}</p>
+          <div style="border-top:1px solid #C4B5FD;padding-top:5px;">
+            <p style="font-size:9px;color:#6D28D9;">Bonus NOS</p>
+            <p style="font-size:14px;font-weight:700;color:#4C1D95;">${fS(d.fel.bonus)}</p>
+            <p style="font-size:9px;color:#7C3AED;margin-top:2px;">+VAS → <b>${fS(d.fel.total)}</b></p>
+          </div>
+        </div>
 
-  document.getElementById('suggest-list').innerHTML=combos.map(c=>`
-    <div class="sug-row ${c.best?'best':''}">
-      <div class="sug-left">
-        <div class="sug-icon" style="background:${c.ib};"><i class="ti ${c.icon}" style="font-size:16px;color:${c.ic};"></i></div>
-        <div>${c.best?'<span class="best-bdg">Bonus Tertinggi</span><br>':''}
-          <span class="sug-name">${c.label}</span>
-          <p style="font-size:11px;color:#6B7280;margin-top:2px;">${c.det}</p>
+        <!-- NON FEL -->
+        <div style="background:#F0FDF4;border-radius:10px;padding:9px 10px;">
+          <div style="display:flex;align-items:center;gap:5px;margin-bottom:6px;">
+            <span style="font-size:10px;font-weight:700;color:#065F46;background:#A7F3D0;padding:2px 7px;border-radius:6px;">POS NON FEL</span>
+          </div>
+          <p style="font-size:10px;color:#047857;margin-bottom:3px;">NON FEL Baru: <b>${d.nf.nfB}</b> · Lainnya: <b>${d.nf.nfL}</b></p>
+          <p style="font-size:9px;color:#059669;margin-bottom:5px;">Rate: ${fS(d.slab.nfB)} / ${fS(d.slab.nfL)}</p>
+          <div style="border-top:1px solid #6EE7B7;padding-top:5px;">
+            <p style="font-size:9px;color:#047857;">Bonus NOS</p>
+            <p style="font-size:14px;font-weight:700;color:#065F46;">${fS(d.nf.bonus)}</p>
+            <p style="font-size:9px;color:#059669;margin-top:2px;">+VAS → <b>${fS(d.nf.total)}</b></p>
+          </div>
         </div>
       </div>
-      <div class="sug-right">
-        <p class="sug-nos">${c.nos} NOS</p>
-        <p class="sug-sub">${fmt(c.bonus)}</p>
+
+      <div style="background:#EFF6FF;border-radius:8px;padding:7px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:11px;color:#1D4ED8;"><i class="ti ti-shield-check" style="font-size:11px;vertical-align:-1px;margin-right:3px;"></i>Saran VAS min.</span>
+        <span style="font-size:12px;font-weight:700;color:#1D4ED8;">${fmt(d.vasMin)}</span>
       </div>
-    </div>`).join('');
+      <p style="font-size:10px;color:${isBest?'var(--purple)':'var(--text3)'};text-align:right;margin-top:5px;font-weight:${isBest?'600':'400'};">Ketuk untuk detail lengkap →</p>
+    </div>`;
+  }).join('');
 
-  // Tabel VAS tiers
-  document.getElementById('vas-slab-tbl').innerHTML=VAS_TIERS.filter(t=>t.bonus>0).map(t=>`
-    <span style="font-size:11px;color:#6B7280;">${t.label}</span>
-    <span style="font-size:11px;font-weight:600;color:#4F46E5;">${fmt(t.bonus)} + 4% premi</span>
-  `).join('');
-
-  // Tabel SAI tiers
-  document.getElementById('sai-slab-tbl').innerHTML=SAI_TIERS.filter(t=>t.bonus>0).map(t=>`
-    <span style="font-size:11px;color:#6B7280;">${t.label}</span>
-    <span style="font-size:11px;font-weight:600;color:#EC4899;">${fmt(t.bonus)} + 7% premi</span>
-  `).join('');
-
-  // Ringkasan — gunakan combo 1 (FEL Baru semua) sebagai acuan NOS
-  const vasMin=15000000, saiMin=1000000;
-  const bonusVasMin=(vasMin*0.04)+vasExtra(vasMin);
-  const bonusSaiMin=(saiMin*0.07)+saiExtra(saiMin);
-  set('t-nos-total', c1_fB+' NOS');
-  set('t-bonus-kontrak', fmt(c1_bonus));
-  set('t-vas', fmt(vasMin));
-  set('t-sai', fmt(saiMin));
-  set('t-total-est', fmt(c1_bonus + bonusVasMin + bonusSaiMin));
+  showDetailData(slabData[bestIdx], bestIdx);
 }
 
-function hitungTarget(){
-  const target=parseIn('target-bonus');
-  const empty=document.getElementById('target-empty');
-  const result=document.getElementById('target-result');
-  if(target<=0){empty.style.display='block';result.style.display='none';return;}
-  empty.style.display='none'; result.style.display='block';
-  renderSlabChips(target);
-  renderTargetResult(target);
+function showDetail(i){
+  const slabData = buildSlabData();
+  showDetailData(slabData[i], i);
+  document.getElementById('best-detail-card').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-</script>
+
+function showDetailData(d, i){
+  const sc = slabColors[d.slab.name];
+
+  document.getElementById('best-detail-content').innerHTML=`
+    <div style="background:${sc.bg};border-radius:10px;padding:11px;margin-bottom:12px;display:flex;align-items:center;gap:10px;">
+      <div style="width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,0.55);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <i class="ti ti-award" style="font-size:18px;color:${sc.c};"></i>
+      </div>
+      <div>
+        <p style="font-size:14px;font-weight:700;color:${sc.c};">${d.slab.name}</p>
+        <p style="font-size:11px;color:${sc.c};opacity:0.8;">Vol min. ${fmt(d.volMin)} · ${d.totalNos} NOS total (AFA Rp 9jt)</p>
+      </div>
+    </div>
+
+    <!-- Detail FEL -->
+    <div style="background:#EDE9FE;border-radius:12px;padding:12px;margin-bottom:8px;">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+        <div style="width:28px;height:28px;border-radius:7px;background:#5B21B6;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="ti ti-star" style="font-size:14px;color:#fff;"></i>
+        </div>
+        <p style="font-size:13px;font-weight:700;color:#4C1D95;">Profil SA Pos FEL</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
+        <div style="background:rgba(255,255,255,0.6);border-radius:8px;padding:8px;text-align:center;">
+          <p style="font-size:9px;font-weight:600;color:#6D28D9;text-transform:uppercase;margin-bottom:2px;">FEL Baru</p>
+          <p style="font-size:18px;font-weight:700;color:#4C1D95;">${d.fel.fB}</p>
+          <p style="font-size:9px;color:#7C3AED;">× ${fmt(d.slab.fB)}</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.6);border-radius:8px;padding:8px;text-align:center;">
+          <p style="font-size:9px;font-weight:600;color:#6D28D9;text-transform:uppercase;margin-bottom:2px;">FEL Lainnya</p>
+          <p style="font-size:18px;font-weight:700;color:#4C1D95;">${d.fel.fL}</p>
+          <p style="font-size:9px;color:#7C3AED;">× ${fmt(d.slab.fL)}</p>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:11px;color:#5B21B6;font-weight:600;">Bonus dari NOS</span>
+        <span style="font-size:15px;font-weight:700;color:#4C1D95;">${fmt(d.fel.bonus)}</span>
+      </div>
+    </div>
+
+    <!-- Detail NON FEL -->
+    <div style="background:#D1FAE5;border-radius:12px;padding:12px;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+        <div style="width:28px;height:28px;border-radius:7px;background:#065F46;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="ti ti-users" style="font-size:14px;color:#fff;"></i>
+        </div>
+        <p style="font-size:13px;font-weight:700;color:#065F46;">Profil SA Pos NON FEL</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
+        <div style="background:rgba(255,255,255,0.6);border-radius:8px;padding:8px;text-align:center;">
+          <p style="font-size:9px;font-weight:600;color:#047857;text-transform:uppercase;margin-bottom:2px;">NON FEL Baru</p>
+          <p style="font-size:18px;font-weight:700;color:#065F46;">${d.nf.nfB}</p>
+          <p style="font-size:9px;color:#059669;">× ${fmt(d.slab.nfB)}</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.6);border-radius:8px;padding:8px;text-align:center;">
+          <p style="font-size:9px;font-weight:600;color:#047857;text-transform:uppercase;margin-bottom:2px;">NON FEL Lainnya</p>
+          <p style="font-size:18px;font-weight:700;color:#065F46;">${d.nf.nfL}</p>
+          <p style="font-size:9px;color:#059669;">× ${fmt(d.slab.nfL)}</p>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:11px;color:#065F46;font-weight:600;">Bonus dari NOS</span>
+        <span style="font-size:15px;font-weight:700;color:#065F46;">${fmt(d.nf.bonus)}</span>
+      </div>
+    </div>
+
+    <!-- VAS suggest -->
+    <div style="background:#EFF6FF;border-radius:10px;padding:11px;margin-bottom:10px;">
+      <p style="font-size:10px;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;"><i class="ti ti-shield-check" style="font-size:12px;vertical-align:-1px;margin-right:3px;"></i>Saran Premi VAS (15% × Vol Min.)</p>
+      <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+        <span style="font-size:12px;color:#1E40AF;">Target VAS min.</span>
+        <span style="font-size:12px;font-weight:700;color:#1E40AF;">${fmt(d.vasMin)}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+        <span style="font-size:11px;color:#3B82F6;">4% dari premi VAS</span>
+        <span style="font-size:11px;font-weight:600;color:#3B82F6;">+ ${fmt(d.vasBonus4pct)}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span style="font-size:11px;color:#3B82F6;">Extra Insentif VAS</span>
+        <span style="font-size:11px;font-weight:600;color:#3B82F6;">+ ${fmt(d.vasExtraBonus)}</span>
+      </div>
+    </div>
+
+    <!-- Total per profil -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
+      <div style="background:#EDE9FE;border-radius:10px;padding:10px;text-align:center;">
+        <p style="font-size:10px;font-weight:600;color:#5B21B6;margin-bottom:3px;">Total Est. FEL</p>
+        <p style="font-size:16px;font-weight:700;color:#4C1D95;">${fmt(d.fel.total)}</p>
+        <p style="font-size:9px;color:#7C3AED;">NOS + VAS 15%</p>
+      </div>
+      <div style="background:#D1FAE5;border-radius:10px;padding:10px;text-align:center;">
+        <p style="font-size:10px;font-weight:600;color:#065F46;margin-bottom:3px;">Total Est. NON FEL</p>
+        <p style="font-size:16px;font-weight:700;color:#065F46;">${fmt(d.nf.total)}</p>
+        <p style="font-size:9px;color:#059669;">NOS + VAS 15%</p>
+      </div>
+    </div>`;
+}
+// ===== CLAUDE AI CHAT =====
+const chatHistory = [];
+
+const SYSTEM_PROMPT = `Kamu adalah asisten sales bernama "Bonus AI" untuk Sales Agent (SA) Home Credit Indonesia.
+Kamu sangat ahli menjelaskan skema bonus sales Home Credit dengan ramah, singkat, dan praktis.
+
+Berikut data skema bonus yang berlaku:
+SLAB berdasarkan Volume:
+- No Color: < 120 jt
+- Red: 120–199 jt
+- Yellow: 200–299 jt
+- Green: 300–399 jt
+- Black: 400–499 jt
+- Platinum: 500 jt+
+
+Rate bonus per NOS:
+- NON FEL Baru / Lainnya: No Color 100rb/40rb | Red 115rb/46rb | Yellow 125rb/50rb | Green 150rb/60rb | Black 160rb/64rb | Platinum 185rb/74rb
+- FEL Baru / Lainnya: No Color 130rb/55rb | Red 149.5rb/63.25rb | Yellow 162.5rb/68.75rb | Green 195rb/82.5rb | Black 208rb/88rb | Platinum 240.5rb/101.75rb
+
+VAS: 4% dari premi + Extra Insentif slab (15jt→500rb, 35jt→1.5jt, 50jt→3jt, 100jt→5jt)
+SAI: 7% dari premi + Extra Insentif slab (1jt→100rb, 1.5jt→300rb, 3.5jt→500rb, >10jt→1.5jt)
+
+Bonus Konsistensi (syarat: tidak ada NL/Notice Letter aktif):
+Yellow 3 bln: 500rb | Green: 1jt | Black: 1.5jt | Platinum: 2jt
+
+AFA rata-rata: 9 juta/kontrak
+Saran VAS: 15% dari volume
+
+FEL Baru selalu memberikan rate tertinggi dibanding tipe lain.
+Selalu jawab dalam Bahasa Indonesia, singkat, dan gunakan angka konkret bila memungkinkan.`;
+
+function buildContextMsg() {
+  const vol = pi('vol'), vas = pi('vas'), sai = pi('sai');
+  const nfB = pn('nb'), nfL = pn('nl'), fB = pn('fb'), fL = pn('fl');
+  const target = pi('tg');
+  let ctx = '';
+  if (target > 0) ctx += `Target bonus SA: ${fmt(target)}. `;
+  if (vol > 0) ctx += `Volume saat ini: ${fmt(vol)}. `;
+  if (nfB+nfL+fB+fL > 0) ctx += `NOS: NON FEL Baru ${nfB}, NON FEL Lainnya ${nfL}, FEL Baru ${fB}, FEL Lainnya ${fL}. `;
+  if (vas > 0) ctx += `Premi VAS: ${fmt(vas)}. `;
+  if (sai > 0) ctx += `Premi SAI: ${fmt(sai)}. `;
+  return ctx;
+}
+
+function addBubble(role, text) {
+  const wrap = document.getElementById('chat-history');
+  const div = document.createElement('div');
+  div.className = role === 'user' ? 'bubble-user' : 'bubble-ai';
+  div.innerHTML = text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+  return div;
+}
+
+function addLoading() {
+  const wrap = document.getElementById('chat-history');
+  const div = document.createElement('div');
+  div.className = 'bubble-loading';
+  div.id = 'loading-bubble';
+  div.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function removeLoading() {
+  const el = document.getElementById('loading-bubble');
+  if (el) el.remove();
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  // Hide suggestions after first message
+  document.getElementById('chat-suggestions').style.display = 'none';
+
+  input.value = '';
+  input.style.height = 'auto';
+
+  const ctx = buildContextMsg();
+  const fullMsg = ctx ? `[Konteks SA: ${ctx}]\n${msg}` : msg;
+
+  addBubble('user', msg);
+  chatHistory.push({ role: 'user', content: fullMsg });
+
+  addLoading();
+  document.getElementById('send-btn').disabled = true;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: chatHistory,
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Maaf, ada gangguan. Coba lagi ya.';
+    removeLoading();
+    addBubble('ai', reply);
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch(e) {
+    removeLoading();
+    addBubble('ai', 'Koneksi bermasalah. Pastikan kamu terhubung ke internet dan coba lagi.');
+  }
+
+  document.getElementById('send-btn').disabled = false;
+}
+
+function askQuick(q) {
+  document.getElementById('chat-input').value = q;
+  sendChat();
+}
+
+</body>
+</html>
