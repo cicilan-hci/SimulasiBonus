@@ -5,122 +5,143 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Kalkulator Bonus Sales</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style>
 :root {
-  --p: #5B4FE8; --p2: #7C3AED; --pl: #EEF2FF;
-  --g: #059669; --bg: #F2F3F8; --card: #fff;
-  --bdr: #E9EAEF; --t: #0F0E1A; --t2: #6B7280; --t3: #9CA3AF;
-  --r: 16px; --rs: 10px; --sh: 0 2px 12px rgba(91,79,232,.10);
+  --p:#5B4FE8;--p2:#7C3AED;--pl:#EEF2FF;
+  --g:#059669;--bg:#F2F3F8;--card:#fff;
+  --bdr:#E9EAEF;--t:#0F0E1A;--t2:#6B7280;--t3:#9CA3AF;
+  --r:16px;--rs:10px;--sh:0 2px 12px rgba(91,79,232,.10);
 }
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; }
-.app { max-width: 430px; margin: 0 auto; background: var(--bg); padding-bottom: 40px; min-height: 100vh; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{background:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;}
+.app{max-width:430px;margin:0 auto;background:var(--bg);padding-bottom:40px;min-height:100vh;}
 
 /* TOPBAR */
-.topbar { background: linear-gradient(140deg, #4338CA, #7C3AED); padding: 20px 18px 60px; }
-.topbar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-.topbar-icon { width: 34px; height: 34px; background: rgba(255,255,255,.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-.topbar-title { font-size: 17px; font-weight: 700; color: #fff; }
-.tabs { display: flex; gap: 8px; }
-.tab { flex: 1; padding: 10px 8px; border: none; border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all .18s; }
-.tab.on { background: #fff; color: var(--p); box-shadow: 0 4px 14px rgba(91,79,232,.18); }
-.tab.off { background: rgba(255,255,255,.18); color: #fff; }
+.topbar{background:linear-gradient(140deg,#4338CA,#7C3AED);padding:20px 18px 60px;}
+.topbar-row{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.topbar-icon{width:34px;height:34px;background:rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.topbar-title{font-size:17px;font-weight:700;color:#fff;}
+.tabs{display:flex;gap:8px;}
+.tab{flex:1;padding:10px 8px;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .18s;}
+.tab.on{background:#fff;color:var(--p);box-shadow:0 4px 14px rgba(91,79,232,.18);}
+.tab.off{background:rgba(255,255,255,.18);color:#fff;}
 
 /* CARD */
-.card { background: var(--card); border-radius: var(--r); margin: 10px 14px 0; padding: 15px; box-shadow: var(--sh); }
-.card-lbl { font-size: 10px; font-weight: 700; color: var(--t3); text-transform: uppercase; letter-spacing: .09em; margin-bottom: 12px; }
-.flbl { font-size: 12px; color: var(--t2); font-weight: 500; display: block; margin-bottom: 4px; }
-.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.card{background:var(--card);border-radius:var(--r);margin:10px 14px 0;padding:15px;box-shadow:var(--sh);}
+.card-lbl{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:12px;}
+.flbl{font-size:12px;color:var(--t2);font-weight:500;display:block;margin-bottom:4px;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
 /* INPUTS */
-input[type=number], input[type=text] {
-  width: 100%; padding: 10px 12px; border: 1.5px solid var(--bdr);
-  border-radius: var(--rs); font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif;
-  color: var(--t); background: #F8F9FC; outline: none; transition: border-color .15s;
-  -webkit-appearance: none; -moz-appearance: textfield;
+input[type=number],input[type=text]{
+  width:100%;padding:10px 12px;border:1.5px solid var(--bdr);
+  border-radius:var(--rs);font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--t);background:#F8F9FC;outline:none;transition:border-color .15s;
+  -webkit-appearance:none;-moz-appearance:textfield;
 }
-input:focus { border-color: var(--p); background: #fff; }
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; }
+input:focus{border-color:var(--p);background:#fff;}
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;}
 
 /* SLAB CHIP */
-.slab-chip { display: flex; align-items: center; gap: 6px; padding: 0 12px; height: 42px; border-radius: var(--rs); background: #F3F4F6; border: 1.5px solid var(--bdr); }
-.slab-chip span { font-size: 13px; font-weight: 700; color: var(--t2); }
+.slab-chip{display:flex;align-items:center;gap:6px;padding:0 12px;height:42px;border-radius:var(--rs);background:#F3F4F6;border:1.5px solid var(--bdr);}
+.slab-chip span{font-size:13px;font-weight:700;color:var(--t2);}
 
 /* NOS TABLE */
-.nos-tbl { width: 100%; border-collapse: collapse; }
-.nos-tbl th { font-size: 10px; font-weight: 600; color: var(--t3); padding: 0 3px 8px; text-align: center; text-transform: uppercase; }
-.nos-tbl th:first-child { text-align: left; padding-left: 0; }
-.nos-tbl td { padding: 5px 3px; vertical-align: middle; }
-.nos-tbl td:first-child { padding-left: 0; }
-.nos-tbl tr { border-top: 1px solid #F3F4F6; }
-.nos-tbl tr:first-child { border-top: none; }
-.nos-tbl input { padding: 8px 5px; font-size: 13px; text-align: center; }
-.tot-row td { background: #F8F9FC; font-size: 12px; font-weight: 700; color: var(--t); text-align: center; padding: 8px 3px; }
-.tot-row td:first-child { text-align: left; padding-left: 10px; border-radius: 8px 0 0 8px; }
-.tot-row td:last-child { border-radius: 0 8px 8px 0; }
-.bdg { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 7px; display: inline-block; }
-.bg { background: #F3F4F6; color: #6B7280; }
-.bp { background: #EDE9FE; color: #5B21B6; }
-.nv { font-size: 12px; font-weight: 700; color: var(--t); text-align: center; }
+.nos-tbl{width:100%;border-collapse:collapse;}
+.nos-tbl th{font-size:10px;font-weight:600;color:var(--t3);padding:0 3px 8px;text-align:center;text-transform:uppercase;}
+.nos-tbl th:first-child{text-align:left;padding-left:0;}
+.nos-tbl td{padding:5px 3px;vertical-align:middle;}
+.nos-tbl td:first-child{padding-left:0;}
+.nos-tbl tr{border-top:1px solid #F3F4F6;}
+.nos-tbl tr:first-child{border-top:none;}
+.nos-tbl input{padding:8px 5px;font-size:13px;text-align:center;}
+.tot-row td{background:#F8F9FC;font-size:12px;font-weight:700;color:var(--t);text-align:center;padding:8px 3px;}
+.tot-row td:first-child{text-align:left;padding-left:10px;border-radius:8px 0 0 8px;}
+.tot-row td:last-child{border-radius:0 8px 8px 0;}
+.bdg{font-size:10px;font-weight:700;padding:3px 8px;border-radius:7px;display:inline-block;}
+.bg{background:#F3F4F6;color:#6B7280;}
+.bp{background:#EDE9FE;color:#5B21B6;}
+.nv{font-size:12px;font-weight:700;color:var(--t);text-align:center;}
 
 /* AFA */
-.afa-wrap { background: linear-gradient(135deg, #1E1B4B, #3B0764); border-radius: var(--r); margin: 10px 14px 0; padding: 15px; }
-.afa-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.afa-title { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .08em; }
-.afa-formula { font-size: 10px; color: rgba(255,255,255,.35); }
-.afa-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin-bottom: 8px; }
-.afa-box { background: rgba(255,255,255,.08); border-radius: 9px; padding: 10px 6px; text-align: center; }
-.abl { font-size: 9px; font-weight: 600; color: rgba(255,255,255,.45); text-transform: uppercase; margin-bottom: 3px; }
-.abv { font-size: 13px; font-weight: 700; color: #fff; }
-.abs { font-size: 9px; color: rgba(255,255,255,.35); margin-top: 2px; }
-.afa-main { background: rgba(255,255,255,.1); border-radius: 10px; padding: 12px; display: flex; justify-content: space-between; align-items: center; }
-.aml { font-size: 11px; color: rgba(255,255,255,.55); margin-bottom: 4px; }
-.amv { font-size: 20px; font-weight: 700; color: rgba(255,255,255,.25); letter-spacing: -.3px; }
-.abdg { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; display: inline-block; }
-.ae { font-size: 11px; color: rgba(255,255,255,.3); font-style: italic; }
+.afa-wrap{background:linear-gradient(135deg,#1E1B4B,#3B0764);border-radius:var(--r);margin:10px 14px 0;padding:15px;}
+.afa-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.afa-title{font-size:10px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.08em;}
+.afa-formula{font-size:10px;color:rgba(255,255,255,.35);}
+.afa-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:8px;}
+.afa-box{background:rgba(255,255,255,.08);border-radius:9px;padding:10px 6px;text-align:center;}
+.abl{font-size:9px;font-weight:600;color:rgba(255,255,255,.45);text-transform:uppercase;margin-bottom:3px;}
+.abv{font-size:13px;font-weight:700;color:#fff;}
+.abs{font-size:9px;color:rgba(255,255,255,.35);margin-top:2px;}
+.afa-main{background:rgba(255,255,255,.1);border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center;}
+.aml{font-size:11px;color:rgba(255,255,255,.55);margin-bottom:4px;}
+.amv{font-size:20px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:-.3px;}
+.abdg{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;}
+.ae{font-size:11px;color:rgba(255,255,255,.3);font-style:italic;}
 
 /* RINCIAN */
-.grp { font-size: 10px; font-weight: 700; color: var(--t3); text-transform: uppercase; letter-spacing: .07em; margin: 12px 0 4px; }
-.rrow { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-top: 1px solid #F3F4F6; }
-.rl { font-size: 13px; color: var(--t2); }
-.rv { font-size: 13px; font-weight: 600; color: var(--t); }
+.grp{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin:12px 0 4px;}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-top:1px solid #F3F4F6;}
+.rl{font-size:13px;color:var(--t2);}
+.rv{font-size:13px;font-weight:600;color:var(--t);}
 
 /* TOTAL CARD */
-.total-card { background: linear-gradient(135deg, #059669, #0D9488); border-radius: var(--r); margin: 10px 14px 0; padding: 18px; display: flex; justify-content: space-between; align-items: center; }
-.tc-lbl { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.7); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
-.tc-amt { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -.4px; }
+.total-card{background:linear-gradient(135deg,#059669,#0D9488);border-radius:var(--r);margin:10px 14px 0;padding:18px;display:flex;justify-content:space-between;align-items:center;}
+.tc-lbl{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+.tc-amt{font-size:26px;font-weight:700;color:#fff;letter-spacing:-.4px;}
 
 /* TOGGLE BUTTONS */
-.toggle-btn { width: 100%; padding: 12px 14px; background: var(--pl); color: var(--p); border: none; border-radius: var(--rs); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
-.toggle-btn .chevron { transition: transform .2s; }
-.toggle-btn.open .chevron { transform: rotate(180deg); }
-.collapsible { display: none; background: #fff; border-radius: 0 0 var(--r) var(--r); padding: 0 14px 14px; box-shadow: var(--sh); margin-top: -2px; }
-.collapsible.open { display: block; }
+.toggle-btn{width:100%;padding:12px 14px;background:var(--pl);color:var(--p);border:none;border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-top:10px;}
+.toggle-btn .chevron{transition:transform .2s;}
+.toggle-btn.open .chevron{transform:rotate(180deg);}
+.collapsible{display:none;background:#fff;border-radius:0 0 var(--r) var(--r);padding:0 14px 14px;box-shadow:var(--sh);margin-top:-2px;}
+.collapsible.open{display:block;}
 
 /* KONSISTENSI */
-.krow { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid #F3F4F6; font-size: 13px; }
-.krow:first-child { border-top: none; padding-top: 0; }
-.infobox { background: #FEF3C7; border-radius: 10px; padding: 10px 12px; margin-top: 10px; display: flex; gap: 8px; align-items: flex-start; }
-.infobox p { font-size: 12px; color: #92400E; line-height: 1.6; }
+.krow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid #F3F4F6;font-size:13px;}
+.krow:first-child{border-top:none;padding-top:0;}
+.infobox{background:#FEF3C7;border-radius:10px;padding:10px 12px;margin-top:10px;display:flex;gap:8px;align-items:flex-start;}
+.infobox p{font-size:12px;color:#92400E;line-height:1.6;}
 
 /* TARGET PANEL */
-.t-hero { background: linear-gradient(140deg, #4338CA, #7C3AED); border-radius: var(--r); margin: -36px 14px 0; padding: 20px; position: relative; z-index: 3; }
-.t-hero-lbl { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.65); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
-.t-rp { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7); display: block; margin-bottom: 6px; }
-.t-input { width: 100%; padding: 13px 14px; border: none; border-radius: 12px; font-size: 22px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--t); background: #fff; outline: none; }
-.empty-st { text-align: center; padding: 30px 16px; color: var(--t3); font-size: 13px; }
-.empty-st i { font-size: 32px; display: block; margin-bottom: 8px; color: #C7D2FE; }
+.t-hero{background:linear-gradient(140deg,#4338CA,#7C3AED);border-radius:var(--r);margin:-36px 14px 0;padding:20px;position:relative;z-index:3;}
+.t-hero-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+.t-rp{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);display:block;margin-bottom:6px;}
+.t-input{width:100%;padding:13px 14px;border:none;border-radius:12px;font-size:22px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;color:var(--t);background:#fff;outline:none;}
+.empty-st{text-align:center;padding:30px 16px;color:var(--t3);font-size:13px;}
+.empty-st i{font-size:32px;display:block;margin-bottom:8px;color:#C7D2FE;}
 
 /* AI CHAT */
-.chip-btn { padding: 5px 11px; border: 1.5px solid var(--p); border-radius: 20px; background: var(--pl); color: var(--p); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 600; cursor: pointer; }
-.bubble-user { align-self: flex-end; background: var(--p); color: #fff; padding: 9px 13px; border-radius: 14px 14px 4px 14px; font-size: 13px; max-width: 82%; line-height: 1.5; word-break: break-word; }
-.bubble-ai { align-self: flex-start; background: #F3F4F6; color: var(--t); padding: 9px 13px; border-radius: 14px 14px 14px 4px; font-size: 13px; max-width: 88%; line-height: 1.6; word-break: break-word; }
-.bubble-loading { align-self: flex-start; background: #F3F4F6; padding: 10px 14px; border-radius: 14px; display: flex; gap: 4px; align-items: center; }
-.dot { width: 7px; height: 7px; border-radius: 50%; background: #9CA3AF; animation: bns 1.2s infinite; }
-.dot:nth-child(2) { animation-delay: .2s; }
-.dot:nth-child(3) { animation-delay: .4s; }
-@keyframes bns { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+.chip-btn{padding:5px 11px;border:1.5px solid var(--p);border-radius:20px;background:var(--pl);color:var(--p);font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;}
+.bubble-user{align-self:flex-end;background:var(--p);color:#fff;padding:9px 13px;border-radius:14px 14px 4px 14px;font-size:13px;max-width:82%;line-height:1.5;word-break:break-word;}
+.bubble-ai{align-self:flex-start;background:#F3F4F6;color:var(--t);padding:9px 13px;border-radius:14px 14px 14px 4px;font-size:13px;max-width:88%;line-height:1.6;word-break:break-word;}
+.bubble-loading{align-self:flex-start;background:#F3F4F6;padding:10px 14px;border-radius:14px;display:flex;gap:4px;align-items:center;}
+.dot{width:7px;height:7px;border-radius:50%;background:#9CA3AF;animation:bns 1.2s infinite;}
+.dot:nth-child(2){animation-delay:.2s;}
+.dot:nth-child(3){animation-delay:.4s;}
+@keyframes bns{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+/* API KEY MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(15,14,26,0.6);z-index:999;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);}
+.modal-box{background:#fff;border-radius:24px 24px 0 0;padding:24px 20px 40px;width:100%;max-width:430px;box-shadow:0 -8px 40px rgba(91,79,232,.2);animation:slideUp .25s ease;}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-box h2{font-size:17px;font-weight:700;color:var(--t);margin-bottom:6px;}
+.modal-desc{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:14px;}
+.api-input-wrap{position:relative;margin-bottom:10px;}
+.api-input-wrap input{width:100%;padding:13px 46px 13px 14px;border:1.5px solid var(--bdr);border-radius:12px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--t);background:#F8F9FC;outline:none;transition:border-color .15s;}
+.api-input-wrap input:focus{border-color:var(--p);background:#fff;}
+.api-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:4px;line-height:1;}
+.modal-save{width:100%;padding:14px;background:var(--p);color:#fff;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;}
+.modal-save:active{opacity:.85;}
+.modal-err{font-size:12px;color:#DC2626;margin-bottom:8px;display:none;padding:8px 12px;background:#FEE2E2;border-radius:8px;}
+.key-status{display:flex;align-items:center;gap:5px;cursor:pointer;padding:5px 8px;border-radius:20px;background:#F3F4F6;}
+.key-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* SLAB PICKER */
+.slab-tab-btn{padding:7px 14px;border-radius:20px;border:2px solid #E5E7EB;background:#F9FAFB;color:#9CA3AF;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;transition:all .15s;}
+.slab-tab-btn.active{background:var(--p);color:#fff;border-color:var(--p);}
+.slab-tab-btn.reach{background:#F0FDF4;color:#065F46;border-color:#6EE7B7;}
 </style>
 </head>
 <body>
@@ -144,8 +165,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-app
 
   <!-- ===== PANEL HITUNG ===== -->
   <div id="ph">
-
-    <!-- Volume & Slab -->
     <div class="card" style="margin-top:14px;">
       <p class="card-lbl">Volume &amp; Slab</p>
       <div class="two" style="align-items:end;">
@@ -163,7 +182,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-app
       </div>
     </div>
 
-    <!-- NOS -->
     <div class="card">
       <p class="card-lbl">NOS per Tipe Produk</p>
       <table class="nos-tbl">
@@ -236,7 +254,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-app
       <i class="ti ti-cash" style="font-size:36px;color:rgba(255,255,255,.4);"></i>
     </div>
 
-    <!-- Accordion Rincian -->
+    <!-- Accordion -->
     <div style="margin:0 14px;">
       <button class="toggle-btn" id="btn-rw" onclick="togSec('rw','btn-rw')">
         <span><i class="ti ti-list-details" style="font-size:15px;vertical-align:-2px;margin-right:6px;"></i>Rincian Bonus</span>
@@ -272,12 +290,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-app
         </div>
       </div>
     </div>
-
   </div><!-- /ph -->
 
   <!-- ===== PANEL TARGET ===== -->
   <div id="pt" style="display:none;">
-
     <div class="t-hero">
       <p class="t-hero-lbl">Berapa bonus yang kamu inginkan?</p>
       <span class="t-rp">Rp</span>
@@ -294,35 +310,37 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-app
     </div>
 
     <div id="tr2" style="display:none;">
-
       <div style="margin:14px 14px 0;background:#EEF2FF;border-radius:10px;padding:10px 13px;display:flex;align-items:flex-start;gap:8px;">
         <i class="ti ti-info-circle" style="font-size:15px;color:var(--p);flex-shrink:0;margin-top:1px;"></i>
         <p style="font-size:12px;color:#3730A3;line-height:1.5;">Estimasi menggunakan <b>AFA Rp 9 juta/kontrak</b> dan saran <b>VAS = 15% dari volume slab</b>.</p>
       </div>
 
-      <div class="card" style="margin-top:10px;">
-        <p class="card-lbl">Perbandingan Per Slab</p>
-        <div id="slab-compare"></div>
-        <div style="background:#F0FDF4;border-radius:9px;padding:9px 11px;margin-top:10px;display:flex;align-items:flex-start;gap:7px;">
-          <i class="ti ti-star-filled" style="font-size:14px;color:#16A34A;flex-shrink:0;margin-top:1px;"></i>
-          <p style="font-size:11px;color:#15803D;line-height:1.5;"><b>NOS FEL Pelanggan Baru</b> memberikan bonus per kontrak tertinggi — prioritaskan ini!</p>
-        </div>
+      <!-- Slab Picker -->
+      <div style="margin:12px 14px 0;">
+        <p style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Pilih Slab</p>
+        <div id="slab-tabs" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
       </div>
 
-      <div class="card" id="detail-card">
-        <p class="card-lbl">Detail Slab</p>
+      <!-- Single Detail Card -->
+      <div class="card" id="detail-card" style="margin-top:10px;">
         <div id="detail-content"></div>
       </div>
 
       <!-- AI CHAT -->
       <div class="card">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-          <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <i class="ti ti-robot" style="font-size:15px;color:#fff;"></i>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ti ti-robot" style="font-size:15px;color:#fff;"></i>
+            </div>
+            <div>
+              <p style="font-size:13px;font-weight:700;color:var(--t);">Tanya AI Strategi Bonus</p>
+              <p style="font-size:11px;color:var(--t3);">Powered by Claude AI</p>
+            </div>
           </div>
-          <div>
-            <p style="font-size:13px;font-weight:700;color:var(--t);">Tanya AI Strategi Bonus</p>
-            <p style="font-size:11px;color:var(--t3);">Powered by Claude AI</p>
+          <div class="key-status" id="key-status-btn" onclick="showApiModal()">
+            <div class="key-dot" id="key-dot" style="background:#E5E7EB;"></div>
+            <span id="key-lbl" style="font-size:11px;color:var(--t3);font-weight:600;">Set API Key</span>
           </div>
         </div>
         <div id="ch" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;"></div>
@@ -342,34 +360,57 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-app
             <i class="ti ti-send" style="font-size:17px;"></i>
           </button>
         </div>
-        <p style="font-size:10px;color:var(--t3);margin-top:6px;text-align:center;">Enter untuk kirim · Shift+Enter baris baru</p>
+        <p style="font-size:10px;color:var(--t3);margin-top:6px;text-align:center;">Enter untuk kirim &middot; Shift+Enter baris baru</p>
       </div>
-
     </div><!-- /tr2 -->
   </div><!-- /pt -->
 
 </div><!-- /app -->
 
+<!-- API KEY MODAL -->
+<div id="api-modal" class="modal-bg" style="display:none;" onclick="modalBgClick(event)">
+  <div class="modal-box">
+    <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><line x1="10.85" y1="12.15" x2="19" y2="4"/><line x1="18" y1="5" x2="20" y2="7"/><line x1="15" y1="8" x2="17" y2="10"/></svg>
+    </div>
+    <h2>API Key Claude</h2>
+    <p class="modal-desc">Key dibutuhkan untuk fitur Tanya AI. Hanya tersimpan di memori sesi ini &mdash; <b>tidak dikirim ke mana pun</b> selain Anthropic.</p>
+    <div style="background:#FEF3C7;border-radius:10px;padding:10px 12px;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <p style="font-size:12px;color:#92400E;margin:0;line-height:1.5;">Dapatkan di <b>console.anthropic.com</b> &rarr; API Keys</p>
+    </div>
+    <div class="api-input-wrap">
+      <input type="password" id="api-key-input" placeholder="sk-ant-api03-..." autocomplete="off" oninput="clearApiErr()" onkeydown="if(event.key==='Enter')saveApiKey()">
+      <button class="api-toggle" onclick="toggleApiVis()" id="api-vis-btn" aria-label="Tampilkan/sembunyikan">
+        <svg id="api-vis-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+    </div>
+    <p class="modal-err" id="api-err">API key tidak valid. Harus dimulai dengan sk-ant-</p>
+    <button class="modal-save" onclick="saveApiKey()">Simpan &amp; Mulai Chat</button>
+    <p style="font-size:11px;color:var(--t3);text-align:center;margin-top:12px;">Key hilang saat tab/browser ditutup</p>
+  </div>
+</div>
+
 <script>
-// ========== DATA ==========
+// ===== DATA =====
 var SLAB = [
-  {name:'No Color', min:0,         max:119999999,    nfB:100000,nfL:40000, fB:130000, fL:55000,  vL:'<120 jt'},
-  {name:'Red',      min:120000000, max:199999999,    nfB:115000,nfL:46000, fB:149500, fL:63250,  vL:'120-199 jt'},
-  {name:'Yellow',   min:200000000, max:299999999,    nfB:125000,nfL:50000, fB:162500, fL:68750,  vL:'200-299 jt'},
-  {name:'Green',    min:300000000, max:399999999,    nfB:150000,nfL:60000, fB:195000, fL:82500,  vL:'300-399 jt'},
-  {name:'Black',    min:400000000, max:499999999,    nfB:160000,nfL:64000, fB:208000, fL:88000,  vL:'400-499 jt'},
-  {name:'Platinum', min:500000000, max:9999999999999,nfB:185000,nfL:74000, fB:240500, fL:101750, vL:'500 jt+'}
+  {name:'No Color', min:0,          max:119999999,     nfB:100000, nfL:40000,  fB:130000,  fL:55000,   vL:'<120 jt'},
+  {name:'Red',      min:120000000,  max:199999999,     nfB:115000, nfL:46000,  fB:149500,  fL:63250,   vL:'120-199 jt'},
+  {name:'Yellow',   min:200000000,  max:299999999,     nfB:125000, nfL:50000,  fB:162500,  fL:68750,   vL:'200-299 jt'},
+  {name:'Green',    min:300000000,  max:399999999,     nfB:150000, nfL:60000,  fB:195000,  fL:82500,   vL:'300-399 jt'},
+  {name:'Black',    min:400000000,  max:499999999,     nfB:160000, nfL:64000,  fB:208000,  fL:88000,   vL:'400-499 jt'},
+  {name:'Platinum', min:500000000,  max:9999999999999, nfB:185000, nfL:74000,  fB:240500,  fL:101750,  vL:'500 jt+'}
 ];
 var SC = {
-  'No Color':{bg:'#F3F4F6',c:'#6B7280',b:'#E5E7EB'},
-  'Red':     {bg:'#FEE2E2',c:'#B91C1C',b:'#FCA5A5'},
-  'Yellow':  {bg:'#FEF3C7',c:'#92400E',b:'#FCD34D'},
-  'Green':   {bg:'#D1FAE5',c:'#065F46',b:'#6EE7B7'},
-  'Black':   {bg:'#1F2937',c:'#F9FAFB',b:'#374151'},
-  'Platinum':{bg:'#EDE9FE',c:'#4C1D95',b:'#C4B5FD'}
+  'No Color':{bg:'#F3F4F6', c:'#6B7280', b:'#E5E7EB'},
+  'Red':     {bg:'#FEE2E2', c:'#B91C1C', b:'#FCA5A5'},
+  'Yellow':  {bg:'#FEF3C7', c:'#92400E', b:'#FCD34D'},
+  'Green':   {bg:'#D1FAE5', c:'#065F46', b:'#6EE7B7'},
+  'Black':   {bg:'#1F2937', c:'#F9FAFB', b:'#374151'},
+  'Platinum':{bg:'#EDE9FE', c:'#4C1D95', b:'#C4B5FD'}
 };
 
-// ========== HELPERS ==========
+// ===== HELPERS =====
 function vEx(p){if(p>=100000000)return 5000000;if(p>=50000000)return 3000000;if(p>=35000000)return 1500000;if(p>=15000000)return 500000;return 0;}
 function sEx(p){if(p>10000000)return 1500000;if(p>=3500000)return 500000;if(p>=1500000)return 300000;if(p>=1000000)return 100000;return 0;}
 function fmt(n){return 'Rp '+Math.round(n).toLocaleString('id-ID');}
@@ -387,280 +428,363 @@ function afaC(a){
   return{l:'Standar',c:'rgba(255,255,255,0.65)',bg:'rgba(255,255,255,0.12)'};
 }
 
-// ========== TAB SWITCH ==========
-function sw(t) {
-  g('ph').style.display = (t === 'h') ? 'block' : 'none';
-  g('pt').style.display = (t === 't') ? 'block' : 'none';
-  g('tab-h').className = (t === 'h') ? 'tab on' : 'tab off';
-  g('tab-t').className = (t === 't') ? 'tab on' : 'tab off';
+// ===== TAB SWITCH =====
+function sw(t){
+  g('ph').style.display=(t==='h')?'block':'none';
+  g('pt').style.display=(t==='t')?'block':'none';
+  g('tab-h').className=(t==='h')?'tab on':'tab off';
+  g('tab-t').className=(t==='t')?'tab on':'tab off';
 }
 
-// ========== ACCORDION ==========
-function togSec(wId, bId) {
-  var w = g(wId), b = g(bId);
-  var isOpen = w.classList.contains('open');
-  w.classList.toggle('open', !isOpen);
-  if(b) b.classList.toggle('open', !isOpen);
+// ===== ACCORDION =====
+function togSec(wId,bId){
+  var w=g(wId),b=g(bId);
+  var isOpen=w.classList.contains('open');
+  w.classList.toggle('open',!isOpen);
+  if(b)b.classList.toggle('open',!isOpen);
 }
 
-// ========== HITUNG BONUS ==========
-function calc() {
-  var vol = pi('vol'), nfB = pn('nb'), nfL = pn('nl'),
-      fB = pn('fb'), fL = pn('fl'),
-      vas = pi('vas'), sai = pi('sai');
-  var nfT = nfB+nfL, fT = fB+fL, totN = nfT+fT;
+// ===== HITUNG BONUS =====
+function calc(){
+  var vol=pi('vol'),nfB=pn('nb'),nfL=pn('nl'),fB=pn('fb'),fL=pn('fl'),vas=pi('vas'),sai=pi('sai');
+  var nfT=nfB+nfL,fT=fB+fL,totN=nfT+fT;
+  st('nt',num(nfT));st('ft',num(fT));
+  st('tb',num(nfB+fB));st('tl',num(nfL+fL));st('ta',num(totN));
 
-  st('nt', num(nfT)); st('ft', num(fT));
-  st('tb', num(nfB+fB)); st('tl', num(nfL+fL)); st('ta', num(totN));
-
-  // AFA
-  var amv = g('amv'), abw = g('abw');
-  if(vol > 0 && totN > 0) {
-    var afa = vol/totN, cat = afaC(afa);
-    st('av', fS(vol)); st('an', totN+' NOS'); st('aa', fS(afa));
-    amv.textContent = fmt(afa); amv.style.color = '#fff';
-    abw.innerHTML = '<span class="abdg" style="background:'+cat.bg+';color:'+cat.c+';">'+cat.l+'</span>';
-  } else {
-    st('av','—'); st('an','—'); st('aa','—');
-    amv.textContent = '—'; amv.style.color = 'rgba(255,255,255,0.25)';
-    abw.innerHTML = '<span class="ae">Isi volume &amp; NOS untuk melihat AFA</span>';
+  var amv=g('amv'),abw=g('abw');
+  if(vol>0&&totN>0){
+    var afa=vol/totN,cat=afaC(afa);
+    st('av',fS(vol));st('an',totN+' NOS');st('aa',fS(afa));
+    amv.textContent=fmt(afa);amv.style.color='#fff';
+    abw.innerHTML='<span class="abdg" style="background:'+cat.bg+';color:'+cat.c+';">'+cat.l+'</span>';
+  }else{
+    st('av','—');st('an','—');st('aa','—');
+    amv.textContent='—';amv.style.color='rgba(255,255,255,0.25)';
+    abw.innerHTML='<span class="ae">Isi volume &amp; NOS untuk melihat AFA</span>';
   }
 
-  // Slab
-  var slab = SLAB[0];
+  var slab=SLAB[0];
   for(var i=0;i<SLAB.length;i++){if(vol>=SLAB[i].min&&vol<=SLAB[i].max){slab=SLAB[i];break;}}
-  var sc = SC[slab.name];
-  var pill = g('sp');
-  pill.style.background = sc.bg; pill.style.borderColor = sc.b;
-  g('sl').textContent = slab.name; g('sl').style.color = sc.c;
-  g('spi').style.color = sc.c;
+  var sc=SC[slab.name];
+  var pill=g('sp');
+  pill.style.background=sc.bg;pill.style.borderColor=sc.b;
+  g('sl').textContent=slab.name;g('sl').style.color=sc.c;
+  g('spi').style.color=sc.c;
 
-  // Bonus
-  var bNfB=nfB*slab.nfB, bNfL=nfL*slab.nfL, bFB=fB*slab.fB, bFL=fL*slab.fL;
-  var bVP=vas*0.04, bVE=vEx(vas), bSP=sai*0.07, bSE=sEx(sai);
-  var total = bNfB+bNfL+bFB+bFL+bVP+bVE+bSP+bSE;
-
-  st('rnb', nfB>0?fmt(bNfB):'—'); st('rnl', nfL>0?fmt(bNfL):'—');
-  st('rfb', fB>0?fmt(bFB):'—');   st('rfl', fL>0?fmt(bFL):'—');
-  st('rvp', vas>0?fmt(bVP):'—');  st('rve', vas>0?fmt(bVE):'—');
-  st('rsp', sai>0?fmt(bSP):'—');  st('rse', sai>0?fmt(bSE):'—');
-  st('rt', fmt(total));
+  var bNfB=nfB*slab.nfB,bNfL=nfL*slab.nfL,bFB=fB*slab.fB,bFL=fL*slab.fL;
+  var bVP=vas*0.04,bVE=vEx(vas),bSP=sai*0.07,bSE=sEx(sai);
+  var total=bNfB+bNfL+bFB+bFL+bVP+bVE+bSP+bSE;
+  st('rnb',nfB>0?fmt(bNfB):'—');st('rnl',nfL>0?fmt(bNfL):'—');
+  st('rfb',fB>0?fmt(bFB):'—');st('rfl',fL>0?fmt(bFL):'—');
+  st('rvp',vas>0?fmt(bVP):'—');st('rve',vas>0?fmt(bVE):'—');
+  st('rsp',sai>0?fmt(bSP):'—');st('rse',sai>0?fmt(bSE):'—');
+  st('rt',fmt(total));
 }
 
-// ========== TARGET BONUS ==========
-var SD_CACHE = [];
+// ===== TARGET BONUS =====
+var SD_CACHE=[];
 
-function buildSD() {
-  var AFA = 9000000;
-  var minVols = [120000000,200000000,300000000,400000000,500000000];
-  SD_CACHE = [];
-  for(var i=1;i<SLAB.length;i++) {
-    var slab = SLAB[i];
-    var volMin = minVols[i-1];
-    var totalNos = Math.ceil(volMin/AFA);
-    var vasMin = volMin*0.15;
-    var vas4 = vasMin*0.04, vasEx = vEx(vasMin), vasB = vas4+vasEx;
-    var felFB = Math.round(totalNos*0.6), felFL = totalNos-felFB;
-    var felBonus = felFB*slab.fB + felFL*slab.fL;
-    var felTotal = felBonus+vasB;
-    var nfNFB = Math.round(totalNos*0.6), nfNFL = totalNos-nfNFB;
-    var nfBonus = nfNFB*slab.nfB + nfNFL*slab.nfL;
-    var nfTotal = nfBonus+vasB;
+function buildSD(){
+  var AFA=9000000;
+  var minVols=[120000000,200000000,300000000,400000000,500000000];
+  SD_CACHE=[];
+  for(var i=1;i<SLAB.length;i++){
+    var slab=SLAB[i];
+    var volMin=minVols[i-1];
+    var totalNos=Math.ceil(volMin/AFA);
+    var vasMin=volMin*0.15;
+    var vas4=vasMin*0.04,vasEx=vEx(vasMin),vasB=vas4+vasEx;
+    var felFB=Math.round(totalNos*0.6),felFL=totalNos-felFB;
+    var felNos=felFB*slab.fB+felFL*slab.fL;
+    var felTotal=felNos+vasB;
+    var nfB2=Math.round(totalNos*0.6),nfL2=totalNos-nfB2;
+    var nfNos=nfB2*slab.nfB+nfL2*slab.nfL;
+    var nfTotal=nfNos+vasB;
     SD_CACHE.push({
-      slab:slab, volMin:volMin, totalNos:totalNos,
-      vasMin:vasMin, vas4:vas4, vasEx:vasEx, vasB:vasB,
-      bonusPerNos: felTotal/totalNos,
-      fel:{fB:felFB,fL:felFL,bonus:felBonus,total:felTotal},
-      nf:{nfB:nfNFB,nfL:nfNFL,bonus:nfBonus,total:nfTotal}
+      slab:slab,volMin:volMin,totalNos:totalNos,
+      vasMin:vasMin,vasB:vasB,
+      fel:{fB:felFB,fL:felFL,nos:felNos,vas:vasB,total:felTotal},
+      nf:{nfB:nfB2,nfL:nfL2,nos:nfNos,vas:vasB,total:nfTotal}
     });
   }
   return SD_CACHE;
 }
 
-function calcT() {
-  var target = pi('tg');
-  var te = g('te'), tr = g('tr2');
-  if(target <= 0) { te.style.display='block'; tr.style.display='none'; return; }
-  te.style.display = 'none'; tr.style.display = 'block';
+function calcT(){
+  var target=pi('tg');
+  var te=g('te'),tr=g('tr2');
+  if(target<=0){te.style.display='block';tr.style.display='none';return;}
+  te.style.display='none';tr.style.display='block';
 
-  var sd = buildSD();
-  var bestIdx = 0;
-  for(var i=1;i<sd.length;i++){if(sd[i].bonusPerNos>sd[bestIdx].bonusPerNos)bestIdx=i;}
+  var sd=buildSD();
 
-  var html = '';
-  for(var i=0;i<sd.length;i++) {
-    var d = sd[i], sc = SC[d.slab.name], isBest = (i===bestIdx);
-    html += '<div style="border:'+(isBest?'2px solid var(--p)':'1.5px solid #F0F0F4')+';border-radius:13px;padding:12px;margin-bottom:8px;background:'+(isBest?'#F5F3FF':'#FAFAFA')+';cursor:pointer;" onclick="showDetail('+i+')">'
-      +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">'
-      +'<div style="display:flex;align-items:center;gap:7px;">'
-      +'<span style="background:'+sc.bg+';color:'+sc.c+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:7px;">'+d.slab.name+'</span>'
-      +(isBest?'<span style="background:var(--p);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;">&#x2736; Terbaik</span>':'')
-      +'</div>'
-      +'<span style="font-size:10px;color:var(--t3);">Vol min. '+fS(d.volMin)+' · '+d.totalNos+' NOS</span>'
-      +'</div>'
-      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;">'
-      // FEL
-      +'<div style="background:#EDE9FE;border-radius:10px;padding:9px;">'
-      +'<span style="font-size:10px;font-weight:700;color:#5B21B6;background:#DDD6FE;padding:2px 7px;border-radius:6px;">POS FEL</span>'
-      +'<p style="font-size:10px;color:#6D28D9;margin:6px 0 2px;">Baru:<b>'+d.fel.fB+'</b> · Lainnya:<b>'+d.fel.fL+'</b></p>'
-      +'<p style="font-size:9px;color:#7C3AED;margin-bottom:4px;">'+fS(d.slab.fB)+' / '+fS(d.slab.fL)+'</p>'
-      +'<div style="border-top:1px solid #C4B5FD;padding-top:4px;">'
-      +'<p style="font-size:13px;font-weight:700;color:#4C1D95;">'+fS(d.fel.bonus)+'</p>'
-      +'<p style="font-size:9px;color:#7C3AED;">+VAS&#8594;<b>'+fS(d.fel.total)+'</b></p>'
-      +'</div></div>'
-      // NON FEL
-      +'<div style="background:#F0FDF4;border-radius:10px;padding:9px;">'
-      +'<span style="font-size:10px;font-weight:700;color:#065F46;background:#A7F3D0;padding:2px 7px;border-radius:6px;">POS NON FEL</span>'
-      +'<p style="font-size:10px;color:#047857;margin:6px 0 2px;">Baru:<b>'+d.nf.nfB+'</b> · Lainnya:<b>'+d.nf.nfL+'</b></p>'
-      +'<p style="font-size:9px;color:#059669;margin-bottom:4px;">'+fS(d.slab.nfB)+' / '+fS(d.slab.nfL)+'</p>'
-      +'<div style="border-top:1px solid #6EE7B7;padding-top:4px;">'
-      +'<p style="font-size:13px;font-weight:700;color:#065F46;">'+fS(d.nf.bonus)+'</p>'
-      +'<p style="font-size:9px;color:#059669;">+VAS&#8594;<b>'+fS(d.nf.total)+'</b></p>'
-      +'</div></div>'
-      +'</div>'
-      +'<div style="background:#EFF6FF;border-radius:8px;padding:7px 10px;display:flex;justify-content:space-between;">'
-      +'<span style="font-size:11px;color:#1D4ED8;">Saran VAS min.</span>'
-      +'<span style="font-size:12px;font-weight:700;color:#1D4ED8;">'+fmt(d.vasMin)+'</span>'
-      +'</div>'
-      +'<p style="font-size:10px;color:'+(isBest?'var(--p)':'var(--t3)')+';text-align:right;margin-top:5px;">Ketuk untuk detail &#8594;</p>'
-      +'</div>';
+  // Slab terbaik = terendah yang FEL total-nya >= target
+  var bestIdx=sd.length-1;
+  for(var i=0;i<sd.length;i++){
+    if(sd[i].fel.total>=target){bestIdx=i;break;}
   }
-  g('slab-compare').innerHTML = html;
+
+  // Render tombol slab
+  var html='';
+  for(var i=0;i<sd.length;i++){
+    var d=sd[i],sc=SC[d.slab.name];
+    var reach=d.fel.total>=target||d.nf.total>=target;
+    var best=(i===bestIdx);
+    var cls='slab-tab-btn'+(best?' active':reach?' reach':'');
+    html+='<button class="'+cls+'" id="stab-'+i+'" onclick="showDetail('+i+')">'
+      +(best?'★ ':'')
+      +'<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+sc.c+';"></span>'
+      +' '+d.slab.name
+      +'</button>';
+  }
+  g('slab-tabs').innerHTML=html;
   showDetail(bestIdx);
 }
 
-function showDetail(i) {
-  if(!SD_CACHE.length) return;
-  var d = SD_CACHE[i], sc = SC[d.slab.name];
-  g('detail-content').innerHTML =
-    '<div style="background:'+sc.bg+';border-radius:10px;padding:11px;margin-bottom:12px;display:flex;align-items:center;gap:10px;">'
-    +'<div style="width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,0.55);display:flex;align-items:center;justify-content:center;flex-shrink:0;">'
-    +'<i class="ti ti-award" style="font-size:18px;color:'+sc.c+';"></i></div>'
-    +'<div><p style="font-size:14px;font-weight:700;color:'+sc.c+';">'+d.slab.name+'</p>'
-    +'<p style="font-size:11px;color:'+sc.c+';opacity:.8;">Vol min. '+fmt(d.volMin)+' · '+d.totalNos+' NOS (AFA Rp 9jt)</p></div></div>'
-    // FEL detail
-    +'<div style="background:#EDE9FE;border-radius:12px;padding:12px;margin-bottom:8px;">'
-    +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">'
-    +'<div style="width:28px;height:28px;border-radius:7px;background:#5B21B6;display:flex;align-items:center;justify-content:center;">'
-    +'<i class="ti ti-star" style="font-size:14px;color:#fff;"></i></div>'
-    +'<p style="font-size:13px;font-weight:700;color:#4C1D95;">Profil SA Pos FEL</p></div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">'
-    +'<div style="background:rgba(255,255,255,0.6);border-radius:8px;padding:8px;text-align:center;">'
-    +'<p style="font-size:9px;font-weight:600;color:#6D28D9;text-transform:uppercase;margin-bottom:2px;">FEL Baru</p>'
-    +'<p style="font-size:18px;font-weight:700;color:#4C1D95;">'+d.fel.fB+'</p>'
-    +'<p style="font-size:9px;color:#7C3AED;">x '+fmt(d.slab.fB)+'</p></div>'
-    +'<div style="background:rgba(255,255,255,0.6);border-radius:8px;padding:8px;text-align:center;">'
-    +'<p style="font-size:9px;font-weight:600;color:#6D28D9;text-transform:uppercase;margin-bottom:2px;">FEL Lainnya</p>'
-    +'<p style="font-size:18px;font-weight:700;color:#4C1D95;">'+d.fel.fL+'</p>'
-    +'<p style="font-size:9px;color:#7C3AED;">x '+fmt(d.slab.fL)+'</p></div></div>'
-    +'<div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">'
-    +'<span style="font-size:11px;color:#5B21B6;font-weight:600;">Bonus NOS</span>'
-    +'<span style="font-size:15px;font-weight:700;color:#4C1D95;">'+fmt(d.fel.bonus)+'</span></div></div>'
-    // NON FEL detail
-    +'<div style="background:#D1FAE5;border-radius:12px;padding:12px;margin-bottom:10px;">'
-    +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">'
-    +'<div style="width:28px;height:28px;border-radius:7px;background:#065F46;display:flex;align-items:center;justify-content:center;">'
-    +'<i class="ti ti-users" style="font-size:14px;color:#fff;"></i></div>'
-    +'<p style="font-size:13px;font-weight:700;color:#065F46;">Profil SA Pos NON FEL</p></div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">'
-    +'<div style="background:rgba(255,255,255,0.6);border-radius:8px;padding:8px;text-align:center;">'
-    +'<p style="font-size:9px;font-weight:600;color:#047857;text-transform:uppercase;margin-bottom:2px;">NON FEL Baru</p>'
-    +'<p style="font-size:18px;font-weight:700;color:#065F46;">'+d.nf.nfB+'</p>'
-    +'<p style="font-size:9px;color:#059669;">x '+fmt(d.slab.nfB)+'</p></div>'
-    +'<div style="background:rgba(255,255,255,0.6);border-radius:8px;padding:8px;text-align:center;">'
-    +'<p style="font-size:9px;font-weight:600;color:#047857;text-transform:uppercase;margin-bottom:2px;">NON FEL Lainnya</p>'
-    +'<p style="font-size:18px;font-weight:700;color:#065F46;">'+d.nf.nfL+'</p>'
-    +'<p style="font-size:9px;color:#059669;">x '+fmt(d.slab.nfL)+'</p></div></div>'
-    +'<div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">'
-    +'<span style="font-size:11px;color:#065F46;font-weight:600;">Bonus NOS</span>'
-    +'<span style="font-size:15px;font-weight:700;color:#065F46;">'+fmt(d.nf.bonus)+'</span></div></div>'
-    // VAS
-    +'<div style="background:#EFF6FF;border-radius:10px;padding:11px;margin-bottom:10px;">'
-    +'<p style="font-size:10px;font-weight:700;color:#1D4ED8;text-transform:uppercase;margin-bottom:8px;">Saran Premi VAS (15% x Vol Min.)</p>'
-    +'<div style="display:flex;justify-content:space-between;margin-bottom:4px;">'
-    +'<span style="font-size:12px;color:#1E40AF;">Target VAS min.</span>'
-    +'<span style="font-size:12px;font-weight:700;color:#1E40AF;">'+fmt(d.vasMin)+'</span></div>'
-    +'<div style="display:flex;justify-content:space-between;margin-bottom:3px;">'
-    +'<span style="font-size:11px;color:#3B82F6;">4% dari premi VAS</span>'
-    +'<span style="font-size:11px;font-weight:600;color:#3B82F6;">+ '+fmt(d.vas4)+'</span></div>'
-    +'<div style="display:flex;justify-content:space-between;">'
-    +'<span style="font-size:11px;color:#3B82F6;">Extra Insentif VAS</span>'
-    +'<span style="font-size:11px;font-weight:600;color:#3B82F6;">+ '+fmt(d.vasEx)+'</span></div></div>'
-    // Total
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">'
-    +'<div style="background:#EDE9FE;border-radius:10px;padding:10px;text-align:center;">'
-    +'<p style="font-size:10px;font-weight:600;color:#5B21B6;margin-bottom:3px;">Total Est. FEL</p>'
-    +'<p style="font-size:15px;font-weight:700;color:#4C1D95;">'+fmt(d.fel.total)+'</p>'
-    +'<p style="font-size:9px;color:#7C3AED;">NOS + VAS 15%</p></div>'
-    +'<div style="background:#D1FAE5;border-radius:10px;padding:10px;text-align:center;">'
-    +'<p style="font-size:10px;font-weight:600;color:#065F46;margin-bottom:3px;">Total Est. NON FEL</p>'
-    +'<p style="font-size:15px;font-weight:700;color:#065F46;">'+fmt(d.nf.total)+'</p>'
-    +'<p style="font-size:9px;color:#059669;">NOS + VAS 15%</p></div></div>';
+function showDetail(idx){
+  if(!SD_CACHE.length)return;
 
+  // Update tombol aktif
+  for(var j=0;j<SD_CACHE.length;j++){
+    var btn=g('stab-'+j);
+    if(!btn)continue;
+    var d2=SD_CACHE[j],sc2=SC[d2.slab.name];
+    var target=pi('tg');
+    var reach2=d2.fel.total>=target||d2.nf.total>=target;
+    var best2=(btn.textContent.indexOf('★')>-1);
+    if(j===idx){
+      btn.className='slab-tab-btn active';
+    }else if(best2){
+      // Slab terbaik tapi tidak aktif
+      btn.className='slab-tab-btn'+(reach2?' reach':'');
+    }else{
+      btn.className='slab-tab-btn'+(reach2?' reach':'');
+    }
+  }
+
+  var d=SD_CACHE[idx],sc=SC[d.slab.name];
+  var target=pi('tg');
+  var felOk=d.fel.total>=target;
+  var nfOk=d.nf.total>=target;
+
+  var h='';
+  // Header slab
+  h+='<div style="display:flex;align-items:center;gap:10px;padding:12px;background:'+sc.bg+';border-radius:12px;margin-bottom:12px;">'
+    +'<div style="width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;">'
+    +'<i class="ti ti-award" style="font-size:20px;color:'+sc.c+';"></i></div>'
+    +'<div>'
+    +'<p style="font-size:15px;font-weight:700;color:'+sc.c+';">Slab '+d.slab.name+'</p>'
+    +'<p style="font-size:11px;color:'+sc.c+';opacity:.75;">Vol min. '+fmt(d.volMin)+' &middot; '+d.totalNos+' NOS (AFA Rp 9jt)</p>'
+    +'</div></div>';
+
+  // FEL block
+  h+='<div style="background:#EDE9FE;border-radius:12px;padding:12px;margin-bottom:8px;">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
+    +'<span style="font-size:11px;font-weight:700;color:#5B21B6;background:#DDD6FE;padding:3px 9px;border-radius:7px;">POS FEL</span>'
+    +(felOk
+      ?'<span style="font-size:11px;font-weight:700;color:#059669;background:#D1FAE5;padding:3px 9px;border-radius:7px;">&#10003; Capai Target</span>'
+      :'<span style="font-size:11px;color:#9CA3AF;">Belum capai target</span>')
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">'
+    // Bonus Kontrak
+    +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
+    +'<p style="font-size:9px;color:#6D28D9;font-weight:600;margin-bottom:3px;">Bonus Kontrak</p>'
+    +'<p style="font-size:12px;font-weight:700;color:#4C1D95;">'+fmt(d.fel.nos)+'</p>'
+    +'<p style="font-size:9px;color:#7C3AED;margin-top:2px;">'+d.fel.fB+' Baru &middot; '+d.fel.fL+' Lain</p>'
+    +'</div>'
+    // Bonus VAS
+    +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
+    +'<p style="font-size:9px;color:#6D28D9;font-weight:600;margin-bottom:3px;">Bonus VAS</p>'
+    +'<p style="font-size:12px;font-weight:700;color:#4C1D95;">'+fmt(d.fel.vas)+'</p>'
+    +'<p style="font-size:9px;color:#7C3AED;margin-top:2px;">Premi '+fS(d.vasMin)+'</p>'
+    +'</div>'
+    // Total
+    +'<div style="background:'+(felOk?'#5B21B6':'rgba(255,255,255,0.4)')+';border-radius:9px;padding:9px;text-align:center;">'
+    +'<p style="font-size:9px;font-weight:700;color:'+(felOk?'rgba(255,255,255,0.8)':'#6D28D9')+';margin-bottom:3px;">TOTAL</p>'
+    +'<p style="font-size:14px;font-weight:700;color:'+(felOk?'#fff':'#4C1D95')+';">'+fmt(d.fel.total)+'</p>'
+    +'<p style="font-size:9px;color:'+(felOk?'rgba(255,255,255,0.65)':'#7C3AED')+';margin-top:2px;">NOS+VAS</p>'
+    +'</div>'
+    +'</div></div>';
+
+  // NON FEL block
+  h+='<div style="background:#F0FDF4;border-radius:12px;padding:12px;margin-bottom:8px;">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
+    +'<span style="font-size:11px;font-weight:700;color:#065F46;background:#A7F3D0;padding:3px 9px;border-radius:7px;">POS NON FEL</span>'
+    +(nfOk
+      ?'<span style="font-size:11px;font-weight:700;color:#059669;background:#D1FAE5;padding:3px 9px;border-radius:7px;">&#10003; Capai Target</span>'
+      :'<span style="font-size:11px;color:#9CA3AF;">Belum capai target</span>')
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">'
+    +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
+    +'<p style="font-size:9px;color:#047857;font-weight:600;margin-bottom:3px;">Bonus Kontrak</p>'
+    +'<p style="font-size:12px;font-weight:700;color:#065F46;">'+fmt(d.nf.nos)+'</p>'
+    +'<p style="font-size:9px;color:#059669;margin-top:2px;">'+d.nf.nfB+' Baru &middot; '+d.nf.nfL+' Lain</p>'
+    +'</div>'
+    +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
+    +'<p style="font-size:9px;color:#047857;font-weight:600;margin-bottom:3px;">Bonus VAS</p>'
+    +'<p style="font-size:12px;font-weight:700;color:#065F46;">'+fmt(d.nf.vas)+'</p>'
+    +'<p style="font-size:9px;color:#059669;margin-top:2px;">Premi '+fS(d.vasMin)+'</p>'
+    +'</div>'
+    +'<div style="background:'+(nfOk?'#065F46':'rgba(255,255,255,0.4)')+';border-radius:9px;padding:9px;text-align:center;">'
+    +'<p style="font-size:9px;font-weight:700;color:'+(nfOk?'rgba(255,255,255,0.8)':'#047857')+';margin-bottom:3px;">TOTAL</p>'
+    +'<p style="font-size:14px;font-weight:700;color:'+(nfOk?'#fff':'#065F46')+';">'+fmt(d.nf.total)+'</p>'
+    +'<p style="font-size:9px;color:'+(nfOk?'rgba(255,255,255,0.65)':'#059669')+';margin-top:2px;">NOS+VAS</p>'
+    +'</div>'
+    +'</div></div>';
+
+  // VAS hint
+  h+='<div style="background:#EFF6FF;border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">'
+    +'<div>'
+    +'<p style="font-size:11px;font-weight:600;color:#1D4ED8;">Saran VAS minimum</p>'
+    +'<p style="font-size:10px;color:#3B82F6;">15% dari volume slab ('+fS(d.volMin)+')</p>'
+    +'</div>'
+    +'<p style="font-size:15px;font-weight:700;color:#1D4ED8;">'+fmt(d.vasMin)+'</p>'
+    +'</div>';
+
+  g('detail-content').innerHTML=h;
   g('detail-card').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-// ========== AI CHAT ==========
-var chatHist = [];
-var SYS = 'Kamu adalah asisten sales bernama "Bonus AI" untuk Sales Agent (SA) Home Credit Indonesia. Ahli menjelaskan skema bonus dengan ramah dan singkat dalam Bahasa Indonesia.\n\nSkema bonus:\nSLAB (Volume): No Color <120jt | Red 120-199jt | Yellow 200-299jt | Green 300-399jt | Black 400-499jt | Platinum 500jt+\nRate NON FEL Baru/Lainnya: NoColor 100/40rb | Red 115/46rb | Yellow 125/50rb | Green 150/60rb | Black 160/64rb | Platinum 185/74rb\nRate FEL Baru/Lainnya: NoColor 130/55rb | Red 149.5/63.25rb | Yellow 162.5/68.75rb | Green 195/82.5rb | Black 208/88rb | Platinum 240.5/101.75rb\nVAS: 4% premi + Extra Insentif (15jt=500rb, 35jt=1.5jt, 50jt=3jt, 100jt=5jt)\nSAI: 7% premi + Extra Insentif (1jt=100rb, 1.5jt=300rb, 3.5jt=500rb, >10jt=1.5jt)\nBonus Konsistensi (syarat tidak ada NL/Notice Letter aktif): Yellow=500rb | Green=1jt | Black=1.5jt | Platinum=2jt\nAFA rata-rata Rp 9 juta/kontrak. Saran VAS=15% dari volume.\nFEL Baru selalu rate tertinggi. Jawab singkat dengan angka konkret.';
+// ===== API KEY =====
+var _apiKey='';
 
-function ctxMsg() {
+function updateKeyStatus(){
+  var dot=g('key-dot'),lbl=g('key-lbl');
+  if(_apiKey){
+    dot.style.background='#10B981';
+    lbl.textContent='Key aktif';
+    lbl.style.color='#059669';
+  }else{
+    dot.style.background='#E5E7EB';
+    lbl.textContent='Set API Key';
+    lbl.style.color='var(--t3)';
+  }
+}
+
+function showApiModal(){
+  var m=g('api-modal');
+  m.style.display='flex';
+  g('api-key-input').value=_apiKey||'';
+  g('api-key-input').type='password';
+  g('api-vis-icon').innerHTML='<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  g('api-err').style.display='none';
+  setTimeout(function(){g('api-key-input').focus();},150);
+}
+
+function hideApiModal(){
+  g('api-modal').style.display='none';
+}
+
+function modalBgClick(e){
+  if(e.target===g('api-modal'))hideApiModal();
+}
+
+function toggleApiVis(){
+  var inp=g('api-key-input'),icon=g('api-vis-icon');
+  var eyeSVG='<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  var eyeOffSVG='<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+  if(inp.type==='password'){inp.type='text';icon.innerHTML=eyeOffSVG;}
+  else{inp.type='password';icon.innerHTML=eyeSVG;}
+}
+
+function clearApiErr(){
+  g('api-err').style.display='none';
+}
+
+function saveApiKey(){
+  var val=g('api-key-input').value.trim();
+  if(!val||val.length<20){
+    g('api-err').style.display='block';
+    return;
+  }
+  _apiKey=val;
+  updateKeyStatus();
+  hideApiModal();
+  if(chatHist.length===0){
+    addBub('ai','Halo! Saya Bonus AI.\nAPI key tersimpan. Silakan tanya soal strategi bonus, NOS, VAS, atau SAI!');
+  }
+}
+
+// ===== AI CHAT =====
+var chatHist=[];
+var SYS='Kamu adalah asisten sales bernama "Bonus AI" untuk Sales Agent (SA) Home Credit Indonesia. Ahli menjelaskan skema bonus dengan ramah dan singkat dalam Bahasa Indonesia.\n\nSkema bonus:\nSLAB (Volume): No Color <120jt | Red 120-199jt | Yellow 200-299jt | Green 300-399jt | Black 400-499jt | Platinum 500jt+\nRate NON FEL Baru/Lainnya: NoColor 100/40rb | Red 115/46rb | Yellow 125/50rb | Green 150/60rb | Black 160/64rb | Platinum 185/74rb\nRate FEL Baru/Lainnya: NoColor 130/55rb | Red 149.5/63.25rb | Yellow 162.5/68.75rb | Green 195/82.5rb | Black 208/88rb | Platinum 240.5/101.75rb\nVAS: 4% premi + Extra Insentif (15jt=500rb, 35jt=1.5jt, 50jt=3jt, 100jt=5jt)\nSAI: 7% premi + Extra Insentif (1jt=100rb, 1.5jt=300rb, 3.5jt=500rb, >10jt=1.5jt)\nBonus Konsistensi (syarat tidak ada NL/Notice Letter aktif): Yellow=500rb | Green=1jt | Black=1.5jt | Platinum=2jt\nAFA rata-rata Rp 9 juta/kontrak. Saran VAS=15% dari volume.\nFEL Baru selalu rate tertinggi. Jawab singkat dengan angka konkret.';
+
+function ctxMsg(){
   var v=pi('vol'),vas=pi('vas'),sai=pi('sai'),nb=pn('nb'),nl=pn('nl'),fb=pn('fb'),fl=pn('fl'),tg=pi('tg');
-  var c = '';
-  if(tg>0) c += 'Target bonus: '+fmt(tg)+'. ';
-  if(v>0) c += 'Volume: '+fmt(v)+'. ';
-  if(nb+nl+fb+fl>0) c += 'NOS NON FEL Baru:'+nb+' Lainnya:'+nl+' FEL Baru:'+fb+' Lainnya:'+fl+'. ';
-  if(vas>0) c += 'VAS: '+fmt(vas)+'. ';
-  if(sai>0) c += 'SAI: '+fmt(sai)+'. ';
+  var c='';
+  if(tg>0)c+='Target bonus: '+fmt(tg)+'. ';
+  if(v>0)c+='Volume: '+fmt(v)+'. ';
+  if(nb+nl+fb+fl>0)c+='NOS NON FEL Baru:'+nb+' Lainnya:'+nl+' FEL Baru:'+fb+' Lainnya:'+fl+'. ';
+  if(vas>0)c+='VAS: '+fmt(vas)+'. ';
+  if(sai>0)c+='SAI: '+fmt(sai)+'. ';
   return c;
 }
 
-function addBub(role, text) {
-  var wrap = g('ch'), div = document.createElement('div');
-  div.className = role==='user' ? 'bubble-user' : 'bubble-ai';
-  div.innerHTML = text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');
+function addBub(role,text){
+  var wrap=g('ch'),div=document.createElement('div');
+  div.className=(role==='user')?'bubble-user':'bubble-ai';
+  div.innerHTML=text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');
   wrap.appendChild(div);
-  wrap.scrollTop = wrap.scrollHeight;
+  wrap.scrollTop=wrap.scrollHeight;
 }
 
-function addLoad() {
-  var wrap = g('ch'), div = document.createElement('div');
-  div.className = 'bubble-loading'; div.id = 'lb';
-  div.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+function addLoad(){
+  var wrap=g('ch'),div=document.createElement('div');
+  div.className='bubble-loading';div.id='lb';
+  div.innerHTML='<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
   wrap.appendChild(div);
-  wrap.scrollTop = wrap.scrollHeight;
+  wrap.scrollTop=wrap.scrollHeight;
 }
 
-async function sendChat() {
-  var inp = g('ci'), msg = inp.value.trim();
-  if(!msg) return;
-  g('cs').style.display = 'none';
-  inp.value = '';
-  var ctx = ctxMsg();
-  var full = ctx ? '[Konteks SA: '+ctx+']\n'+msg : msg;
-  addBub('user', msg);
-  chatHist.push({role:'user', content:full});
+async function sendChat(){
+  var inp=g('ci'),msg=inp.value.trim();
+  if(!msg)return;
+  if(!_apiKey){showApiModal();return;}
+  g('cs').style.display='none';
+  inp.value='';
+  var ctx=ctxMsg();
+  var full=ctx?'[Konteks SA: '+ctx+']\n'+msg:msg;
+  addBub('user',msg);
+  chatHist.push({role:'user',content:full});
   addLoad();
-  g('sb').disabled = true;
-  try {
-    var res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({model:'claude-sonnet-4-20250514', max_tokens:1000, system:SYS, messages:chatHist})
+  g('sb').disabled=true;
+  try{
+    var res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':_apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:chatHist})
     });
-    var data = await res.json();
-    var reply = (data.content && data.content[0]) ? data.content[0].text : 'Maaf, ada gangguan. Coba lagi.';
-    var lb = g('lb'); if(lb) lb.remove();
-    addBub('ai', reply);
-    chatHist.push({role:'assistant', content:reply});
-  } catch(e) {
-    var lb = g('lb'); if(lb) lb.remove();
-    addBub('ai', 'Koneksi bermasalah. Buka file di browser HP untuk menggunakan AI Chat.');
+    var data=await res.json();
+    var lb=g('lb');if(lb)lb.remove();
+    if(data.error){
+      if(data.error.type==='authentication_error'){
+        _apiKey='';updateKeyStatus();
+        addBub('ai','API key tidak valid atau kedaluwarsa. Ketuk "Set API Key" untuk ganti.');
+      }else{
+        addBub('ai','Error: '+data.error.message);
+      }
+    }else{
+      var reply=(data.content&&data.content[0])?data.content[0].text:'Maaf, ada gangguan. Coba lagi.';
+      addBub('ai',reply);
+      chatHist.push({role:'assistant',content:reply});
+    }
+  }catch(e){
+    var lb=g('lb');if(lb)lb.remove();
+    addBub('ai','Koneksi bermasalah. Periksa koneksi internet dan coba lagi.');
   }
-  g('sb').disabled = false;
+  g('sb').disabled=false;
 }
 
-function askQ(q) { g('ci').value = q; sendChat(); }
+function askQ(q){
+  if(!_apiKey){showApiModal();return;}
+  g('ci').value=q;
+  sendChat();
+}
 </script>
 </body>
 </html>
