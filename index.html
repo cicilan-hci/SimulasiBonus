@@ -124,6 +124,14 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
 
 
 
+/* POS TYPE SELECTOR */
+.pos-opt{flex:1;padding:10px 8px;border:2px solid var(--bdr);border-radius:12px;background:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;color:var(--t3);cursor:pointer;text-align:center;transition:all .15s;line-height:1.4;}
+.pos-opt.sel-nf{border-color:#6B7280;background:#F3F4F6;color:#374151;}
+.pos-opt.sel-f{border-color:var(--p2);background:#EDE9FE;color:#5B21B6;}
+.pos-opt.sel-both{border-color:var(--p);background:var(--pl);color:var(--p);}
+.calc-btn{width:100%;padding:14px;background:var(--p);color:#fff;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.calc-btn:active{opacity:.85;}
+
 /* SLAB PICKER */
 .slab-tab-btn{padding:7px 14px;border-radius:20px;border:2px solid #E5E7EB;background:#F9FAFB;color:#9CA3AF;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;transition:all .15s;}
 .slab-tab-btn.active{background:var(--p);color:#fff;border-color:var(--p);}
@@ -177,13 +185,13 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
         </tr></thead>
         <tbody>
           <tr>
-            <td><span class="bdg bg">NON FEL</span></td>
+            <td><span class="bdg bg">NON FEL</span><br><span style="font-size:9px;color:#9CA3AF;font-weight:500;">MPGG</span></td>
             <td><input type="number" id="nb" placeholder="0" oninput="calc()"></td>
             <td><input type="number" id="nl" placeholder="0" oninput="calc()"></td>
             <td class="nv"><span id="nt">—</span></td>
           </tr>
           <tr>
-            <td><span class="bdg bp">FEL</span></td>
+            <td><span class="bdg bp">FEL</span><br><span style="font-size:9px;color:#7C3AED;font-weight:500;">Electronic, Furniture, Laptop</span></td>
             <td><input type="number" id="fb" placeholder="0" oninput="calc()"></td>
             <td><input type="number" id="fl" placeholder="0" oninput="calc()"></td>
             <td class="nv"><span id="ft">—</span></td>
@@ -283,14 +291,36 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
     <div class="t-hero">
       <p class="t-hero-lbl">Berapa bonus yang kamu inginkan?</p>
       <span class="t-rp">Rp</span>
-      <input class="t-input" type="text" id="tg" placeholder="0" oninput="fi(this);calcT()">
+      <input class="t-input" type="text" id="tg" placeholder="0" oninput="fi(this)">
     </div>
 
-    <div id="te" style="margin:14px 14px 0;">
+    <!-- Pos Type Selector -->
+    <div style="margin:12px 14px 0;">
+      <p style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">SA Jaga di Pos</p>
+      <div style="display:flex;gap:8px;">
+        <button class="pos-opt" id="po-nf" onclick="selPos('nf')">
+          <span style="font-size:16px;display:block;margin-bottom:2px;">🏪</span>
+          NON FEL<br><span style="font-size:10px;font-weight:500;">MPGG</span>
+        </button>
+        <button class="pos-opt" id="po-f" onclick="selPos('f')">
+          <span style="font-size:16px;display:block;margin-bottom:2px;">💻</span>
+          FEL<br><span style="font-size:10px;font-weight:500;">Electronic, Furniture, Laptop</span>
+        </button>
+        <button class="pos-opt" id="po-both" onclick="selPos('both')">
+          <span style="font-size:16px;display:block;margin-bottom:2px;">🔀</span>
+          Keduanya<br><span style="font-size:10px;font-weight:500;">FEL & NON FEL</span>
+        </button>
+      </div>
+      <button class="calc-btn" onclick="doCalcT()">
+        <i class="ti ti-calculator" style="font-size:18px;"></i> Hitung Target
+      </button>
+    </div>
+
+    <div id="te" style="margin:12px 14px 0;">
       <div class="card" style="margin:0;">
         <div class="empty-st">
           <i class="ti ti-mood-smile"></i>
-          Masukkan target bonus untuk melihat perbandingan slab dan NOS yang perlu dikejar.
+          Masukkan target bonus, pilih pos, lalu ketuk Hitung Target.
         </div>
       </div>
     </div>
@@ -469,6 +499,24 @@ function buildSD(){
   return SD_CACHE;
 }
 
+var _posType = 'both'; // 'nf', 'f', 'both'
+
+function selPos(t) {
+  _posType = t;
+  var btns = {'nf':'po-nf','f':'po-f','both':'po-both'};
+  var cls  = {'nf':'sel-nf','f':'sel-f','both':'sel-both'};
+  for(var k in btns) {
+    var b = g(btns[k]);
+    if(!b) continue;
+    b.className = 'pos-opt' + (k===t ? ' '+cls[k] : '');
+  }
+}
+
+function doCalcT() {
+  if(!_posType) { alert('Pilih pos terlebih dahulu!'); return; }
+  calcT();
+}
+
 function calcT(){
   var target=pi('tg');
   var te=g('te'),tr=g('tr2');
@@ -477,21 +525,28 @@ function calcT(){
 
   var sd=buildSD();
 
-  // Slab terbaik = terendah yang FEL total-nya >= target
+  // Pilih total berdasarkan pos yang dipilih
+  function getTotal(d) {
+    if(_posType==='nf') return d.nf.total;
+    if(_posType==='f')  return d.fel.total;
+    return Math.max(d.fel.total, d.nf.total);
+  }
+
+  // Slab terbaik = terendah yang total >= target
   var bestIdx=sd.length-1;
   for(var i=0;i<sd.length;i++){
-    if(sd[i].fel.total>=target){bestIdx=i;break;}
+    if(getTotal(sd[i])>=target){bestIdx=i;break;}
   }
 
   // Render tombol slab
   var html='';
   for(var i=0;i<sd.length;i++){
     var d=sd[i],sc=SC[d.slab.name];
-    var reach=d.fel.total>=target||d.nf.total>=target;
+    var reach=getTotal(d)>=target;
     var best=(i===bestIdx);
     var cls='slab-tab-btn'+(best?' active':reach?' reach':'');
     html+='<button class="'+cls+'" id="stab-'+i+'" onclick="showDetail('+i+')">'
-      +(best?'★ ':'')
+      +(best?'\u2605 ':'')
       +'<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+sc.c+';"></span>'
       +' '+d.slab.name
       +'</button>';
@@ -503,28 +558,24 @@ function calcT(){
 function showDetail(idx){
   if(!SD_CACHE.length)return;
 
-  // Update tombol aktif
+  // Update active tab buttons
   for(var j=0;j<SD_CACHE.length;j++){
     var btn=g('stab-'+j);
     if(!btn)continue;
-    var d2=SD_CACHE[j],sc2=SC[d2.slab.name];
+    var d2=SD_CACHE[j];
     var target=pi('tg');
-    var reach2=d2.fel.total>=target||d2.nf.total>=target;
-    var best2=(btn.textContent.indexOf('★')>-1);
-    if(j===idx){
-      btn.className='slab-tab-btn active';
-    }else if(best2){
-      // Slab terbaik tapi tidak aktif
-      btn.className='slab-tab-btn'+(reach2?' reach':'');
-    }else{
-      btn.className='slab-tab-btn'+(reach2?' reach':'');
-    }
+    function getT2(d){if(_posType==='nf')return d.nf.total;if(_posType==='f')return d.fel.total;return Math.max(d.fel.total,d.nf.total);}
+    var reach2=getT2(d2)>=target;
+    if(j===idx){btn.className='slab-tab-btn active';}
+    else{btn.className='slab-tab-btn'+(reach2?' reach':'');}
   }
 
   var d=SD_CACHE[idx],sc=SC[d.slab.name];
   var target=pi('tg');
   var felOk=d.fel.total>=target;
   var nfOk=d.nf.total>=target;
+  var showFEL = (_posType==='f'||_posType==='both');
+  var showNF  = (_posType==='nf'||_posType==='both');
 
   var h='';
   // Header slab
@@ -536,60 +587,59 @@ function showDetail(idx){
     +'<p style="font-size:11px;color:'+sc.c+';opacity:.75;">Vol min. '+fmt(d.volMin)+' &middot; '+d.totalNos+' NOS (AFA Rp 9jt)</p>'
     +'</div></div>';
 
-  // FEL block
-  h+='<div style="background:#EDE9FE;border-radius:12px;padding:12px;margin-bottom:8px;">'
-    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
-    +'<span style="font-size:11px;font-weight:700;color:#5B21B6;background:#DDD6FE;padding:3px 9px;border-radius:7px;">POS FEL</span>'
-    +(felOk
-      ?'<span style="font-size:11px;font-weight:700;color:#059669;background:#D1FAE5;padding:3px 9px;border-radius:7px;">&#10003; Capai Target</span>'
-      :'<span style="font-size:11px;color:#9CA3AF;">Belum capai target</span>')
-    +'</div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">'
-    // Bonus Kontrak
-    +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
-    +'<p style="font-size:9px;color:#6D28D9;font-weight:600;margin-bottom:3px;">Bonus Kontrak</p>'
-    +'<p style="font-size:12px;font-weight:700;color:#4C1D95;">'+fmt(d.fel.nos)+'</p>'
-    +'<p style="font-size:9px;color:#7C3AED;margin-top:2px;">'+d.fel.fB+' Baru &middot; '+d.fel.fL+' Lain</p>'
-    +'</div>'
-    // Bonus VAS
-    +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
-    +'<p style="font-size:9px;color:#6D28D9;font-weight:600;margin-bottom:3px;">Bonus VAS</p>'
-    +'<p style="font-size:12px;font-weight:700;color:#4C1D95;">'+fmt(d.fel.vas)+'</p>'
-    +'<p style="font-size:9px;color:#7C3AED;margin-top:2px;">Premi '+fS(d.vasMin)+'</p>'
-    +'</div>'
-    // Total
-    +'<div style="background:'+(felOk?'#5B21B6':'rgba(255,255,255,0.4)')+';border-radius:9px;padding:9px;text-align:center;">'
-    +'<p style="font-size:9px;font-weight:700;color:'+(felOk?'rgba(255,255,255,0.8)':'#6D28D9')+';margin-bottom:3px;">TOTAL</p>'
-    +'<p style="font-size:14px;font-weight:700;color:'+(felOk?'#fff':'#4C1D95')+';">'+fmt(d.fel.total)+'</p>'
-    +'<p style="font-size:9px;color:'+(felOk?'rgba(255,255,255,0.65)':'#7C3AED')+';margin-top:2px;">NOS+VAS</p>'
-    +'</div>'
-    +'</div></div>';
+  // FEL block (tampil jika pilih FEL atau Keduanya)
+  if(showFEL){
+    h+='<div style="background:#EDE9FE;border-radius:12px;padding:12px;margin-bottom:8px;">'
+      +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
+      +'<div><span style="font-size:11px;font-weight:700;color:#5B21B6;background:#DDD6FE;padding:3px 9px;border-radius:7px;">POS FEL</span>'
+      +'<span style="font-size:10px;color:#7C3AED;margin-left:6px;">Electronic, Furniture, Laptop</span></div>'
+      +(felOk?'<span style="font-size:11px;font-weight:700;color:#059669;background:#D1FAE5;padding:3px 9px;border-radius:7px;">&#10003; Capai</span>'
+             :'<span style="font-size:11px;color:#9CA3AF;">Belum capai</span>')
+      +'</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">'
+      +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
+      +'<p style="font-size:9px;color:#6D28D9;font-weight:600;margin-bottom:3px;">Bonus Kontrak</p>'
+      +'<p style="font-size:12px;font-weight:700;color:#4C1D95;">'+fmt(d.fel.nos)+'</p>'
+      +'<p style="font-size:9px;color:#7C3AED;margin-top:2px;">'+d.fel.fB+' Baru &middot; '+d.fel.fL+' Lain</p>'
+      +'</div>'
+      +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
+      +'<p style="font-size:9px;color:#6D28D9;font-weight:600;margin-bottom:3px;">Bonus VAS</p>'
+      +'<p style="font-size:12px;font-weight:700;color:#4C1D95;">'+fmt(d.fel.vas)+'</p>'
+      +'<p style="font-size:9px;color:#7C3AED;margin-top:2px;">Premi '+fS(d.vasMin)+'</p>'
+      +'</div>'
+      +'<div style="background:'+(felOk?'#5B21B6':'rgba(255,255,255,0.4)')+';border-radius:9px;padding:9px;text-align:center;">'
+      +'<p style="font-size:9px;font-weight:700;color:'+(felOk?'rgba(255,255,255,0.8)':'#6D28D9')+';margin-bottom:3px;">TOTAL</p>'
+      +'<p style="font-size:14px;font-weight:700;color:'+(felOk?'#fff':'#4C1D95')+';">'+fmt(d.fel.total)+'</p>'
+      +'<p style="font-size:9px;color:'+(felOk?'rgba(255,255,255,0.65)':'#7C3AED')+';margin-top:2px;">NOS+VAS</p>'
+      +'</div></div></div>';
+  }
 
-  // NON FEL block
-  h+='<div style="background:#F0FDF4;border-radius:12px;padding:12px;margin-bottom:8px;">'
-    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
-    +'<span style="font-size:11px;font-weight:700;color:#065F46;background:#A7F3D0;padding:3px 9px;border-radius:7px;">POS NON FEL</span>'
-    +(nfOk
-      ?'<span style="font-size:11px;font-weight:700;color:#059669;background:#D1FAE5;padding:3px 9px;border-radius:7px;">&#10003; Capai Target</span>'
-      :'<span style="font-size:11px;color:#9CA3AF;">Belum capai target</span>')
-    +'</div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">'
-    +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
-    +'<p style="font-size:9px;color:#047857;font-weight:600;margin-bottom:3px;">Bonus Kontrak</p>'
-    +'<p style="font-size:12px;font-weight:700;color:#065F46;">'+fmt(d.nf.nos)+'</p>'
-    +'<p style="font-size:9px;color:#059669;margin-top:2px;">'+d.nf.nfB+' Baru &middot; '+d.nf.nfL+' Lain</p>'
-    +'</div>'
-    +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
-    +'<p style="font-size:9px;color:#047857;font-weight:600;margin-bottom:3px;">Bonus VAS</p>'
-    +'<p style="font-size:12px;font-weight:700;color:#065F46;">'+fmt(d.nf.vas)+'</p>'
-    +'<p style="font-size:9px;color:#059669;margin-top:2px;">Premi '+fS(d.vasMin)+'</p>'
-    +'</div>'
-    +'<div style="background:'+(nfOk?'#065F46':'rgba(255,255,255,0.4)')+';border-radius:9px;padding:9px;text-align:center;">'
-    +'<p style="font-size:9px;font-weight:700;color:'+(nfOk?'rgba(255,255,255,0.8)':'#047857')+';margin-bottom:3px;">TOTAL</p>'
-    +'<p style="font-size:14px;font-weight:700;color:'+(nfOk?'#fff':'#065F46')+';">'+fmt(d.nf.total)+'</p>'
-    +'<p style="font-size:9px;color:'+(nfOk?'rgba(255,255,255,0.65)':'#059669')+';margin-top:2px;">NOS+VAS</p>'
-    +'</div>'
-    +'</div></div>';
+  // NON FEL block (tampil jika pilih NON FEL atau Keduanya)
+  if(showNF){
+    h+='<div style="background:#F0FDF4;border-radius:12px;padding:12px;margin-bottom:8px;">'
+      +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
+      +'<div><span style="font-size:11px;font-weight:700;color:#065F46;background:#A7F3D0;padding:3px 9px;border-radius:7px;">POS NON FEL</span>'
+      +'<span style="font-size:10px;color:#059669;margin-left:6px;">MPGG</span></div>'
+      +(nfOk?'<span style="font-size:11px;font-weight:700;color:#059669;background:#D1FAE5;padding:3px 9px;border-radius:7px;">&#10003; Capai</span>'
+            :'<span style="font-size:11px;color:#9CA3AF;">Belum capai</span>')
+      +'</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">'
+      +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
+      +'<p style="font-size:9px;color:#047857;font-weight:600;margin-bottom:3px;">Bonus Kontrak</p>'
+      +'<p style="font-size:12px;font-weight:700;color:#065F46;">'+fmt(d.nf.nos)+'</p>'
+      +'<p style="font-size:9px;color:#059669;margin-top:2px;">'+d.nf.nfB+' Baru &middot; '+d.nf.nfL+' Lain</p>'
+      +'</div>'
+      +'<div style="background:rgba(255,255,255,0.7);border-radius:9px;padding:9px;text-align:center;">'
+      +'<p style="font-size:9px;color:#047857;font-weight:600;margin-bottom:3px;">Bonus VAS</p>'
+      +'<p style="font-size:12px;font-weight:700;color:#065F46;">'+fmt(d.nf.vas)+'</p>'
+      +'<p style="font-size:9px;color:#059669;margin-top:2px;">Premi '+fS(d.vasMin)+'</p>'
+      +'</div>'
+      +'<div style="background:'+(nfOk?'#065F46':'rgba(255,255,255,0.4)')+';border-radius:9px;padding:9px;text-align:center;">'
+      +'<p style="font-size:9px;font-weight:700;color:'+(nfOk?'rgba(255,255,255,0.8)':'#047857')+';margin-bottom:3px;">TOTAL</p>'
+      +'<p style="font-size:14px;font-weight:700;color:'+(nfOk?'#fff':'#065F46')+';">'+fmt(d.nf.total)+'</p>'
+      +'<p style="font-size:9px;color:'+(nfOk?'rgba(255,255,255,0.65)':'#059669')+';margin-top:2px;">NOS+VAS</p>'
+      +'</div></div></div>';
+  }
 
   // VAS hint
   h+='<div style="background:#EFF6FF;border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">'
